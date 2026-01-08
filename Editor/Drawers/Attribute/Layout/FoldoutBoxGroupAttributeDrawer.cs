@@ -9,7 +9,7 @@ namespace EasyToolKit.Inspector.Editor
     [DrawerPriority(DrawerPriorityLevel.Attribute + 100)]
     public class FoldoutBoxGroupAttributeDrawer : EasyGroupAttributeDrawer<FoldoutBoxGroupAttribute>
     {
-        private IExpressionEvaluator<string> _labelEvaluator;
+        private IExpressionEvaluator _labelEvaluator;
 
         protected override void Initialize()
         {
@@ -18,7 +18,7 @@ namespace EasyToolKit.Inspector.Editor
                 : ElementUtility.GetOwnerTypeWithAttribute(Element.AssociatedElement, Attribute);
 
             _labelEvaluator = ExpressionEvaluatorFactory
-                .Evaluate<string>(Attribute.Label, targetType)
+                .Evaluate(Attribute.Label, targetType)
                 .WithExpressionFlag()
                 .Build();
         }
@@ -41,7 +41,7 @@ namespace EasyToolKit.Inspector.Editor
             var resolveTarget = Element.AssociatedElement == null
                 ? null
                 : ElementUtility.GetOwnerWithAttribute(Element.AssociatedElement, Attribute);
-            var labelText = _labelEvaluator.Evaluate(resolveTarget);
+            var labelText = _labelEvaluator.Evaluate<string>(resolveTarget);
             Element.State.Expanded = EasyEditorGUI.Foldout(Element.State.Expanded, EditorHelper.TempContent(labelText));
             EasyEditorGUI.EndBoxHeader();
         }

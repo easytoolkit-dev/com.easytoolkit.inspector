@@ -76,7 +76,7 @@ namespace EasyToolKit.Inspector.Editor
 
     public partial class CollectionDrawer<T>
     {
-        [CanBeNull] private IExpressionEvaluator<Texture> _iconTextureGetterEvaluator;
+        [CanBeNull] private IExpressionEvaluator _iconTextureGetterEvaluator;
         [CanBeNull] private Func<object, int, string> _customIndexLabelFunction;
 
         private bool _showIndexLabel;
@@ -97,14 +97,14 @@ namespace EasyToolKit.Inspector.Editor
                     if (metroListDrawerSettings.IconTextureGetter.IsNotNullOrEmpty())
                     {
                         _iconTextureGetterEvaluator = ExpressionEvaluatorFactory
-                            .Evaluate<Texture>(metroListDrawerSettings.IconTextureGetter, _listDrawerTargetType)
+                            .Evaluate(metroListDrawerSettings.IconTextureGetter, _listDrawerTargetType)
                             .Build();
                     }
                 }
 
                 if (_showIndexLabel && _listDrawerSettings.CustomIndexLabelFunction.IsNotNullOrEmpty())
                 {
-                    var customIndexLabelFunction = _listDrawerTargetType.GetMethodEx(
+                    var customIndexLabelFunction = _listDrawerTargetType.ResolveOverloadMethod(
                         _listDrawerSettings.CustomIndexLabelFunction,
                         BindingFlagsHelper.All, typeof(int)) ?? throw new Exception(
                         $"Cannot find method '{_listDrawerSettings.CustomIndexLabelFunction}' in '{_listDrawerTargetType}'");
@@ -116,7 +116,7 @@ namespace EasyToolKit.Inspector.Editor
 
                 if (_listDrawerSettings.CustomRemoveIndexFunction.IsNotNullOrEmpty())
                 {
-                    var customRemoveIndexFunction = _listDrawerTargetType.GetMethodEx(
+                    var customRemoveIndexFunction = _listDrawerTargetType.ResolveOverloadMethod(
                         _listDrawerSettings.CustomRemoveIndexFunction,
                         BindingFlagsHelper.All, typeof(int)) ?? throw new Exception(
                         $"Cannot find method '{_listDrawerSettings.CustomRemoveIndexFunction}' in '{_listDrawerTargetType}'");
@@ -219,7 +219,7 @@ namespace EasyToolKit.Inspector.Editor
 
             if (_iconTextureGetterEvaluator != null)
             {
-                var iconTexture = _iconTextureGetterEvaluator.Evaluate(ElementUtility.GetOwnerWithAttribute(Element, _listDrawerSettings));
+                var iconTexture = _iconTextureGetterEvaluator.Evaluate<Texture>(ElementUtility.GetOwnerWithAttribute(Element, _listDrawerSettings));
                 GUILayout.Label(iconTexture, GUILayout.Width(30), GUILayout.Height(30));
             }
 

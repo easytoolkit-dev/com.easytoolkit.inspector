@@ -16,7 +16,7 @@ namespace EasyToolKit.Inspector.Editor
             var targetType = ElementUtility.GetOwnerTypeWithAttribute(Element, Attribute);
 
             _conditionEvaluator = ExpressionEvaluatorFactory
-                .Evaluate<object>(Attribute.Condition, targetType)
+                .Evaluate(Attribute.Condition, targetType)
                 .Build();
         }
 

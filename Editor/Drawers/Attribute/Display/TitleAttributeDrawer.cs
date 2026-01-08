@@ -8,19 +8,19 @@ namespace EasyToolKit.Inspector.Editor
     [DrawerPriority(DrawerPriorityLevel.Attribute + 10)]
     public class TitleAttributeDrawer : EasyAttributeDrawer<TitleAttribute>
     {
-        private IExpressionEvaluator<string> _titleEvaluator;
-        private IExpressionEvaluator<string> _subtitleEvaluator;
+        private IExpressionEvaluator _titleEvaluator;
+        private IExpressionEvaluator _subtitleEvaluator;
 
         protected override void Initialize()
         {
             var targetType = ElementUtility.GetOwnerTypeWithAttribute(Element, Attribute);
 
             _titleEvaluator = ExpressionEvaluatorFactory
-                .Evaluate<string>(Attribute.Title, targetType)
+                .Evaluate(Attribute.Title, targetType)
                 .WithExpressionFlag()
                 .Build();
             _subtitleEvaluator = ExpressionEvaluatorFactory
-                .Evaluate<string>(Attribute.Subtitle, targetType)
+                .Evaluate(Attribute.Subtitle, targetType)
                 .WithExpressionFlag()
                 .Build();
         }
@@ -39,8 +39,8 @@ namespace EasyToolKit.Inspector.Editor
             }
 
             var resolveTarget = ElementUtility.GetOwnerWithAttribute(Element, Attribute);
-            var titleText = _titleEvaluator.Evaluate(resolveTarget);
-            var subtitleText = _subtitleEvaluator.Evaluate(resolveTarget);
+            var titleText = _titleEvaluator.Evaluate<string>(resolveTarget);
+            var subtitleText = _subtitleEvaluator.Evaluate<string>(resolveTarget);
             EasyEditorGUI.Title(titleText, subtitleText, Attribute.TextAlignment, Attribute.HorizontalLine, Attribute.BoldTitle);
 
             CallNextDrawer(label);

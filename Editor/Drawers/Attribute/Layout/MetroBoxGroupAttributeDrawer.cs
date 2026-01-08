@@ -33,8 +33,8 @@ namespace EasyToolKit.Inspector.Editor
 
         public static readonly Color HeaderBoxBackgroundColor = EasyGUIStyles.HeaderBoxBackgroundColor * 0.9f;
 
-        private IExpressionEvaluator<string> _labelEvaluator;
-        private IExpressionEvaluator<Texture> _iconTextureGetterEvaluator;
+        private IExpressionEvaluator _labelEvaluator;
+        private IExpressionEvaluator _iconTextureGetterEvaluator;
 
         protected override void Initialize()
         {
@@ -43,11 +43,11 @@ namespace EasyToolKit.Inspector.Editor
                 : ElementUtility.GetOwnerTypeWithAttribute(Element.AssociatedElement, Attribute);
 
             _labelEvaluator = ExpressionEvaluatorFactory
-                .Evaluate<string>(Attribute.Label, targetType)
+                .Evaluate(Attribute.Label, targetType)
                 .WithExpressionFlag()
                 .Build();
             _iconTextureGetterEvaluator = ExpressionEvaluatorFactory
-                .Evaluate<Texture>(Attribute.IconTextureGetter, targetType)
+                .Evaluate(Attribute.IconTextureGetter, targetType)
                 .Build();
         }
 
@@ -77,11 +77,11 @@ namespace EasyToolKit.Inspector.Editor
 
             if (Attribute.IconTextureGetter.IsNotNullOrEmpty())
             {
-                iconTexture = _iconTextureGetterEvaluator.Evaluate(resolveTarget);
+                iconTexture = _iconTextureGetterEvaluator.Evaluate<Texture>(resolveTarget);
                 GUILayout.Label(iconTexture, GUILayout.Width(30), GUILayout.Height(30));
             }
 
-            var labelText = _labelEvaluator.Evaluate(resolveTarget);
+            var labelText = _labelEvaluator.Evaluate<string>(resolveTarget);
 
             BeginDraw(EditorHelper.TempContent(labelText), iconTexture);
         }

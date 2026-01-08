@@ -47,12 +47,12 @@ namespace EasyToolKit.Inspector.Editor
              }
          }
 
-        private IExpressionEvaluator<string> _labelEvaluator;
-        [CanBeNull] private IExpressionEvaluator<string> _tooltipEvaluator;
-        [CanBeNull] private IExpressionEvaluator<string> _rightLabelEvaluator;
-        [CanBeNull] private IExpressionEvaluator<Color> _sideLineColorGetterEvaluator;
-        [CanBeNull] private IExpressionEvaluator<Color> _rightLabelColorGetterEvaluator;
-        [CanBeNull] private IExpressionEvaluator<Texture> _iconTextureGetterEvaluator;
+        private IExpressionEvaluator _labelEvaluator;
+        [CanBeNull] private IExpressionEvaluator _tooltipEvaluator;
+        [CanBeNull] private IExpressionEvaluator _rightLabelEvaluator;
+        [CanBeNull] private IExpressionEvaluator _sideLineColorGetterEvaluator;
+        [CanBeNull] private IExpressionEvaluator _rightLabelColorGetterEvaluator;
+        [CanBeNull] private IExpressionEvaluator _iconTextureGetterEvaluator;
 
         protected override void Initialize()
         {
@@ -61,14 +61,14 @@ namespace EasyToolKit.Inspector.Editor
                 : ElementUtility.GetOwnerTypeWithAttribute(Element.AssociatedElement, Attribute);
 
             _labelEvaluator = ExpressionEvaluatorFactory
-                .Evaluate<string>(Attribute.Label, targetType)
+                .Evaluate(Attribute.Label, targetType)
                 .WithExpressionFlag()
                 .Build();
 
             if (Attribute.Tooltip.IsNotNullOrWhiteSpace())
             {
                 _tooltipEvaluator = ExpressionEvaluatorFactory
-                    .Evaluate<string>(Attribute.Tooltip, targetType)
+                    .Evaluate(Attribute.Tooltip, targetType)
                     .WithExpressionFlag()
                     .Build();
             }
@@ -76,7 +76,7 @@ namespace EasyToolKit.Inspector.Editor
             if (Attribute.RightLabel.IsNotNullOrWhiteSpace())
             {
                 _rightLabelEvaluator = ExpressionEvaluatorFactory
-                    .Evaluate<string>(Attribute.RightLabel, targetType)
+                    .Evaluate(Attribute.RightLabel, targetType)
                     .WithExpressionFlag()
                     .Build();
             }
@@ -84,21 +84,21 @@ namespace EasyToolKit.Inspector.Editor
             if (Attribute.RightLabelColorGetter.IsNotNullOrWhiteSpace())
             {
                 _rightLabelColorGetterEvaluator = ExpressionEvaluatorFactory
-                    .Evaluate<Color>(Attribute.RightLabelColorGetter, targetType)
+                    .Evaluate(Attribute.RightLabelColorGetter, targetType)
                     .Build();
             }
 
             if (Attribute.IconTextureGetter.IsNotNullOrWhiteSpace())
             {
                 _iconTextureGetterEvaluator = ExpressionEvaluatorFactory
-                    .Evaluate<Texture>(Attribute.IconTextureGetter, targetType)
+                    .Evaluate(Attribute.IconTextureGetter, targetType)
                     .Build();
             }
 
             if (Attribute.SideLineColorGetter.IsNotNullOrWhiteSpace())
             {
                 _sideLineColorGetterEvaluator = ExpressionEvaluatorFactory
-                    .Evaluate<Color>(Attribute.SideLineColorGetter, targetType)
+                    .Evaluate(Attribute.SideLineColorGetter, targetType)
                     .Build();
             }
         }
@@ -158,7 +158,7 @@ namespace EasyToolKit.Inspector.Editor
             Color sideLineColor = Color.green;
             if (_sideLineColorGetterEvaluator != null)
             {
-                sideLineColor = _sideLineColorGetterEvaluator.Evaluate(resolveTarget);
+                sideLineColor = _sideLineColorGetterEvaluator.Evaluate<Color>(resolveTarget);
             }
 
             EasyGUIHelper.PushColor(sideLineColor);
@@ -167,12 +167,12 @@ namespace EasyToolKit.Inspector.Editor
 
             if (_iconTextureGetterEvaluator != null)
             {
-                var iconTexture = _iconTextureGetterEvaluator.Evaluate(resolveTarget);
+                var iconTexture = _iconTextureGetterEvaluator.Evaluate<Texture>(resolveTarget);
                 GUILayout.Label(iconTexture, GUILayout.Width(30), GUILayout.Height(30));
             }
 
-            var labelText = _labelEvaluator.Evaluate(resolveTarget);
-            var tooltipText = _tooltipEvaluator?.Evaluate(resolveTarget);
+            var labelText = _labelEvaluator.Evaluate<string>(resolveTarget);
+            var tooltipText = _tooltipEvaluator?.Evaluate<string>(resolveTarget);
 
             var foldoutRect = EditorGUILayout.GetControlRect(true, 30, FoldoutStyle);
             Element.State.Expanded = EasyEditorGUI.Foldout(
@@ -183,11 +183,11 @@ namespace EasyToolKit.Inspector.Editor
 
             if (_rightLabelEvaluator != null)
             {
-                var rightLabel = EditorHelper.TempContent(_rightLabelEvaluator.Evaluate(resolveTarget));
+                var rightLabel = EditorHelper.TempContent(_rightLabelEvaluator.Evaluate<string>(resolveTarget));
                 var rightLabelColor = Color.white;
                 if (_rightLabelColorGetterEvaluator != null)
                 {
-                    rightLabelColor = _rightLabelColorGetterEvaluator.Evaluate(resolveTarget);
+                    rightLabelColor = _rightLabelColorGetterEvaluator.Evaluate<Color>(resolveTarget);
                 }
 
                 var rightLabelSize = RightLabelStyle.CalcSize(rightLabel);

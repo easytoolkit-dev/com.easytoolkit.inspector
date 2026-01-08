@@ -1,7 +1,6 @@
 using System;
 using System.Reflection;
 using EasyToolKit.Core;
-using EasyToolKit.OdinSerializer.Utilities;
 
 namespace EasyToolKit.Inspector.Editor
 {
@@ -13,8 +12,8 @@ namespace EasyToolKit.Inspector.Editor
     public class MemberValueOperation<TOwner, TValue> : ValueOperationBase<TValue>
     {
         private readonly MemberInfo _memberInfo;
-        private readonly ValueGetter<TOwner, TValue> _getter;
-        private readonly ValueSetter<TOwner, TValue> _setter;
+        private readonly TypedInstanceGetter<TOwner, TValue> _getter;
+        private readonly TypedInstanceSetter<TOwner, TValue> _setter;
 
         /// <summary>
         /// Initializes a new instance of MemberPropertyOperation
@@ -22,25 +21,16 @@ namespace EasyToolKit.Inspector.Editor
         /// <param name="memberInfo">Member information</param>
         public MemberValueOperation(MemberInfo memberInfo) : base(typeof(TOwner))
         {
-            switch (memberInfo)
+            var accessor = ReflectionFactory.CreateAccessor(memberInfo.Name);
+
+            _getter = accessor.BuildTypedInstanceGetter<TOwner, TValue>();
+            try
             {
-                case FieldInfo fieldInfo:
-                    _getter = fieldInfo.GetInstanceValueGetter<TOwner, TValue>();
-                    _setter = fieldInfo.GetInstanceValueSetter<TOwner, TValue>();
-                    break;
-                case PropertyInfo propertyInfo:
-                    _getter = propertyInfo.GetInstanceValueGetter<TOwner, TValue>();
-                    try
-                    {
-                        _setter = propertyInfo.GetInstanceValueSetter<TOwner, TValue>();
-                    }
-                    catch (Exception e)
-                    {
-                        // Property is read-only
-                    }
-                    break;
-                default:
-                    throw new NotSupportedException($"MemberInfo '{memberInfo.Name}' is not supported.");
+                _setter = accessor.BuildTypedInstanceSetter<TOwner, TValue>();
+            }
+            catch (Exception)
+            {
+                // Member is read-only
             }
 
             _memberInfo = memberInfo;
@@ -60,6 +50,7 @@ namespace EasyToolKit.Inspector.Editor
         {
             var castedOwner = (TOwner)owner;
             var result = _getter(ref castedOwner);
+            owner = castedOwner;
             return result;
         }
 
