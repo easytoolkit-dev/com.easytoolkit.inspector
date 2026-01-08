@@ -10,7 +10,7 @@ namespace EasyToolKit.Inspector.Editor
     //TODO support parameters
     public class ButtonAttributeDrawer : EasyMethodAttributeDrawer<ButtonAttribute>
     {
-        [CanBeNull] private IExpressionEvaluator<string> _buttonLabelEvaluator;
+        [CanBeNull] private IExpressionEvaluator _buttonLabelEvaluator;
 
         protected override void Initialize()
         {
@@ -19,7 +19,7 @@ namespace EasyToolKit.Inspector.Editor
             if (Attribute.Label.IsNotNullOrEmpty())
             {
                 _buttonLabelEvaluator = ExpressionEvaluatorFactory
-                    .Evaluate<string>(Attribute.Label, targetType)
+                    .Evaluate(Attribute.Label, targetType)
                     .WithExpressionFlag()
                     .Build();
             }
@@ -35,7 +35,7 @@ namespace EasyToolKit.Inspector.Editor
 
             var resolveTarget = ElementUtility.GetOwnerWithAttribute(Element, Attribute);
             var buttonLabel = _buttonLabelEvaluator != null
-                ? _buttonLabelEvaluator.Evaluate(resolveTarget)
+                ? _buttonLabelEvaluator.Evaluate<string>(resolveTarget)
                 : label.text;
             if (GUILayout.Button(buttonLabel))
             {

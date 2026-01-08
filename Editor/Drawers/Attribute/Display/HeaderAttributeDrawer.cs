@@ -8,14 +8,14 @@ namespace EasyToolKit.Inspector.Editor
     [DrawerPriority(DrawerPriorityLevel.Attribute + 10)]
     public class HeaderAttributeDrawer : EasyAttributeDrawer<HeaderAttribute>
     {
-        private IExpressionEvaluator<string> _headerEvaluator;
+        private IExpressionEvaluator _headerEvaluator;
 
         protected override void Initialize()
         {
             var targetType = ElementUtility.GetOwnerTypeWithAttribute(Element, Attribute);
 
             _headerEvaluator = ExpressionEvaluatorFactory
-                .Evaluate<string>(Attribute.header, targetType)
+                .Evaluate(Attribute.header, targetType)
                 .WithExpressionFlag()
                 .Build();
         }
@@ -29,7 +29,7 @@ namespace EasyToolKit.Inspector.Editor
             }
 
             var resolveTarget = ElementUtility.GetOwnerWithAttribute(Element, Attribute);
-            var headerText = _headerEvaluator.Evaluate(resolveTarget);
+            var headerText = _headerEvaluator.Evaluate<string>(resolveTarget);
             EditorGUILayout.LabelField(headerText, EditorStyles.boldLabel);
             CallNextDrawer(label);
         }

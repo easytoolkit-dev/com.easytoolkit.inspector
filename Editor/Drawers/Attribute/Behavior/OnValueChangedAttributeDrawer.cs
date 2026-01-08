@@ -27,11 +27,11 @@ namespace EasyToolKit.Inspector.Editor
                 {
                     try
                     {
-                        _methodInfo = targetType.GetMethodEx(Attribute.Method, BindingFlagsHelper.All, ValueEntry.ValueType);
+                        _methodInfo = targetType.ResolveOverloadMethod(Attribute.Method, BindingFlagsHelper.All, ValueEntry.ValueType);
                     }
                     catch (Exception e)
                     {
-                        _methodInfo = targetType.GetMethodEx(Attribute.Method, BindingFlagsHelper.All);
+                        _methodInfo = targetType.ResolveOverloadMethod(Attribute.Method, BindingFlagsHelper.All);
                     }
 
                     ValueEntry.AfterValueChanged += OnValueChanged;

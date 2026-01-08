@@ -10,8 +10,8 @@ namespace EasyToolKit.Inspector.Editor
     [DrawerPriority(DrawerPriorityLevel.Attribute + 10)]
     public class MessageBoxAttributeDrawer : EasyAttributeDrawer<MessageBoxAttribute>
     {
-        [CanBeNull] private IExpressionEvaluator<bool> _visibleIfEvaluator;
-        private IExpressionEvaluator<string> _messageEvaluator;
+        [CanBeNull] private IExpressionEvaluator _visibleIfEvaluator;
+        private IExpressionEvaluator _messageEvaluator;
 
         protected override void Initialize()
         {
@@ -20,12 +20,12 @@ namespace EasyToolKit.Inspector.Editor
             if (Attribute.VisibleIf != null)
             {
                 _visibleIfEvaluator = ExpressionEvaluatorFactory
-                    .Evaluate<bool>(Attribute.VisibleIf, targetType)
+                    .Evaluate(Attribute.VisibleIf, targetType)
                     .Build();
             }
 
             _messageEvaluator = ExpressionEvaluatorFactory
-                .Evaluate<string>(Attribute.Message, targetType)
+                .Evaluate(Attribute.Message, targetType)
                 .WithExpressionFlag()
                 .Build();
         }
@@ -48,7 +48,7 @@ namespace EasyToolKit.Inspector.Editor
 
             if (_visibleIfEvaluator != null)
             {
-                var visible = _visibleIfEvaluator.Evaluate(resolveTarget);
+                var visible = _visibleIfEvaluator.Evaluate<bool>(resolveTarget);
                 if (!visible)
                 {
                     CallNextDrawer(label);
@@ -56,7 +56,7 @@ namespace EasyToolKit.Inspector.Editor
                 }
             }
 
-            var message = _messageEvaluator.Evaluate(resolveTarget);
+            var message = _messageEvaluator.Evaluate<string>(resolveTarget);
             EasyEditorGUI.MessageBox(message, Attribute.MessageType switch
             {
                 MessageBoxType.None => MessageType.None,
