@@ -1,0 +1,22 @@
+{
+    "name": "EasyToolKit.Inspector.Editor",
+    "references": [
+        "EasyToolKit.Core.Runtime",
+        "EasyToolKit.Core.Editor",
+        "EasyToolKit.OdinSerializer.Runtime",
+        "EasyToolKit.Inspector.Runtime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "UNITY_EDITOR"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
