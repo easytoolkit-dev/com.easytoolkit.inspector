@@ -1,0 +1,16 @@
+{
+    "name": "EasyToolKit.Inspector.Runtime",
+    "references": [
+        "EasyToolKit.Core.Runtime",
+        "EasyToolKit.OdinSerializer.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
