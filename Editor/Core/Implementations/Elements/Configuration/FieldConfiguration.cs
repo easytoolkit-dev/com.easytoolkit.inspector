@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using EasyToolKit.Core.Common;
+using EasyToolKit.Core.Textual;
 
 namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
 {

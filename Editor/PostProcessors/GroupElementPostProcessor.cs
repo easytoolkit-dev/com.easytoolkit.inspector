@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using EasyToolKit.Core;
-using EasyToolKit.Core.Common;
+using EasyToolKit.Core.Textual;
 using EasyToolKit.Core.Reflection;
 using UnityEngine;
 
