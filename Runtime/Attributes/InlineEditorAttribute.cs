@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace EasyToolKit.Inspector
+namespace EasyToolKit.Inspector.Attributes
 {
     public enum InlineEditorStyle
     {

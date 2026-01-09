@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Editor.Implementations
+namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
 {
     /// <summary>
     /// Type-safe read-only wrapper for an element list that boxes derived elements to base type.

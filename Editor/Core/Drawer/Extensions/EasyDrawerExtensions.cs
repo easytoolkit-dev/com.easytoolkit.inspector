@@ -1,7 +1,7 @@
 using EasyToolKit.OdinSerializer;
 using System;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     /// <summary>
     /// Provides extension methods for EasyToolKit drawers.

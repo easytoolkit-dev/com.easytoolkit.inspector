@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using EasyToolKit.Core.Editor;
-using EasyToolKit.Inspector;
+using EasyToolKit.Inspector.Attributes;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public class EnumDrawer<T> : EasyValueDrawer<T>
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public static class ValueEntryExtensions
     {

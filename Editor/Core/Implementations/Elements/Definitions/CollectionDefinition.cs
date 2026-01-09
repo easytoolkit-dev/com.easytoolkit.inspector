@@ -1,6 +1,6 @@
 using System;
 
-namespace EasyToolKit.Inspector.Editor.Implementations
+namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
 {
     /// <summary>
     /// Collection definition implementation for describing collection data structures.

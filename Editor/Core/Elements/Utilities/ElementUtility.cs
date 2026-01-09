@@ -2,7 +2,7 @@
 using EasyToolKit.OdinSerializer;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public static class ElementUtility
     {

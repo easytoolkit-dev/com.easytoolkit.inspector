@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasyToolKit.Inspector
+namespace EasyToolKit.Inspector.Attributes
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
     public class OnInspectorInitAttribute : MethodAttribute

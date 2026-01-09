@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using EasyToolKit.Core;
+using EasyToolKit.Core.Common;
 
-namespace EasyToolKit.Inspector.Editor.Implementations
+namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
 {
     /// <summary>
     /// Base configuration class for all element configurations in the inspector system.

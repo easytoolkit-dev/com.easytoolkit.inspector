@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public abstract class EasyDrawer : IEasyDrawer
     {

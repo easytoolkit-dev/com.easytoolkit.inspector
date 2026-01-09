@@ -5,10 +5,11 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using EasyToolKit.Core;
+using EasyToolKit.Core.Reflection;
 using EasyToolKit.OdinSerializer;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     /// <summary>
     /// Generic value structure resolver implementation using reflection to discover elements.

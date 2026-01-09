@@ -5,7 +5,7 @@ using EasyToolKit.Core;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public static class CollectionDrawerStaticContext
     {

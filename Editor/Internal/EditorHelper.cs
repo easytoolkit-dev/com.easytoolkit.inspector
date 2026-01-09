@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor.Internal
+namespace EasyToolKit.Inspector.Attributes.Editor.Internal
 {
     internal static class EditorHelper
     {

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using EasyToolKit.Core;
 using EasyToolKit.Core.Editor;
+using EasyToolKit.Core.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     //TODO conflict handling
     public class ValueDropdownAttributeDrawer<T> : EasyAttributeDrawer<ValueDropdownAttribute, T>

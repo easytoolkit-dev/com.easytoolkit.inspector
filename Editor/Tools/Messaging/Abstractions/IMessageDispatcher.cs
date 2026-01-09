@@ -1,4 +1,4 @@
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     /// <summary>
     /// Defines a message dispatcher that invokes handlers based on message names.

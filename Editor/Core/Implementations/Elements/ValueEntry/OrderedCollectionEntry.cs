@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor.Implementations
+namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
 {
     /// <summary>
     /// Represents an ordered collection entry that manages ordered collection values for multiple target objects.

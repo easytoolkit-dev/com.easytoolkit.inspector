@@ -1,9 +1,10 @@
 ﻿using System;
 using EasyToolKit.Core;
 using EasyToolKit.Core.Editor;
+using EasyToolKit.Core.Pooling;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     /// <summary>
     /// Specifies the type of change that occurred to an element list.

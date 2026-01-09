@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     /// <summary>
     /// Message dispatcher that uses reflection to find handler methods marked with

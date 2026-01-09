@@ -1,6 +1,6 @@
 using System;
 
-namespace EasyToolKit.Inspector
+namespace EasyToolKit.Inspector.Attributes
 {
     /// <summary>
     /// Marks a method as a message handler for the message dispatcher system.

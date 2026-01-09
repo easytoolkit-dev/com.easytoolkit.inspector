@@ -1,6 +1,6 @@
 using EasyToolKit.Core;
 
-namespace EasyToolKit.Inspector.Editor.Implementations
+namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
 {
     public class DefaultDrawerChainResolverFactory : IDrawerChainResolverFactory
     {

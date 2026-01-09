@@ -1,6 +1,6 @@
 using System;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     /// <summary>
     /// Interface for resolving value structure information in the inspector system.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public interface IAttributeResolver : IResolver
     {

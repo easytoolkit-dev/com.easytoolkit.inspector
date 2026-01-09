@@ -1,4 +1,4 @@
-﻿namespace EasyToolKit.Inspector.Editor.Implementations
+﻿namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
 {
     /// <summary>
     /// Factory implementation for creating element configuration instances.

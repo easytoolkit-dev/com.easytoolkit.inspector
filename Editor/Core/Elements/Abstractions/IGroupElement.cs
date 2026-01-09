@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     /// <summary>
     /// Group element interface for organizing elements in the inspector tree.

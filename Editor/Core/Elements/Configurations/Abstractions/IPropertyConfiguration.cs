@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     /// <summary>
     /// Configuration interface for creating property element definitions.

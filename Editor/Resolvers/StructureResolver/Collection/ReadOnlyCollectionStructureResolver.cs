@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public class ReadOnlyCollectionStructureResolver<TCollection, TElement> : CollectionStructureResolverBase<TCollection>
         where TCollection : IReadOnlyCollection<TElement>

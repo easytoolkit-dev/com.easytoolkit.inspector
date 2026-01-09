@@ -1,8 +1,8 @@
 using System;
 using System.Reflection;
-using EasyToolKit.Core;
+using EasyToolKit.Core.Common;
 
-namespace EasyToolKit.Inspector.Editor.Implementations
+namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
 {
     /// <summary>
     /// Configuration interface for creating field collection element definitions.

@@ -2,7 +2,7 @@ using System;
 using EasyToolKit.Core;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public abstract class EasyValueDrawer<TValue> : EasyDrawer
     {

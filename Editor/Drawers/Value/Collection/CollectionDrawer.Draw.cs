@@ -1,12 +1,14 @@
 ﻿using System;
-using EasyToolKit.Core;
+using EasyToolKit.Core.Common;
 using EasyToolKit.Core.Editor;
-using EasyToolKit.Inspector.Editor.Internal;
+using EasyToolKit.Core.Mathematics;
+using EasyToolKit.Core.Reflection;
+using EasyToolKit.Inspector.Attributes.Editor.Internal;
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public static class CollectionDrawerStyles
     {

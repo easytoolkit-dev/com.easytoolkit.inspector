@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace EasyToolKit.Inspector.Editor.Internal
+namespace EasyToolKit.Inspector.Attributes.Editor.Internal
 {
     /// <summary>
     /// Manages the lifecycle of Unity Editors and ElementTrees for an EasyEditorWindow.

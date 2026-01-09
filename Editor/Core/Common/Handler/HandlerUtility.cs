@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
+using EasyToolKit.Core.Reflection;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     /// <summary>
     /// Utility class for discovering and matching inspector elements that implement <see cref="IHandler"/>.

@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using EasyToolKit.Core;
+using EasyToolKit.Core.Reflection;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public class GenericValueOperationResolver : ValueOperationResolverBase
     {

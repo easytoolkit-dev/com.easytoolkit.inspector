@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     [ResolverPriority(1.0)]
     public abstract class CollectionStructureResolverBase<TCollection> : ValueStructureResolverBase<TCollection>, ICollectionStructureResolver

@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq.Expressions;
-using EasyToolKit.Core;
+using EasyToolKit.Core.DependencyInjection;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Editor.Implementations
+namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
 {
     /// <summary>
     /// Represents a queued event for batch processing.

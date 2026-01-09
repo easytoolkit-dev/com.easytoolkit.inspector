@@ -1,11 +1,12 @@
 using System;
 using EasyToolKit.Core;
+using EasyToolKit.Core.Common;
 using EasyToolKit.Core.Editor;
-using EasyToolKit.Inspector;
+using EasyToolKit.Inspector.Attributes;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public class DirtyTriggerAttributeDrawer<T> : EasyAttributeDrawer<DirtyTriggerAttribute, T>
         where T : Delegate

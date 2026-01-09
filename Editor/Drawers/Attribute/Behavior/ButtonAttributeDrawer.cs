@@ -1,11 +1,11 @@
-using System.Reflection;
-using EasyToolKit.Core;
+using EasyToolKit.Core.Common;
 using EasyToolKit.Core.Editor;
+using EasyToolKit.Core.Reflection;
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     //TODO support parameters
     public class ButtonAttributeDrawer : EasyMethodAttributeDrawer<ButtonAttribute>

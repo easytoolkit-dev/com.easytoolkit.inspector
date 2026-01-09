@@ -1,4 +1,4 @@
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     /// <summary>
     /// Method parameter element interface representing individual parameters in methods.

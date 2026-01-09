@@ -2,7 +2,7 @@ using System;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     /// <summary>
     /// Encapsulates method metadata and compiled delegate for fast invocation.

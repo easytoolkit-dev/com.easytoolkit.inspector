@@ -1,4 +1,4 @@
-﻿namespace EasyToolKit.Inspector.Editor
+﻿namespace EasyToolKit.Inspector.Attributes.Editor
 {
     /// <summary>
     /// Interface for resolving drawer chains for <see cref="InspectorProperty"/>

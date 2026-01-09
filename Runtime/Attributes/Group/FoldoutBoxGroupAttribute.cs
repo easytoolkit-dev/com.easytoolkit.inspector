@@ -1,10 +1,10 @@
 using System;
 using System.Diagnostics;
-using EasyToolKit.Inspector;
+using EasyToolKit.Inspector.Attributes;
 
 [assembly: RegisterGroupAttributeScope(typeof(FoldoutBoxGroupAttribute), typeof(EndFoldoutBoxGroupAttribute))]
 
-namespace EasyToolKit.Inspector
+namespace EasyToolKit.Inspector.Attributes
 {
     [Conditional("UNITY_EDITOR")]
     [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]

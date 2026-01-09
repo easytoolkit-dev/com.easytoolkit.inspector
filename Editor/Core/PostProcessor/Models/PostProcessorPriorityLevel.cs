@@ -1,4 +1,4 @@
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     /// <summary>
     /// Provides standard priority levels for post processors.

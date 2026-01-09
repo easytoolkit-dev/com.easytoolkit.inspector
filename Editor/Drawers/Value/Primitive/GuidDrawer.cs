@@ -2,7 +2,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     [DrawerPriority(DrawerPriorityLevel.Value + 2)]
     public class GuidDrawer : EasyValueDrawer<Guid>

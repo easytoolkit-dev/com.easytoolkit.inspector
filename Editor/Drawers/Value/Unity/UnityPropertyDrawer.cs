@@ -1,9 +1,9 @@
 using System;
-using EasyToolKit.Inspector.Editor.Internal;
+using EasyToolKit.Inspector.Attributes.Editor.Internal;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     [DrawerPriority(DrawerPriorityLevel.Value + 0.2)]
     public class UnityPropertyDrawer<T> : EasyValueDrawer<T>

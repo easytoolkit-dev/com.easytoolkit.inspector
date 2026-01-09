@@ -1,10 +1,11 @@
 using System;
 using EasyToolKit.Core;
 using EasyToolKit.Core.Editor;
+using EasyToolKit.Core.Mathematics;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     /// <summary>
     /// Provides utility methods for creating and configuring EasyEditorWindow instances.

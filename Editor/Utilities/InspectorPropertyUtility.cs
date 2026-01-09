@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Reflection;
 using EasyToolKit.Core;
+using EasyToolKit.Core.Reflection;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public static class InspectorPropertyUtility
     {

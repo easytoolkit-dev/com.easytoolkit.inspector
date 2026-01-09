@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     /// <summary>
     /// Base configuration interface for all element configurations in the inspector system.
