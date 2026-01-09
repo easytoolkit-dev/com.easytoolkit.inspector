@@ -2,14 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using EasyToolKit.Core;
+using EasyToolKit.Core.Common;
 using EasyToolKit.Core.Editor;
 using EasyToolKit.Core.Editor.Internal;
+using EasyToolKit.Core.Lifecycle;
 using EasyToolKit.OdinSerializer;
 using UnityEditor;
 using UnityEngine;
 using SerializationUtility = EasyToolKit.OdinSerializer.SerializationUtility;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     class PersistentContextDirectory : Dictionary<string, GlobalPersistentContext>
     {

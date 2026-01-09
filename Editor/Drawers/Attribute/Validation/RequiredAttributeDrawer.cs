@@ -1,10 +1,11 @@
 ﻿using System;
-using EasyToolKit.Core;
 using EasyToolKit.Core.Editor;
+using EasyToolKit.Core.Mathematics;
+using EasyToolKit.Core.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     [DrawerPriority(DrawerPriorityLevel.Super)]
     public class RequiredAttributeDrawer<T> : EasyAttributeDrawer<RequiredAttribute, T>

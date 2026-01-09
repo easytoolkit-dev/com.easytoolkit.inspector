@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     /// <summary>
     /// Property collection definition interface that unifies <see cref="ICollectionDefinition"/> and <see cref="IPropertyDefinition"/>.

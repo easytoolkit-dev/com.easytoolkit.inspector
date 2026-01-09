@@ -1,11 +1,11 @@
 using System;
-using EasyToolKit.Inspector;
+using EasyToolKit.Inspector.Attributes;
 using System.Diagnostics;
 using UnityEngine;
 
 [assembly: RegisterGroupAttributeScope(typeof(MetroFoldoutGroupAttribute), typeof(EndMetroFoldoutGroupAttribute))]
 
-namespace EasyToolKit.Inspector
+namespace EasyToolKit.Inspector.Attributes
 {
     [Conditional("UNITY_EDITOR")]
     [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]

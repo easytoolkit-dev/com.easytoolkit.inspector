@@ -1,7 +1,7 @@
 using System;
 using EasyToolKit.OdinSerializer;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     /// <summary>
     /// Context that persists across reloading and restarting Unity.

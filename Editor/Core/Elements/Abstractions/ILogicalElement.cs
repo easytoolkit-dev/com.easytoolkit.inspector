@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public interface ILogicalElement : IElement
     {

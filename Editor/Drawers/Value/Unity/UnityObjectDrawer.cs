@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public class UnityObjectDrawer<T> : EasyValueDrawer<T>
         where T : UnityEngine.Object

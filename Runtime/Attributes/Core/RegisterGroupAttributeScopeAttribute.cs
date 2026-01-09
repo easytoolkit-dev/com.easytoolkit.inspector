@@ -1,6 +1,6 @@
 using System;
 
-namespace EasyToolKit.Inspector
+namespace EasyToolKit.Inspector.Attributes
 {
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
     public class RegisterGroupAttributeScopeAttribute : InspectorAttribute

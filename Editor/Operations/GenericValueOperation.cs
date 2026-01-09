@@ -1,7 +1,7 @@
 using System;
 using EasyToolKit.OdinSerializer.Utilities;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     /// <summary>
     /// Generic property operation implementation with type safety

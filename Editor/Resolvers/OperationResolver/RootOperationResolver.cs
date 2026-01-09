@@ -1,8 +1,9 @@
 ﻿using System;
 using EasyToolKit.Core;
+using EasyToolKit.Core.Reflection;
 using EasyToolKit.OdinSerializer.Utilities;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     [ResolverPriority(100000.0)]
     public class RootOperationResolver : ValueOperationResolverBase

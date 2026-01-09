@@ -1,8 +1,7 @@
 using System;
-using EasyToolKit.Core;
-using UnityEngine;
+using EasyToolKit.Core.Mathematics;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public class Priority : IEquatable<Priority>, IComparable<Priority>
     {

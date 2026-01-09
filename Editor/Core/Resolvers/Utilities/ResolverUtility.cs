@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using EasyToolKit.Core.Editor;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public static class ResolverUtility
     {

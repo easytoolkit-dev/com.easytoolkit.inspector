@@ -1,6 +1,6 @@
 using System;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public abstract class EasyAttributeDrawer<TAttribute> : EasyDrawer
         where TAttribute : Attribute

@@ -1,6 +1,6 @@
-﻿using EasyToolKit.Core;
+﻿using EasyToolKit.Core.Pooling;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public class ResolverBase : IResolver
     {

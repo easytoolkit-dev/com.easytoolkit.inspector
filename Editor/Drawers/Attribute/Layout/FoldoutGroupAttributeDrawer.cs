@@ -1,10 +1,10 @@
-using EasyToolKit.Core;
 using EasyToolKit.Core.Editor;
-using EasyToolKit.Inspector.Editor.Internal;
+using EasyToolKit.Core.Reflection;
+using EasyToolKit.Inspector.Attributes.Editor.Internal;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     [DrawerPriority(DrawerPriorityLevel.Attribute + 100)]
     public class FoldoutGroupAttributeDrawer : EasyGroupAttributeDrawer<FoldoutGroupAttribute>

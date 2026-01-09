@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public class ReadOnlyListElementOperation<TCollection, TValue> : CollectionElementOperationBase<TCollection, TValue>
         where TCollection : IReadOnlyList<TValue>

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public abstract class EasyGroupAttributeDrawer<TAttribute> : EasyDrawer
         where TAttribute : BeginGroupAttribute

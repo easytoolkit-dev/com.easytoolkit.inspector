@@ -1,7 +1,8 @@
 ﻿using System;
 using EasyToolKit.Core;
+using EasyToolKit.Core.Serialization;
 
-namespace EasyToolKit.Inspector
+namespace EasyToolKit.Inspector.Attributes
 {
     public abstract class InspectorAttribute : Attribute
     {

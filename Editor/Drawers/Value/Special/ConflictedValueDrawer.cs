@@ -1,9 +1,9 @@
 using System;
-using EasyToolKit.Core;
+using EasyToolKit.Core.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     [DrawerPriority(DrawerPriorityLevel.Super)]
     public class ConflictedValueDrawer<T> : EasyValueDrawer<T>

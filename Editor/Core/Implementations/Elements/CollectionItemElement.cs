@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Editor.Implementations
+namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
 {
     public class CollectionItemElement : ValueElement, ICollectionItemElement
     {

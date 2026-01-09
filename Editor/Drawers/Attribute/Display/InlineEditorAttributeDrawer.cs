@@ -3,7 +3,7 @@ using EasyToolKit.Core.Editor;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public class InlineEditorAttributeDrawer<T> : EasyAttributeDrawer<InlineEditorAttribute, T>
         where T : UnityEngine.Object

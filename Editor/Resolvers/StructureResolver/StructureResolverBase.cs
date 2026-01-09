@@ -1,4 +1,4 @@
-﻿namespace EasyToolKit.Inspector.Editor
+﻿namespace EasyToolKit.Inspector.Attributes.Editor
 {
     public abstract class StructureResolverBase : ResolverBase, IStructureResolver
     {

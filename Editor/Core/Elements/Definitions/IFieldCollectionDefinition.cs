@@ -1,4 +1,4 @@
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     /// <summary>
     /// Field collection definition interface that unifies <see cref="ICollectionDefinition"/> and <see cref="IFieldDefinition"/>.

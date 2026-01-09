@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using EasyToolKit.Core;
+using EasyToolKit.Core.Diagnostics;
 using EasyToolKit.Core.Editor;
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor.Implementations
+namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
 {
     /// <summary>
     /// Default implementation of <see cref="IElementTree"/> that manages the inspector element tree hierarchy.

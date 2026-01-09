@@ -1,10 +1,10 @@
-using EasyToolKit.Inspector;
+using EasyToolKit.Inspector.Attributes;
 using System;
 using System.Diagnostics;
 
 [assembly: RegisterGroupAttributeScope(typeof(MetroBoxGroupAttribute), typeof(EndMetroBoxGroupAttribute))]
 
-namespace EasyToolKit.Inspector
+namespace EasyToolKit.Inspector.Attributes
 {
     [Conditional("UNITY_EDITOR")]
     [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]

@@ -5,8 +5,10 @@ using EasyToolKit.Core.Editor.Internal;
 using UnityEditor;
 using UnityEngine;
 using System.Linq;
+using EasyToolKit.Core.Lifecycle;
+using EasyToolKit.Core.Reflection;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolKit.Inspector.Attributes.Editor
 {
     [ModuleEditorConfigsPath("Inspector")]
     public class InspectorConfigAsset : ScriptableObjectSingleton<InspectorConfigAsset>, ISerializationCallbackReceiver
