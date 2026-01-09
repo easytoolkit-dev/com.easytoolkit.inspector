@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using EasyToolKit.Core.Common;
+using EasyToolKit.Core.Textual;
 using EasyToolKit.Core.Diagnostics;
 using EasyToolKit.Core.Editor;
 using EasyToolKit.Core.Reflection;

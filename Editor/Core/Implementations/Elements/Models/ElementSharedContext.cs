@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq.Expressions;
-using EasyToolKit.Core.DependencyInjection;
+using EasyToolKit.Core.Patterns;
 using JetBrains.Annotations;
 
 namespace EasyToolKit.Inspector.Attributes.Editor.Implementations

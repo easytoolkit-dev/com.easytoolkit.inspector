@@ -1,4 +1,4 @@
-using EasyToolKit.Core.Common;
+using EasyToolKit.Core.Textual;
 using EasyToolKit.Core.Editor;
 using EasyToolKit.Core.Reflection;
 using EasyToolKit.Inspector.Attributes.Editor.Internal;

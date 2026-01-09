@@ -5,7 +5,7 @@ using EasyToolKit.Core.Editor.Internal;
 using UnityEditor;
 using UnityEngine;
 using System.Linq;
-using EasyToolKit.Core.Lifecycle;
+using EasyToolKit.Core.Patterns;
 using EasyToolKit.Core.Reflection;
 
 namespace EasyToolKit.Inspector.Attributes.Editor
