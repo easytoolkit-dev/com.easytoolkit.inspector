@@ -189,8 +189,8 @@ namespace EasyToolKit.Inspector.Attributes.Editor
             {
                 var offset = new Vector2(30, 30) * ((s_inspectObjectWindowCounter++ % 6) - 3);
                 window.position = EasyGUIHelper.GetEditorWindowRect()
-                    .AlignCenter(400, 300)
-                    .AddPosition(offset);
+                    .WithCenterAligned(400, 300)
+                    .WithPositionOffsetBy(offset);
             }
 
             return window;
@@ -275,7 +275,7 @@ namespace EasyToolKit.Inspector.Attributes.Editor
                 window.titleContent = new GUIContent(obj.ToString());
             }
 
-            window.position = EasyGUIHelper.GetEditorWindowRect().AlignCenter(600, 600);
+            window.position = EasyGUIHelper.GetEditorWindowRect().WithCenterAligned(600, 600);
 
             EditorUtility.SetDirty(window);
             return window;

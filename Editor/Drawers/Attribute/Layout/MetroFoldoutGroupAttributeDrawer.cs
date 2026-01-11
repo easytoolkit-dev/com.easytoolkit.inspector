@@ -195,7 +195,7 @@ namespace EasyToolKit.Inspector.Attributes.Editor
                 var rightLabelSize = RightLabelStyle.CalcSize(rightLabel);
 
                 EasyGUIHelper.PushColor(rightLabelColor);
-                GUI.Label(foldoutRect.AlignRight(rightLabelSize.x).SubY(2f), rightLabel, RightLabelStyle);
+                GUI.Label(foldoutRect.WithRightAligned(rightLabelSize.x).WithYOffsetBy(-2f), rightLabel, RightLabelStyle);
                 EasyGUIHelper.PopColor();
             }
 

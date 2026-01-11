@@ -10,7 +10,7 @@ using EasyToolKit.Core.Reflection;
 
 namespace EasyToolKit.Inspector.Attributes.Editor
 {
-    [ModuleEditorConfigsPath("Inspector")]
+    [ScriptableObjectSingletonConfiguration(null, ScriptableObjectLoadMode.TryLoadAssetOrFallback)]
     public class InspectorConfigAsset : ScriptableObjectSingleton<InspectorConfigAsset>, ISerializationCallbackReceiver
     {
         [SerializeField] private bool _drawMonoScriptInEditor = true;
