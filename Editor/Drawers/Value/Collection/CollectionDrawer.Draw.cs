@@ -259,7 +259,7 @@ namespace EasyToolKit.Inspector.Attributes.Editor
 
                 if (Event.current.type == EventType.Repaint)
                 {
-                    EasyEditorIcons.Plus.Draw(btnRect.AlignCenter(25, 25));
+                    EasyEditorIcons.Plus.Draw(btnRect.WithCenterAligned(25, 25));
                 }
             }
 
@@ -424,7 +424,7 @@ namespace EasyToolKit.Inspector.Attributes.Editor
 
                 if (Event.current.type == EventType.Repaint)
                 {
-                    EasyEditorIcons.X.Draw(rect.AlignCenter(25, 25));
+                    EasyEditorIcons.X.Draw(rect.WithCenterAligned(25, 25));
                 }
 
                 return false;
