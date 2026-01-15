@@ -4,7 +4,7 @@ using EasyToolKit.Core.Editor;
 using EasyToolKit.Core.Pooling;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Specifies the type of collection change.

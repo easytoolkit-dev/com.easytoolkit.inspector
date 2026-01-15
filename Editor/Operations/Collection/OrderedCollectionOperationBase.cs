@@ -1,7 +1,7 @@
 using System;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public abstract class OrderedCollectionOperationBase<TCollection, TValue> : CollectionOperationBase<TCollection, TValue>, IOrderedCollectionOperation<TCollection, TValue>
     {

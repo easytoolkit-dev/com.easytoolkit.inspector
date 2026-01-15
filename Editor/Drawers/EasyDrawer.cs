@@ -1,10 +1,6 @@
-using System;
-using EasyToolKit.Core;
-using JetBrains.Annotations;
-using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public abstract class EasyDrawer : IEasyDrawer
     {

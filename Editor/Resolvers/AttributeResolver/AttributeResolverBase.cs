@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using EasyToolKit.Core;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public abstract class AttributeResolverBase : ResolverBase, IAttributeResolver
     {

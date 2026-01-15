@@ -2,7 +2,7 @@ using System;
 using EasyToolKit.Core;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Abstract base class for drawer chain resolution in the <see cref="InspectorProperty"/> system

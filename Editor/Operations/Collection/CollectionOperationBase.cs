@@ -3,7 +3,7 @@ using EasyToolKit.Core;
 using EasyToolKit.Core.Diagnostics;
 using EasyToolKit.Core.Reflection;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public abstract class CollectionOperationBase : ICollectionOperation
     {

@@ -12,7 +12,7 @@ using UnityEditor;
 using UnityEngine;
 using SerializationUtility = EasyToolKit.OdinSerializer.SerializationUtility;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     class PersistentContextDirectory : Dictionary<string, GlobalPersistentContext>
     {

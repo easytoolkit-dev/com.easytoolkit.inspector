@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using EasyToolKit.Inspector.Attributes;
+using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public class FolderPathAttributeDrawer : EasyAttributeDrawer<FolderPathAttribute>
     {

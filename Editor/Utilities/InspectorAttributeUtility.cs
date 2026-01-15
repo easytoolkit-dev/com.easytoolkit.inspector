@@ -4,9 +4,10 @@ using System.Linq;
 using System.Reflection;
 using EasyToolKit.Core;
 using EasyToolKit.Core.Reflection;
+using EasyToolKit.Inspector.Attributes;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public static class InspectorAttributeUtility
     {

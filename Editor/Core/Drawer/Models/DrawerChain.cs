@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Linq;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Represents a chain of drawers that can be iterated over during property drawing.

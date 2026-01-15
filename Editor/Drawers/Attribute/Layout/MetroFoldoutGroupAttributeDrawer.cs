@@ -2,12 +2,13 @@ using EasyToolKit.Core.Textual;
 using EasyToolKit.Core.Editor;
 using EasyToolKit.Core.Mathematics;
 using EasyToolKit.Core.Reflection;
-using EasyToolKit.Inspector.Attributes.Editor.Internal;
+using EasyToolKit.Inspector.Attributes;
+using EasyToolKit.Inspector.Editor.Internal;
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     [DrawerPriority(DrawerPriorityLevel.Attribute + 100)]
     public class MetroFoldoutGroupAttributeDrawer : EasyGroupAttributeDrawer<MetroFoldoutGroupAttribute>

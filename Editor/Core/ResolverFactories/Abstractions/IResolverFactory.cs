@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public interface IResolverFactory<TResolver> where TResolver : IResolver
     {

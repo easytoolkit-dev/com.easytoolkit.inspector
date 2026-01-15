@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public interface IValueEntry : IValueAccessor, IValueState, IValueChangeHandler
     {

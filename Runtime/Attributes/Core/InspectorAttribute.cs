@@ -1,6 +1,6 @@
 ﻿using System;
 using EasyToolKit.Core;
-using EasyToolKit.Core.Serialization;
+using EasyToolKit.Serialization;
 
 namespace EasyToolKit.Inspector.Attributes
 {

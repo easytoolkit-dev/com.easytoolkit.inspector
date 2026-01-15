@@ -1,8 +1,10 @@
 {
     "name": "EasyToolKit.Inspector",
+    "rootNamespace": "",
     "references": [
         "EasyToolKit.Core",
-        "EasyToolKit.OdinSerializer"
+        "EasyToolKit.OdinSerializer",
+        "EasyToolKit.Serialization"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

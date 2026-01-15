@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     [DrawerPriority(DrawerPriorityLevel.Super)]
     public class SpaceAttributeDrawer : EasyAttributeDrawer<SpaceAttribute>

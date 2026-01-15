@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Method parameter definition interface handling the abstract concept of method parameters.

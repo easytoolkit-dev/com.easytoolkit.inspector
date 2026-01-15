@@ -1,9 +1,10 @@
 using EasyToolKit.Core.Editor;
 using EasyToolKit.Core.Reflection;
+using EasyToolKit.Inspector.Attributes;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     [DrawerPriority(DrawerPriorityLevel.Super + 10)]
     public class ShowIfAttributeDrawer : EasyAttributeDrawer<ShowIfAttribute>

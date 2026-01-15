@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     [DrawerPriority(DrawerPriorityLevel.Attribute - 1)]
     public class RootDrawer<T> : EasyValueDrawer<T>

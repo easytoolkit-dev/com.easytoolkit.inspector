@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class ResolverPriorityAttribute : Attribute, IPriorityAccessor

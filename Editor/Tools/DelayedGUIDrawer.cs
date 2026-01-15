@@ -1,7 +1,7 @@
 using EasyToolKit.Core.Editor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public class DelayedGUIDrawer
     {

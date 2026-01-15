@@ -4,9 +4,10 @@ using System.Linq;
 using EasyToolKit.Core;
 using EasyToolKit.Core.Textual;
 using EasyToolKit.Core.Reflection;
+using EasyToolKit.Inspector.Attributes;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     [PostProcessorPriority(PostProcessorPriorityLevel.Super - 1)]
     public class GroupElementPostProcessor : PostProcessor

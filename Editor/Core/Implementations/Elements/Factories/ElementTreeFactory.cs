@@ -3,7 +3,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnityEditor;
 
-namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
+namespace EasyToolKit.Inspector.Editor.Implementations
 {
     /// <summary>
     /// Default factory implementation for creating <see cref="IElementTree"/> instances.

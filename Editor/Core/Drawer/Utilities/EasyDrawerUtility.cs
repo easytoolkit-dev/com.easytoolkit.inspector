@@ -4,7 +4,7 @@ using EasyToolKit.Core;
 using EasyToolKit.Core.Reflection;
 using EasyToolKit.OdinSerializer;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public static class EasyDrawerUtility
     {

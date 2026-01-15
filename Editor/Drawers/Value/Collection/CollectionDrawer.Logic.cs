@@ -8,7 +8,7 @@ using EasyToolKit.OdinSerializer;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public partial class CollectionDrawer<T>
     {

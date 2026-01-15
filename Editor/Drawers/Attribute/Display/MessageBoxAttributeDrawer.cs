@@ -1,11 +1,12 @@
 using System;
 using EasyToolKit.Core.Editor;
 using EasyToolKit.Core.Reflection;
+using EasyToolKit.Inspector.Attributes;
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     [DrawerPriority(DrawerPriorityLevel.Attribute + 10)]
     public class MessageBoxAttributeDrawer : EasyAttributeDrawer<MessageBoxAttribute>

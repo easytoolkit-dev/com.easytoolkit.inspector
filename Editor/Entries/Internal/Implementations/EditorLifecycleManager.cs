@@ -5,7 +5,7 @@ using EasyToolKit.Core.Editor;
 using EasyToolKit.Core.Reflection;
 using UnityEditor;
 
-namespace EasyToolKit.Inspector.Attributes.Editor.Internal
+namespace EasyToolKit.Inspector.Editor.Internal
 {
     /// <summary>
     /// Manages the lifecycle of Unity Editors and ElementTrees for an EasyEditorWindow.

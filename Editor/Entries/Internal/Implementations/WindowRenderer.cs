@@ -3,7 +3,7 @@ using EasyToolKit.Core.Editor;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor.Internal
+namespace EasyToolKit.Inspector.Editor.Internal
 {
     /// <summary>
     /// Handles the rendering of an EasyEditorWindow's GUI.

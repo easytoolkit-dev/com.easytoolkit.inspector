@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Field definition interface that handles <see cref="System.Reflection.FieldInfo"/>.

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using EasyToolKit.Core;
 using EasyToolKit.Core.Reflection;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public class CollectionItemOperationResolver : ValueOperationResolverBase
     {

@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
+namespace EasyToolKit.Inspector.Editor.Implementations
 {
     /// <summary>
     /// Method parameter definition implementation handling individual parameters for method invocation.

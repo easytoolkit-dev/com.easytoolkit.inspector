@@ -1,6 +1,6 @@
 using UnityEditor.Callbacks;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     internal static class CustomEditorLoader
     {

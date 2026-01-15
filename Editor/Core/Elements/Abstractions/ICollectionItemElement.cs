@@ -1,4 +1,4 @@
-﻿namespace EasyToolKit.Inspector.Attributes.Editor
+﻿namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Collection item element interface representing individual elements in collections (arrays, lists, etc.).

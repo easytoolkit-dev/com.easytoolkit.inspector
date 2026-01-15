@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 using EasyToolKit.Core.Reflection;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Utility class for discovering and matching inspector elements that implement <see cref="IHandler"/>.

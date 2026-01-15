@@ -1,6 +1,6 @@
 using EasyToolKit.Core;
 
-namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
+namespace EasyToolKit.Inspector.Editor.Implementations
 {
     public class DefaultAttributeResolverFactory : IAttributeResolverFactory
     {

@@ -6,7 +6,7 @@ using EasyToolKit.OdinSerializer.Utilities;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Enhanced Unity editor that provides property tree-based inspector functionality

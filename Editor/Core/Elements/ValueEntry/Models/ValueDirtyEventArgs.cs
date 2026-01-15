@@ -4,7 +4,7 @@ using EasyToolKit.Core.Editor;
 using EasyToolKit.Core.Pooling;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Provides data for the value dirty event.
