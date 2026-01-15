@@ -1,6 +1,6 @@
 using System;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Represents a mutable collection of elements in the inspector tree that supports adding, removing, and reordering.

@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public class RangeAttributeInt64Drawer : EasyAttributeDrawer<RangeAttribute, long>
     {

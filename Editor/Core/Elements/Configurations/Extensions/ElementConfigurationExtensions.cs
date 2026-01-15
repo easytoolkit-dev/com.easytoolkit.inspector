@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Base extension methods for <see cref="IElementConfiguration"/> interfaces.

@@ -2,7 +2,7 @@ using System;
 using EasyToolKit.Core.Editor;
 using UnityEditor;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Property operation implementation for Unity serialized properties

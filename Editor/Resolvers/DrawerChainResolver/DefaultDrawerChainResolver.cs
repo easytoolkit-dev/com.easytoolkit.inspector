@@ -3,7 +3,7 @@ using System.Linq;
 using EasyToolKit.Core;
 using EasyToolKit.Core.Reflection;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Default implementation of drawer chain resolver for <see cref="InspectorProperty"/>

@@ -1,6 +1,6 @@
 using System;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Specifies the processing phases of an element during its lifecycle in the inspector.

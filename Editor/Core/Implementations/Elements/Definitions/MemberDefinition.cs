@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
+namespace EasyToolKit.Inspector.Editor.Implementations
 {
     /// <summary>
     /// Base implementation of <see cref="IMemberDefinition"/> for members with reflection information.

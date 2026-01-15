@@ -3,10 +3,11 @@ using System.Reflection;
 using EasyToolKit.Core.Textual;
 using EasyToolKit.Core.Editor;
 using EasyToolKit.Core.Reflection;
+using EasyToolKit.Inspector.Attributes;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public class OnValueChangedAttributeDrawer<T> : EasyAttributeDrawer<OnValueChangedAttribute, T>
     {

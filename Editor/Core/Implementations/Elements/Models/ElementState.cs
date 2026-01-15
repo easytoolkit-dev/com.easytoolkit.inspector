@@ -1,7 +1,7 @@
 using System;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
+namespace EasyToolKit.Inspector.Editor.Implementations
 {
     /// <summary>
     /// Manages the state of an <see cref="IElement"/>, including persistent state like expansion state

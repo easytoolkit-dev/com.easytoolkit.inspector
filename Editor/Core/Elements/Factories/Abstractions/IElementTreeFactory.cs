@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
 using UnityEditor;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Defines a factory interface for creating <see cref="IElementTree"/> instances in the EasyToolKit inspector system.

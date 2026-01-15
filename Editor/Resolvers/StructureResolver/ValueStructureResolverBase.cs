@@ -1,6 +1,6 @@
 using System;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Abstract base class for value structure resolvers in the inspector system.

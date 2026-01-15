@@ -1,6 +1,6 @@
 using System;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Represents the shared context for elements within an element tree. Each tree has a single ElementSharedContext instance,

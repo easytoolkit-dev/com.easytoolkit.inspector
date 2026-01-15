@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Interface for resolving collection properties in the inspector.

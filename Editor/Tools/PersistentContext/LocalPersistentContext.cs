@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Helper class that provides a local copy of a <see cref="GlobalPersistentContext{T}"/>.

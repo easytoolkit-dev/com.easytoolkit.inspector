@@ -6,7 +6,7 @@ using EasyToolKit.Inspector.Attributes;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public class DirtyTriggerAttributeDrawer<T> : EasyAttributeDrawer<DirtyTriggerAttribute, T>
         where T : Delegate

@@ -1,4 +1,4 @@
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Field element interface representing fields on an object.

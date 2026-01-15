@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor.Internal
+namespace EasyToolKit.Inspector.Editor.Internal
 {
     /// <summary>
     /// Configuration settings for EasyEditorWindow rendering and behavior.

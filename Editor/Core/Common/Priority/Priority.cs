@@ -1,7 +1,7 @@
 using System;
 using EasyToolKit.Core.Mathematics;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public class Priority : IEquatable<Priority>, IComparable<Priority>
     {

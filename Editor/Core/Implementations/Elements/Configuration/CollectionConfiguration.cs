@@ -1,6 +1,6 @@
 using System;
 
-namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
+namespace EasyToolKit.Inspector.Editor.Implementations
 {
     /// <summary>
     /// Base configuration interface for creating collection element definitions.

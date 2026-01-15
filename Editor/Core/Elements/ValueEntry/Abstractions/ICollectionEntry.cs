@@ -1,4 +1,4 @@
-﻿namespace EasyToolKit.Inspector.Attributes.Editor
+﻿namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Defines a collection value entry with change tracking and notifications.

@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
+namespace EasyToolKit.Inspector.Editor.Implementations
 {
     /// <summary>
     /// Represents a value entry that manages property values for multiple target objects.

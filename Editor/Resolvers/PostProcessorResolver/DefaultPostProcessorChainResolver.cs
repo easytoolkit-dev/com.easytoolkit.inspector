@@ -4,7 +4,7 @@ using System.Linq;
 using EasyToolKit.Core;
 using EasyToolKit.Core.Reflection;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Default implementation of post processor chain resolver for <see cref="IElement"/>

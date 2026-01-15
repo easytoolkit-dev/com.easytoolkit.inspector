@@ -7,8 +7,9 @@ using UnityEngine;
 using System.Linq;
 using EasyToolKit.Core.Patterns;
 using EasyToolKit.Core.Reflection;
+using EasyToolKit.Inspector.Attributes;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     [ScriptableObjectSingletonConfiguration(null, ScriptableObjectLoadMode.TryLoadAssetOrFallback)]
     public class InspectorConfigAsset : ScriptableObjectSingleton<InspectorConfigAsset>, ISerializationCallbackReceiver

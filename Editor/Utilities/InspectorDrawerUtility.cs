@@ -8,7 +8,7 @@ using EasyToolKit.Core.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public static class InspectorDrawerUtility
     {

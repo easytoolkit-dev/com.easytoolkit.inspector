@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Reflection;
+using EasyToolKit.Inspector.Attributes;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public class EasyMethodAttributeDrawer<TAttribute> : EasyAttributeDrawer<TAttribute>
         where TAttribute : MethodAttribute

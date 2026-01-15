@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Reflection;
 using EasyToolKit.Core;
+using EasyToolKit.Inspector.Attributes;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public static class CollectionDrawerStaticContext
     {

@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using EasyToolKit.Core.Patterns;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
+namespace EasyToolKit.Inspector.Editor.Implementations
 {
     /// <summary>
     /// Represents a queued event for batch processing.

@@ -1,4 +1,4 @@
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Type-safe read-only wrapper for an element list that boxes derived elements to base type.

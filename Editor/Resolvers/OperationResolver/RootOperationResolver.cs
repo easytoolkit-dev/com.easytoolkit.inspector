@@ -3,7 +3,7 @@ using EasyToolKit.Core;
 using EasyToolKit.Core.Reflection;
 using EasyToolKit.OdinSerializer.Utilities;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     [ResolverPriority(100000.0)]
     public class RootOperationResolver : ValueOperationResolverBase

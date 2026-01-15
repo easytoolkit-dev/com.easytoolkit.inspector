@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public class ListElementOperation<TCollection, TValue> : CollectionElementOperationBase<TCollection, TValue>
         where TCollection : IList<TValue>

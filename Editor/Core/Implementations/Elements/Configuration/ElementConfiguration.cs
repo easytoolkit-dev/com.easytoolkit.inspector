@@ -4,7 +4,7 @@ using System.Linq;
 using EasyToolKit.Core;
 using EasyToolKit.Core.Textual;
 
-namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
+namespace EasyToolKit.Inspector.Editor.Implementations
 {
     /// <summary>
     /// Base configuration class for all element configurations in the inspector system.

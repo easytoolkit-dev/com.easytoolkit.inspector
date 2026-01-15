@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Specifies the roles that define the nature and role of an element in the inspector tree.

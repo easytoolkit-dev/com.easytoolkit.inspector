@@ -3,7 +3,7 @@ using System.Linq;
 using EasyToolKit.Core.Diagnostics;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
+namespace EasyToolKit.Inspector.Editor.Implementations
 {
     public abstract class LogicalElementBase : ElementBase, ILogicalElement
     {

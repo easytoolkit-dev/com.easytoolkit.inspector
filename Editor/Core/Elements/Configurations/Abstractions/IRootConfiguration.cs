@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Configuration interface for creating root element definitions.

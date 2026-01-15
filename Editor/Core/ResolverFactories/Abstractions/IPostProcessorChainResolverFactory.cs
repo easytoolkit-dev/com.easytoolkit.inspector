@@ -1,4 +1,4 @@
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Interface for creating post processor chain resolver instances

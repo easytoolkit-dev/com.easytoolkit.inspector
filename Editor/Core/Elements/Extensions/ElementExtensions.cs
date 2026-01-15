@@ -5,7 +5,7 @@ using EasyToolKit.Core;
 using EasyToolKit.Core.Reflection;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public static class ElementExtensions
     {

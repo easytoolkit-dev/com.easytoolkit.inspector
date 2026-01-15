@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     [DrawerPriority(DrawerPriorityLevel.Super + 10)]
     public class HideInInspectorAttributeDrawer : EasyAttributeDrawer<HideInInspector>

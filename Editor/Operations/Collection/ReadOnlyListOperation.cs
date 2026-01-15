@@ -4,7 +4,7 @@ using EasyToolKit.Core;
 using EasyToolKit.Core.Reflection;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Operation for IReadOnlyList{T} collections in the inspector system.

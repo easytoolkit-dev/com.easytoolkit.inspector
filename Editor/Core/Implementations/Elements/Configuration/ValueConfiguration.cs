@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
+namespace EasyToolKit.Inspector.Editor.Implementations
 {
     /// <summary>
     /// Configuration interface for creating value element definitions.

@@ -1,6 +1,7 @@
 ﻿using System;
+using EasyToolKit.Inspector.Attributes;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public class OnInspectorInitAttributeDrawer : EasyMethodAttributeDrawer<OnInspectorInitAttribute>
     {

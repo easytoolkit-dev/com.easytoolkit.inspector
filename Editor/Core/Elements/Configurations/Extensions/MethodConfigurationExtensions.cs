@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Extension methods for <see cref="IMethodConfiguration"/> interfaces.

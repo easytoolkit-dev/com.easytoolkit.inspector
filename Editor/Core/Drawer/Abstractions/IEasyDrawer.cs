@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public interface IEasyDrawer : IHandler
     {

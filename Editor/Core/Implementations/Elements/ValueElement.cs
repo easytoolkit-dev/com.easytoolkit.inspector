@@ -2,7 +2,7 @@ using EasyToolKit.Core.Diagnostics;
 using EasyToolKit.Core.Reflection;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Attributes.Editor.Implementations
+namespace EasyToolKit.Inspector.Editor.Implementations
 {
     /// <summary>
     /// Provides a value element implementation that represents data-containing elements

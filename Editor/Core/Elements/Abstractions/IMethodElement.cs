@@ -1,4 +1,4 @@
-﻿namespace EasyToolKit.Inspector.Attributes.Editor
+﻿namespace EasyToolKit.Inspector.Editor
 {
     /// <summary>
     /// Method element interface for function handling in the inspector tree.

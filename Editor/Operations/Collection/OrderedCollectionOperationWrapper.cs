@@ -1,4 +1,4 @@
-﻿namespace EasyToolKit.Inspector.Attributes.Editor
+﻿namespace EasyToolKit.Inspector.Editor
 {
     public class OrderedCollectionOperationWrapper<TCollection, TElement> : CollectionOperationWrapper<TCollection, TElement>,
         IOrderedCollectionOperation<TCollection, TElement>

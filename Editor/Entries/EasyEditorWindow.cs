@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using EasyToolKit.Core.Editor;
-using EasyToolKit.Inspector.Attributes.Editor.Internal;
+using EasyToolKit.Inspector.Editor.Internal;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Attributes.Editor
+namespace EasyToolKit.Inspector.Editor
 {
     public class EasyEditorWindow : EditorWindow
     {
