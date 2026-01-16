@@ -129,15 +129,9 @@ namespace EasyToolKit.Inspector.Editor
         {
             var results = GetHandlerTypeResults(element, additionalMatchTypesList);
 
-            var typeSet = new HashSet<Type>();
             foreach (var result in results)
             {
                 var type = result.MatchedType;
-                if (!typeSet.Add(type))
-                {
-                    continue;
-                }
-
                 if (typeFilter != null)
                 {
                     if (!typeFilter(type))
@@ -175,9 +169,7 @@ namespace EasyToolKit.Inspector.Editor
                     resultsList.Add(TypeMatcher.GetMatches(matchTypes));
                 }
             }
-
-            var typeSet = new HashSet<Type>();
-            return TypeMatcherResults.GetMergedResults(resultsList);
+            return TypeMatcher.GetMergedResults(resultsList);
         }
 
         /// <summary>
