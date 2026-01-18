@@ -16,7 +16,8 @@ namespace EasyToolKit.Inspector.Editor.Implementations
     public class ValueEntry<TValue> : IValueEntry<TValue>
     {
         private static readonly bool IsInstantiableType = typeof(TValue).IsInstantiable();
-        private static readonly bool IsStructuralType = typeof(TValue).IsStructuralType();
+        private static readonly bool IsStructuralType = !typeof(TValue).IsBasicValueType() &&
+                                                        !typeof(TValue).IsDerivedFrom<UnityEngine.Object>();
 
         private readonly Type[] _runtimeValueTypes;
         private readonly TValue[] _values;

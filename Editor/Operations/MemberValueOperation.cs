@@ -13,8 +13,8 @@ namespace EasyToolKit.Inspector.Editor
     public class MemberValueOperation<TOwner, TValue> : ValueOperationBase<TValue>
     {
         private readonly MemberInfo _memberInfo;
-        private readonly TypedInstanceGetter<TOwner, TValue> _getter;
-        private readonly TypedInstanceSetter<TOwner, TValue> _setter;
+        private readonly InstanceGetter<TOwner, TValue> _getter;
+        private readonly InstanceSetter<TOwner, TValue> _setter;
 
         /// <summary>
         /// Initializes a new instance of MemberPropertyOperation
@@ -24,10 +24,10 @@ namespace EasyToolKit.Inspector.Editor
         {
             var accessor = ReflectionFactory.CreateAccessor(memberInfo.Name);
 
-            _getter = accessor.BuildTypedInstanceGetter<TOwner, TValue>();
+            _getter = accessor.BuildInstanceGetter<TOwner, TValue>();
             try
             {
-                _setter = accessor.BuildTypedInstanceSetter<TOwner, TValue>();
+                _setter = accessor.BuildInstanceSetter<TOwner, TValue>();
             }
             catch (Exception)
             {

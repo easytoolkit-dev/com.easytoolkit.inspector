@@ -109,7 +109,7 @@ namespace EasyToolKit.Inspector.Editor
                 {
                     var customIndexLabelFunction = _listDrawerTargetType.ResolveOverloadMethod(
                         _listDrawerSettings.CustomIndexLabelFunction,
-                        BindingFlagsHelper.All, typeof(int)) ?? throw new Exception(
+                        MemberAccessFlags.All, typeof(int)) ?? throw new Exception(
                         $"Cannot find method '{_listDrawerSettings.CustomIndexLabelFunction}' in '{_listDrawerTargetType}'");
                     _customIndexLabelFunction = (instance, index) =>
                     {
@@ -121,7 +121,7 @@ namespace EasyToolKit.Inspector.Editor
                 {
                     var customRemoveIndexFunction = _listDrawerTargetType.ResolveOverloadMethod(
                         _listDrawerSettings.CustomRemoveIndexFunction,
-                        BindingFlagsHelper.All, typeof(int)) ?? throw new Exception(
+                        MemberAccessFlags.All, typeof(int)) ?? throw new Exception(
                         $"Cannot find method '{_listDrawerSettings.CustomRemoveIndexFunction}' in '{_listDrawerTargetType}'");
                     _customRemoveIndexFunction = (instance, index) =>
                     {

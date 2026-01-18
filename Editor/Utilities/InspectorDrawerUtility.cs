@@ -19,15 +19,15 @@ namespace EasyToolKit.Inspector.Editor
             {
                 HandlerUtility.AddNullPriorityFallback(type =>
                 {
-                    if (type.IsImplementsOpenGenericType(typeof(EasyAttributeDrawer<>)))
+                    if (type.IsDerivedFromGenericDefinition(typeof(EasyAttributeDrawer<>)))
                     {
                         return DrawerPriorityAttribute.AttributePriority;
                     }
-                    if (type.IsImplementsOpenGenericType(typeof(EasyGroupAttributeDrawer<>)))
+                    if (type.IsDerivedFromGenericDefinition(typeof(EasyGroupAttributeDrawer<>)))
                     {
                         return DrawerPriorityAttribute.AttributePriority;
                     }
-                    if (type.IsImplementsOpenGenericType(typeof(EasyValueDrawer<>)))
+                    if (type.IsDerivedFromGenericDefinition(typeof(EasyValueDrawer<>)))
                     {
                         return DrawerPriorityAttribute.ValuePriority;
                     }
@@ -41,13 +41,13 @@ namespace EasyToolKit.Inspector.Editor
             new Dictionary<Type, Type>();
 
         private static readonly FieldInfo CustomPropertyDrawerTypeFieldInfo =
-            typeof(UnityEditor.CustomPropertyDrawer).GetField("m_Type", BindingFlagsHelper.AllInstance);
+            typeof(UnityEditor.CustomPropertyDrawer).GetField("m_Type", MemberAccessFlags.AllInstance);
 
         static InspectorDrawerUtility()
         {
             foreach (var type in AppDomain.CurrentDomain.GetAssemblies()
                          .SelectMany(asm => asm.GetTypes())
-                         .Where(t => t.IsClass && !t.IsInterface && !t.IsAbstract && t.IsInheritsFrom<UnityEditor.PropertyDrawer>()))
+                         .Where(t => t.IsClass && !t.IsInterface && !t.IsAbstract && t.IsDerivedFrom<UnityEditor.PropertyDrawer>()))
             {
                 var customPropertyDrawers = type.GetCustomAttributes<UnityEditor.CustomPropertyDrawer>();
                 foreach (var drawer in customPropertyDrawers)

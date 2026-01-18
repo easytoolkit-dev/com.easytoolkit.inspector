@@ -63,7 +63,7 @@ namespace EasyToolKit.Inspector.Editor
         Type IValueOperation.GetValueRuntimeType(ref object owner)
         {
             var o = owner;
-            Assert.IsTrue(owner.GetType().IsInheritsFrom(OwnerType),
+            Assert.IsTrue(owner.GetType().IsDerivedFrom(OwnerType),
                 () => $"Owner type mismatch. Expected: {OwnerType}, Actual: {o.GetType()}");
             return GetValueRuntimeType(ref owner);
         }
@@ -71,7 +71,7 @@ namespace EasyToolKit.Inspector.Editor
         object IValueOperation.GetWeakValue(ref object owner)
         {
             var o = owner;
-            Assert.IsTrue(owner.GetType().IsInheritsFrom(OwnerType),
+            Assert.IsTrue(owner.GetType().IsDerivedFrom(OwnerType),
                 () => $"Owner type mismatch. Expected: {OwnerType}, Actual: {o.GetType()}");
             return GetWeakValue(ref owner);
         }
@@ -79,7 +79,7 @@ namespace EasyToolKit.Inspector.Editor
         void IValueOperation.SetWeakValue(ref object owner, object value)
         {
             var o = owner;
-            Assert.IsTrue(owner.GetType().IsInheritsFrom(OwnerType),
+            Assert.IsTrue(owner.GetType().IsDerivedFrom(OwnerType),
                 () => $"Owner type mismatch. Expected: {OwnerType}, Actual: {o.GetType()}");
 
             Assert.IsTrue(value == null || value.GetType() == ValueType,
@@ -141,7 +141,7 @@ namespace EasyToolKit.Inspector.Editor
         TValue IValueOperation<TValue>.GetValue(ref object owner)
         {
             var o = owner;
-            Assert.IsTrue(owner.GetType().IsInheritsFrom(OwnerType),
+            Assert.IsTrue(owner.GetType().IsDerivedFrom(OwnerType),
                 () => $"Owner type mismatch. Expected: {OwnerType}, Actual: {o.GetType()}");
             return GetValue(ref owner);
         }
@@ -149,7 +149,7 @@ namespace EasyToolKit.Inspector.Editor
         void IValueOperation<TValue>.SetValue(ref object owner, TValue value)
         {
             var o = owner;
-            Assert.IsTrue(owner.GetType().IsInheritsFrom(OwnerType),
+            Assert.IsTrue(owner.GetType().IsDerivedFrom(OwnerType),
                 () => $"Owner type mismatch. Expected: {OwnerType}, Actual: {o.GetType()}");
             SetValue(ref owner, value);
         }

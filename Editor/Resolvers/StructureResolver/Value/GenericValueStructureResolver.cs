@@ -22,7 +22,7 @@ namespace EasyToolKit.Inspector.Editor
 
         protected override bool CanResolveElement(IValueElement element)
         {
-            return !element.ValueEntry.ValueType.IsInheritsFrom(typeof(Delegate));
+            return !element.ValueEntry.ValueType.IsDerivedFrom(typeof(Delegate));
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace EasyToolKit.Inspector.Editor
         {
             var targetType = Element.ValueEntry.ValueType;
 
-            var filteredMembers = targetType.GetAllMembers(BindingFlagsHelper.AllInstance)
+            var filteredMembers = targetType.GetAllMembers(MemberAccessFlags.AllInstance)
                 .Where(Filter)
                 .OrderBy(Order)
                 .ToList();
@@ -76,7 +76,7 @@ namespace EasyToolKit.Inspector.Editor
                     if (!showInInspector)
                     {
                         var memberType = memberInfo.GetMemberType();
-                        if (!memberType.IsInheritsFrom<UnityEngine.Object>() &&
+                        if (!memberType.IsDerivedFrom<UnityEngine.Object>() &&
                             !memberType.IsValueType &&
                             !memberType.IsDefined<SerializableAttribute>())
                         {
@@ -147,14 +147,14 @@ namespace EasyToolKit.Inspector.Editor
             collectionDefinition = null;
             var type = memberInfo.GetMemberType();
 
-            if (!type.IsImplementsOpenGenericType(typeof(IReadOnlyCollection<>)) &&
-                !type.IsImplementsOpenGenericType(typeof(ICollection<>)))
+            if (!type.IsDerivedFromGenericDefinition(typeof(IReadOnlyCollection<>)) &&
+                !type.IsDerivedFromGenericDefinition(typeof(ICollection<>)))
                 return false;
 
-            var isOrdered = type.IsImplementsOpenGenericType(typeof(IReadOnlyList<>)) ||
-                            type.IsImplementsOpenGenericType(typeof(IList<>));
+            var isOrdered = type.IsDerivedFromGenericDefinition(typeof(IReadOnlyList<>)) ||
+                            type.IsDerivedFromGenericDefinition(typeof(IList<>));
 
-            var elementType = type.GetArgumentsOfInheritedOpenGenericType(typeof(IEnumerable<>))[0];
+            var elementType = type.GetGenericArgumentsRelativeTo(typeof(IEnumerable<>))[0];
             if (memberInfo is FieldInfo fieldInfo)
             {
                 collectionDefinition = InspectorElements.Configurator.FieldCollection()

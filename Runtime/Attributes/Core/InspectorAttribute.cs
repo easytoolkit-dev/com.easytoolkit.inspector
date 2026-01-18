@@ -15,7 +15,8 @@ namespace EasyToolKit.Inspector.Attributes
                 if (_id == null)
                 {
                     var serializationData = new EasySerializationData();
-                    EasySerialize.To(this, ref serializationData);
+                    var value = this;
+                    EasySerializer.Serialize(ref value, ref serializationData);
                     _id = GetType().FullName + "+" + Convert.ToBase64String(serializationData.BinaryData);
                 }
                 return _id;

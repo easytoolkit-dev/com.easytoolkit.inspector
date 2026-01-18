@@ -52,10 +52,10 @@ namespace EasyToolKit.Inspector.Editor
                 if (inspectorWindowType != null && activeEditorTrackerType != null)
                 {
                     var createTrackerMethod =
-                        inspectorWindowType.GetMethod("CreateTracker", BindingFlagsHelper.AllInstance);
-                    var trackerField = inspectorWindowType.GetField("m_Tracker", BindingFlagsHelper.AllInstance);
+                        inspectorWindowType.GetMethod("CreateTracker", MemberAccessFlags.AllInstance);
+                    var trackerField = inspectorWindowType.GetField("m_Tracker", MemberAccessFlags.AllInstance);
                     var forceRebuild =
-                        activeEditorTrackerType.GetMethod("ForceRebuild", BindingFlagsHelper.AllInstance);
+                        activeEditorTrackerType.GetMethod("ForceRebuild", MemberAccessFlags.AllInstance);
 
                     if (createTrackerMethod != null && trackerField != null && forceRebuild != null)
                     {

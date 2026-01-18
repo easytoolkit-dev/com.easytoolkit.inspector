@@ -34,7 +34,7 @@ namespace EasyToolKit.Inspector.Editor
                 return false;
             return type.IsBasicValueType() ||
                    type.IsUnityBuiltInType() ||
-                   type.IsInheritsFrom<UnityEngine.Object>() ||
+                   type.IsDerivedFrom<UnityEngine.Object>() ||
                    type.IsDefined<SerializableAttribute>();
         }
 

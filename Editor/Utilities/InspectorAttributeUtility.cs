@@ -31,12 +31,12 @@ namespace EasyToolKit.Inspector.Editor
             if (groupAttributeType == null)
                 throw new ArgumentNullException(nameof(groupAttributeType));
 
-            if (groupAttributeType.IsInheritsFrom<BeginGroupAttribute>())
+            if (groupAttributeType.IsDerivedFrom<BeginGroupAttribute>())
             {
                 return GetCorrespondEndGroupAttributeType(groupAttributeType);
             }
 
-            if (groupAttributeType.IsInheritsFrom<EndGroupAttribute>())
+            if (groupAttributeType.IsDerivedFrom<EndGroupAttribute>())
             {
                 return GetCorrespondStartGroupAttributeType(groupAttributeType);
             }

@@ -18,7 +18,7 @@ namespace EasyToolKit.Inspector.Editor
         protected override void Initialize()
         {
             var method = GetType()
-                .GetMethod(nameof(CreateOperationWrapper), BindingFlagsHelper.AllStatic)!
+                .GetMethod(nameof(CreateOperationWrapper), MemberAccessFlags.AllStatic)!
                 .MakeGenericMethod(Element.ValueEntry.ValueType);
             _operation = (IValueOperation)method.Invoke(null, new object[] { Element });
         }

@@ -75,7 +75,9 @@ namespace EasyToolKit.Inspector.Editor.Implementations
         {
             var valueType = Definition.ValueType;
             // Check if it's a plain value type or UnityEngine.Object reference
-            return valueType.IsStructuralType() && base.CanHaveChildren();
+            return !valueType.IsBasicValueType() &&
+                   !valueType.IsDerivedFrom<UnityEngine.Object>() &&
+                   base.CanHaveChildren();
         }
 
         protected override void OnUpdate(bool forceUpdate)

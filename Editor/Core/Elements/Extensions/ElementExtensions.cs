@@ -53,7 +53,7 @@ namespace EasyToolKit.Inspector.Editor
             {
                 if (includeDerived)
                 {
-                    if (attributeInfo.Attribute.GetType().IsInheritsFrom(attributeType))
+                    if (attributeInfo.Attribute.GetType().IsDerivedFrom(attributeType))
                     {
                         return attributeInfo.Attribute;
                     }
