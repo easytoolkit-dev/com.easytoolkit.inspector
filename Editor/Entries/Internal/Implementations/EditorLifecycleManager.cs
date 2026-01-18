@@ -16,7 +16,7 @@ namespace EasyToolKit.Inspector.Editor.Internal
 
         static EditorLifecycleManager()
         {
-            MaterialForceVisibleProperty = typeof(MaterialEditor).GetProperty("forceVisible", BindingFlagsHelper.All);
+            MaterialForceVisibleProperty = typeof(MaterialEditor).GetProperty("forceVisible", MemberAccessFlags.All);
         }
 
         private object[] _currentTargets = new object[0];
@@ -150,7 +150,7 @@ namespace EasyToolKit.Inspector.Editor.Internal
         private void UpdateTargetAt(int index, object target)
         {
             var editorWindow = target as EditorWindow;
-            if (target.GetType().IsInheritsFrom<UnityEngine.Object>() && !editorWindow)
+            if (target.GetType().IsDerivedFrom<UnityEngine.Object>() && !editorWindow)
             {
                 UpdateUnityObjectTarget(index, target as UnityEngine.Object);
             }

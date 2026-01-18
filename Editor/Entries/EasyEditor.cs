@@ -103,7 +103,7 @@ namespace EasyToolKit.Inspector.Editor
                 {
                     // Determine the correct method name based on Unity version
                     string haveAudioCallbackName =
-                        UnityVersionUtility.IsVersionOrGreater(5, 6) ? "HasAudioCallback" : "HaveAudioCallback";
+                        UnityVersionChecker.IsVersionOrGreater(5, 6) ? "HasAudioCallback" : "HaveAudioCallback";
 
                     // Create delegates for Unity's internal audio utility methods using reflection
                     s_haveAudioCallback = (Func<MonoBehaviour, bool>)Delegate.CreateDelegate(

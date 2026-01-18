@@ -22,7 +22,7 @@ namespace EasyToolKit.Inspector.Editor
 
         public override Type GetItemRuntimeType(ref TCollection collection)
         {
-            return collection.GetType().GetArgumentsOfInheritedOpenGenericType(typeof(IList<>))[0];
+            return collection.GetType().GetGenericArgumentsRelativeTo(typeof(IList<>))[0];
         }
 
         public override int GetItemCount(ref TCollection collection)

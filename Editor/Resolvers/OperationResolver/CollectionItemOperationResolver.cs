@@ -21,11 +21,11 @@ namespace EasyToolKit.Inspector.Editor
             var valueType = Element.Definition.ValueType;
 
             Type operationType;
-            if (collectionType.IsImplementsOpenGenericType(typeof(IList<>)))
+            if (collectionType.IsDerivedFromGenericDefinition(typeof(IList<>)))
             {
                 operationType = typeof(ListElementOperation<,>).MakeGenericType(collectionType, valueType);
             }
-            else if (collectionType.IsImplementsOpenGenericType(typeof(IReadOnlyList<>)))
+            else if (collectionType.IsDerivedFromGenericDefinition(typeof(IReadOnlyList<>)))
             {
                 operationType = typeof(ReadOnlyListElementOperation<,>).MakeGenericType(collectionType, valueType);
             }

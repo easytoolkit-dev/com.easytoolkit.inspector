@@ -117,13 +117,13 @@ namespace EasyToolKit.Inspector.Editor
                         .Where(x => x != null && ValueEntry.ItemType.IsAssignableFrom(x.GetType()))
                         .Reverse().ToArray();
                 }
-                else if (ValueEntry.ItemType.IsInheritsFrom(typeof(Component)))
+                else if (ValueEntry.ItemType.IsDerivedFrom(typeof(Component)))
                 {
                     objReferences = DragAndDrop.objectReferences.OfType<GameObject>()
                         .Select(x => x.GetComponent(ValueEntry.ItemType)).Where(x => x != null).Reverse()
                         .ToArray();
                 }
-                else if (ValueEntry.ItemType.IsInheritsFrom(typeof(Sprite)) &&
+                else if (ValueEntry.ItemType.IsDerivedFrom(typeof(Sprite)) &&
                          DragAndDrop.objectReferences.Any(n => n is Texture2D && AssetDatabase.Contains(n)))
                 {
                     objReferences = DragAndDrop.objectReferences.OfType<Texture2D>().Select(x =>

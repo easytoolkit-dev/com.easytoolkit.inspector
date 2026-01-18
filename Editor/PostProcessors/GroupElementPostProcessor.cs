@@ -138,7 +138,7 @@ namespace EasyToolKit.Inspector.Editor
                     }
 
                     var attributeType = attributeInfo.Attribute.GetType();
-                    if (!attributeType.IsInheritsFrom<BeginGroupAttribute>())
+                    if (!attributeType.IsDerivedFrom<BeginGroupAttribute>())
                     {
                         continue;
                     }

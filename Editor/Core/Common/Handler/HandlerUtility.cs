@@ -72,7 +72,7 @@ namespace EasyToolKit.Inspector.Editor
                              .SelectMany(asm => asm.GetTypes())
                              .Where(t => t.IsClass && !t.IsInterface && !t.IsAbstract))
                 {
-                    if (type.IsInheritsFrom<IHandler>())
+                    if (type.IsDerivedFrom<IHandler>())
                     {
                         elementTypes.Add(type);
                     }
@@ -81,11 +81,11 @@ namespace EasyToolKit.Inspector.Editor
             }
 
             s_typeMatcher = TypeMatcherFactory.CreateDefault();
-            s_typeMatcher.SetTypeMatchIndices(s_elementTypes
+            s_typeMatcher.SetTypeMatchCandidates(s_elementTypes
                 .OrderByDescending(GetElementPriority)
                 .Select((type, i) =>
                 {
-                    var index = new TypeMatchIndex(type, s_elementTypes.Length - i, null);
+                    Type[] constraints = null;
                     if (type.BaseType != null && type.BaseType.IsGenericType)
                     {
                         // For generic inspector elements, extract the target generic type from the inheritance chain.
@@ -93,10 +93,10 @@ namespace EasyToolKit.Inspector.Editor
                         // `OpenGenericType` is `EasyValueDrawer<>` (the base class), and
                         // `GetArgumentsOfInheritedOpenGenericType` returns `SerializedDictionary<string, TValue>`,
                         // which is stored in `index.Targets` for later matching in `GetMatchedType`.
-                        index.Targets = type.GetArgumentsOfInheritedOpenGenericType(type.BaseType.GetGenericTypeDefinition());
+                        constraints = type.GetGenericArgumentsRelativeTo(type.BaseType.GetGenericTypeDefinition());
                     }
 
-                    return index;
+                    return new TypeMatchCandidate(type, s_elementTypes.Length - i, constraints);
                 }));
         }
 
