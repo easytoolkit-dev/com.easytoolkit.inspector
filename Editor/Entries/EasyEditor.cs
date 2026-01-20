@@ -1,8 +1,8 @@
 using System;
 using System.Reflection;
 using EasyToolKit.Core;
+using EasyToolKit.Core.Reflection;
 using EasyToolKit.Core.Unity;
-using EasyToolKit.OdinSerializer.Utilities;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,18 +12,16 @@ namespace EasyToolKit.Inspector.Editor
     /// Enhanced Unity editor that provides property tree-based inspector functionality
     /// with support for audio filter GUI integration and custom inspector drawing.
     /// </summary>
-    [InitializeOnLoad]
     [CanEditMultipleObjects]
     public class EasyEditor : UnityEditor.Editor
     {
         // Static delegates for Unity's internal audio filter functionality
-        private static Func<MonoBehaviour, int> s_getCustomFilterChannelCount;
-        private static Func<MonoBehaviour, bool> s_haveAudioCallback;
-        private static Action<object, MonoBehaviour> s_drawAudioFilterGUI;
+        private static StaticInvoker<MonoBehaviour, int> s_getCustomFilterChannelCount;
+        private static InstanceVoidInvoker<object, MonoBehaviour> s_drawAudioFilterGUI;
 
         // Reflection state tracking
         private static bool s_hasReflectedAudioFilter;
-        private static bool s_initialized = false;
+        private static bool s_initialized;
         private static Type s_audioFilterGUIType;
 
         // Instance fields for property tree and audio filter GUI
@@ -101,35 +99,36 @@ namespace EasyToolKit.Inspector.Editor
 
                 try
                 {
-                    // Determine the correct method name based on Unity version
-                    string haveAudioCallbackName =
-                        UnityVersionChecker.IsVersionOrGreater(5, 6) ? "HasAudioCallback" : "HaveAudioCallback";
+                    // Get the AudioUtil type
+                    var audioUtilType = typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.AudioUtil");
 
-                    // Create delegates for Unity's internal audio utility methods using reflection
-                    s_haveAudioCallback = (Func<MonoBehaviour, bool>)Delegate.CreateDelegate(
-                        typeof(Func<MonoBehaviour, bool>),
-                        typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.AudioUtil")
-                            .GetMethod(haveAudioCallbackName, BindingFlags.Public | BindingFlags.Static));
-
-                    s_getCustomFilterChannelCount = (Func<MonoBehaviour, int>)Delegate.CreateDelegate(
-                        typeof(Func<MonoBehaviour, int>),
-                        typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.AudioUtil")
-                            .GetMethod("GetCustomFilterChannelCount", BindingFlags.Public | BindingFlags.Static));
+                    s_getCustomFilterChannelCount = ReflectionCompiler.CreateStaticMethodInvoker<MonoBehaviour, int>(
+                        audioUtilType.GetMethod("GetCustomFilterChannelCount", MemberAccessFlags.AllStatic));
 
                     // Get the internal AudioFilterGUI type and create a delegate for its DrawAudioFilterGUI method
                     s_audioFilterGUIType = typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.AudioFilterGUI");
-                    s_drawAudioFilterGUI = EmitUtilities.CreateWeakInstanceMethodCaller<MonoBehaviour>(
+
+                    // Wrap the generic invoker with a strongly-typed delegate
+                    s_drawAudioFilterGUI = ReflectionCompiler.CreateInstanceVoidMethodInvoker<object, MonoBehaviour>(
                         s_audioFilterGUIType.GetMethod("DrawAudioFilterGUI",
                             BindingFlags.Public | BindingFlags.Instance));
+
                     s_hasReflectedAudioFilter = true;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     // Log a warning if reflection fails due to Unity internal changes
                     Debug.LogWarning(
                         "The internal Unity class AudioFilterGUI has been changed; cannot properly mock a generic Unity inspector. This probably won't be very noticeable.");
                 }
             }
+        }
+        private static bool HasAudioCallback(MonoBehaviour behaviour)
+        {
+            return behaviour.GetType().GetMethod(
+                "OnAudioFilterRead",
+                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic
+            ) != null;
         }
 
         /// <summary>
@@ -160,11 +159,12 @@ namespace EasyToolKit.Inspector.Editor
                 // Draw the main property tree
                 DrawTree();
 
+                var targetBehaviour = target as MonoBehaviour;
                 // Draw audio filter GUI if the target is a MonoBehaviour with audio callbacks
-                if (s_hasReflectedAudioFilter && this.target is MonoBehaviour)
+                if (s_hasReflectedAudioFilter && targetBehaviour != null)
                 {
-                    if (s_haveAudioCallback(this.target as MonoBehaviour) &&
-                        s_getCustomFilterChannelCount(this.target as MonoBehaviour) > 0)
+                    if (HasAudioCallback(targetBehaviour) &&
+                        s_getCustomFilterChannelCount(targetBehaviour) > 0)
                     {
                         // Create audio filter GUI instance if it doesn't exist
                         if (this._audioFilterGUIInstance == null)
@@ -173,7 +173,7 @@ namespace EasyToolKit.Inspector.Editor
                         }
 
                         // Draw the audio filter GUI using the reflected delegate
-                        s_drawAudioFilterGUI(this._audioFilterGUIInstance, this.target as MonoBehaviour);
+                        s_drawAudioFilterGUI(ref _audioFilterGUIInstance, targetBehaviour);
                     }
                 }
             }

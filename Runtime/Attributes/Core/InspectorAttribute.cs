@@ -1,11 +1,16 @@
 ﻿using System;
-using EasyToolKit.Core;
+using System.Collections.Concurrent;
+using EasyToolKit.Core.Reflection;
 using EasyToolKit.Serialization;
 
 namespace EasyToolKit.Inspector.Attributes
 {
+    [EasySerializable(AllocInherit = true)]
     public abstract class InspectorAttribute : Attribute
     {
+        private static readonly ConcurrentDictionary<Type, StaticInvoker> SerializeInvokerByAttributeType =
+            new ConcurrentDictionary<Type, StaticInvoker>();
+
         private string _id;
 
         private string Id
@@ -14,10 +19,15 @@ namespace EasyToolKit.Inspector.Attributes
             {
                 if (_id == null)
                 {
-                    var serializationData = new EasySerializationData();
-                    var value = this;
-                    EasySerializer.Serialize(ref value, ref serializationData);
-                    _id = GetType().FullName + "+" + Convert.ToBase64String(serializationData.BinaryData);
+                    var invoker = SerializeInvokerByAttributeType.GetOrAdd(GetType(), type =>
+                    {
+                        var method = typeof(InspectorAttribute)
+                            .GetMethod(nameof(SerializeWrapper), MemberAccessFlags.AllStatic)!
+                            .MakeGenericMethod(type);
+                        return ReflectionCompiler.CreateStaticMethodInvoker(method);
+                    });
+                    var data = (byte[])invoker(this);
+                    _id = GetType().FullName + "+" + Convert.ToBase64String(data);
                 }
                 return _id;
             }
@@ -41,6 +51,11 @@ namespace EasyToolKit.Inspector.Attributes
         public override int GetHashCode()
         {
             return Id.GetHashCode();
+        }
+
+        private static byte[] SerializeWrapper<T>(T attribute)
+        {
+            return EasySerializer.SerializeToBinary(ref attribute);
         }
     }
 }
