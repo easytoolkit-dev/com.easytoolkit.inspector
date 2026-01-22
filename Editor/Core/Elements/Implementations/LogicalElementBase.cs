@@ -174,10 +174,6 @@ namespace EasyToolKit.Inspector.Editor.Implementations
                 // Initialize structure resolver (before children)
                 var factory = SharedContext.GetResolverFactory<IStructureResolver>();
                 _structureResolver = factory.CreateResolver(this);
-                if (_structureResolver != null)
-                {
-                    _structureResolver.Element = this;
-                }
             }
 
             if (_logicalChildren != null)

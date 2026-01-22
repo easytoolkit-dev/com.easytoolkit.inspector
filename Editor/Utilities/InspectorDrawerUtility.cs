@@ -19,15 +19,15 @@ namespace EasyToolKit.Inspector.Editor
             {
                 HandlerUtility.AddNullPriorityFallback(type =>
                 {
-                    if (type.IsDerivedFromGenericDefinition(typeof(EasyAttributeDrawer<>)))
+                    if (type.IsImplementsGenericDefinition(typeof(EasyAttributeDrawer<>)))
                     {
                         return DrawerPriorityAttribute.AttributePriority;
                     }
-                    if (type.IsDerivedFromGenericDefinition(typeof(EasyGroupAttributeDrawer<>)))
+                    if (type.IsImplementsGenericDefinition(typeof(EasyGroupAttributeDrawer<>)))
                     {
                         return DrawerPriorityAttribute.AttributePriority;
                     }
-                    if (type.IsDerivedFromGenericDefinition(typeof(EasyValueDrawer<>)))
+                    if (type.IsImplementsGenericDefinition(typeof(EasyValueDrawer<>)))
                     {
                         return DrawerPriorityAttribute.ValuePriority;
                     }

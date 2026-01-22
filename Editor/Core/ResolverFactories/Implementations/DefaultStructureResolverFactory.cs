@@ -8,7 +8,14 @@ namespace EasyToolKit.Inspector.Editor.Implementations
         public IStructureResolver CreateResolver(IElement element)
         {
             var resolverType = ResolverUtility.GetResolverType(element, typeof(IStructureResolver));
-            return resolverType != null ? ResolverUtility.RentResolver(resolverType) as IStructureResolver : null;
+            if (resolverType != null)
+            {
+                var resolver = (IStructureResolver)ResolverUtility.RentResolver(resolverType);
+                resolver.Element = element;
+                return resolver;
+            }
+
+            return null;
         }
     }
 }
