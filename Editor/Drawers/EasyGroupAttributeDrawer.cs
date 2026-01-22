@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace EasyToolKit.Inspector.Editor
 {
+    [HandlerConstraints]
     public abstract class EasyGroupAttributeDrawer<TAttribute> : EasyDrawer
         where TAttribute : BeginGroupAttribute
     {

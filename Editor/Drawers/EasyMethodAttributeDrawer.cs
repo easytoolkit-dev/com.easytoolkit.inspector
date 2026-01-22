@@ -4,6 +4,7 @@ using EasyToolKit.Inspector.Attributes;
 
 namespace EasyToolKit.Inspector.Editor
 {
+    [HandlerConstraints]
     public class EasyMethodAttributeDrawer<TAttribute> : EasyAttributeDrawer<TAttribute>
         where TAttribute : MethodAttribute
     {

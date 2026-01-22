@@ -137,7 +137,7 @@ namespace EasyToolKit.Inspector.Editor.Implementations
         /// Gets the drawer chain for rendering this element.
         /// </summary>
         /// <returns>The drawer chain containing all applicable drawers.</returns>
-        public DrawerChain GetDrawerChain()
+        private DrawerChain GetDrawerChain()
         {
             ValidateDisposed();
             if (_drawerChainResolver == null)
@@ -148,7 +148,7 @@ namespace EasyToolKit.Inspector.Editor.Implementations
             return _drawerChainResolver.GetDrawerChain();
         }
 
-        public PostProcessorChain GetPostProcessorChain()
+        private PostProcessorChain GetPostProcessorChain()
         {
             ValidateDisposed();
             if (_postProcessorChainResolver == null)

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace EasyToolKit.Inspector.Editor
 {
+    [HandlerConstraints]
     public abstract class EasyValueDrawer<TValue> : EasyDrawer
     {
         private IValueEntry<TValue> _valueEntry;
