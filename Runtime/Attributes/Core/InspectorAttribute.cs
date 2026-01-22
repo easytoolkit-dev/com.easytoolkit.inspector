@@ -8,8 +8,8 @@ namespace EasyToolKit.Inspector.Attributes
     [EasySerializable(AllocInherit = true)]
     public abstract class InspectorAttribute : Attribute
     {
-        private static readonly ConcurrentDictionary<Type, StaticInvoker> SerializeInvokerByAttributeType =
-            new ConcurrentDictionary<Type, StaticInvoker>();
+        private static readonly ConcurrentDictionary<Type, StaticInvoker<InspectorAttribute, byte[]>> SerializeInvokerByAttributeType =
+            new ConcurrentDictionary<Type, StaticInvoker<InspectorAttribute, byte[]>>();
 
         private string _id;
 
@@ -24,9 +24,9 @@ namespace EasyToolKit.Inspector.Attributes
                         var method = typeof(InspectorAttribute)
                             .GetMethod(nameof(SerializeWrapper), MemberAccessFlags.AllStatic)!
                             .MakeGenericMethod(type);
-                        return ReflectionCompiler.CreateStaticMethodInvoker(method);
+                        return ReflectionCompiler.CreateStaticMethodInvoker<InspectorAttribute, byte[]>(method);
                     });
-                    var data = (byte[])invoker(this);
+                    var data = invoker(this);
                     _id = GetType().FullName + "+" + Convert.ToBase64String(data);
                 }
                 return _id;

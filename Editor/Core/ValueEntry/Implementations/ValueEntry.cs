@@ -119,8 +119,6 @@ namespace EasyToolKit.Inspector.Editor.Implementations
                         throw new InvalidOperationException($"Can not create value operation resolver for value entry of '{_ownerElement}'.");
                     }
 
-                    resolver.Element = _ownerElement;
-
                     _operation = (IValueOperation<TValue>)resolver.GetOperation();
                 }
                 return _operation;

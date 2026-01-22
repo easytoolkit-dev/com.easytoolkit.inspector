@@ -53,13 +53,13 @@ namespace EasyToolKit.Inspector.Editor
             var ownerType = collectionElement.LogicalParent.CastValue().ValueEntry.ValueType;
             var collectionType = collectionElement.ValueEntry.ValueType;
 
-            if (collectionType.IsDerivedFromGenericDefinition(typeof(IList<>)))
+            if (collectionType.IsImplementsGenericDefinition(typeof(IList<>)))
             {
                 var operationType = typeof(ListOperation<,>).MakeGenericType(collectionType, collectionElement.Definition.ItemType);
                 return operationType.CreateInstance<ICollectionOperation>(ownerType);
             }
 
-            if (collectionType.IsDerivedFromGenericDefinition(typeof(IReadOnlyList<>)))
+            if (collectionType.IsImplementsGenericDefinition(typeof(IReadOnlyList<>)))
             {
                 var operationType = typeof(ListOperation<,>).MakeGenericType(collectionType, collectionElement.Definition.ItemType);
                 return operationType.CreateInstance<ICollectionOperation>(ownerType);

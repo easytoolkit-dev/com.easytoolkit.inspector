@@ -147,12 +147,12 @@ namespace EasyToolKit.Inspector.Editor
             collectionDefinition = null;
             var type = memberInfo.GetMemberType();
 
-            if (!type.IsDerivedFromGenericDefinition(typeof(IReadOnlyCollection<>)) &&
-                !type.IsDerivedFromGenericDefinition(typeof(ICollection<>)))
+            if (!type.IsImplementsGenericDefinition(typeof(IReadOnlyCollection<>)) &&
+                !type.IsImplementsGenericDefinition(typeof(ICollection<>)))
                 return false;
 
-            var isOrdered = type.IsDerivedFromGenericDefinition(typeof(IReadOnlyList<>)) ||
-                            type.IsDerivedFromGenericDefinition(typeof(IList<>));
+            var isOrdered = type.IsImplementsGenericDefinition(typeof(IReadOnlyList<>)) ||
+                            type.IsImplementsGenericDefinition(typeof(IList<>));
 
             var elementType = type.GetGenericArgumentsRelativeTo(typeof(IEnumerable<>))[0];
             if (memberInfo is FieldInfo fieldInfo)

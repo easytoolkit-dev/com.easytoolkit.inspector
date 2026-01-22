@@ -7,7 +7,14 @@ namespace EasyToolKit.Inspector.Editor.Implementations
         public IDrawerChainResolver CreateResolver(IElement element)
         {
             var resolverType = ResolverUtility.GetResolverType(element, typeof(IDrawerChainResolver));
-            return resolverType != null ? ResolverUtility.RentResolver(resolverType) as IDrawerChainResolver : null;
+            if (resolverType != null)
+            {
+                var resolver = (IDrawerChainResolver)ResolverUtility.RentResolver(resolverType);
+                resolver.Element = element;
+                return resolver;
+            }
+
+            return null;
         }
     }
 }

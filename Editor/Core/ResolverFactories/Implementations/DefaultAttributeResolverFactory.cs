@@ -7,7 +7,14 @@ namespace EasyToolKit.Inspector.Editor.Implementations
         public IAttributeResolver CreateResolver(IElement element)
         {
             var resolverType = ResolverUtility.GetResolverType(element, typeof(IAttributeResolver));
-            return resolverType != null ? ResolverUtility.RentResolver(resolverType) as IAttributeResolver : null;
+            if (resolverType != null)
+            {
+                var resolver = (IAttributeResolver)ResolverUtility.RentResolver(resolverType);
+                resolver.Element = element;
+                return resolver;
+            }
+
+            return null;
         }
     }
 }

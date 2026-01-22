@@ -107,7 +107,7 @@ namespace EasyToolKit.Inspector.Editor
 
                 if (_showIndexLabel && _listDrawerSettings.CustomIndexLabelFunction.IsNotNullOrEmpty())
                 {
-                    var customIndexLabelFunction = _listDrawerTargetType.ResolveOverloadMethod(
+                    var customIndexLabelFunction = _listDrawerTargetType.GetOverloadMethod(
                         _listDrawerSettings.CustomIndexLabelFunction,
                         MemberAccessFlags.All, typeof(int)) ?? throw new Exception(
                         $"Cannot find method '{_listDrawerSettings.CustomIndexLabelFunction}' in '{_listDrawerTargetType}'");
@@ -119,7 +119,7 @@ namespace EasyToolKit.Inspector.Editor
 
                 if (_listDrawerSettings.CustomRemoveIndexFunction.IsNotNullOrEmpty())
                 {
-                    var customRemoveIndexFunction = _listDrawerTargetType.ResolveOverloadMethod(
+                    var customRemoveIndexFunction = _listDrawerTargetType.GetOverloadMethod(
                         _listDrawerSettings.CustomRemoveIndexFunction,
                         MemberAccessFlags.All, typeof(int)) ?? throw new Exception(
                         $"Cannot find method '{_listDrawerSettings.CustomRemoveIndexFunction}' in '{_listDrawerTargetType}'");

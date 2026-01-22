@@ -406,10 +406,6 @@ namespace EasyToolKit.Inspector.Editor.Implementations
                 // Initialize attribute resolver (after children)
                 var factory = SharedContext.GetResolverFactory<IAttributeResolver>();
                 _attributeResolver = factory.CreateResolver(this);
-                if (_attributeResolver != null)
-                {
-                    _attributeResolver.Element = this;
-                }
             }
 
             {
@@ -423,10 +419,6 @@ namespace EasyToolKit.Inspector.Editor.Implementations
                 // Initialize drawer chain resolver (after children)
                 var factory = SharedContext.GetResolverFactory<IDrawerChainResolver>();
                 _drawerChainResolver = factory.CreateResolver(this);
-                if (_drawerChainResolver != null)
-                {
-                    _drawerChainResolver.Element = this;
-                }
             }
 
             {
@@ -440,10 +432,6 @@ namespace EasyToolKit.Inspector.Editor.Implementations
                 // Initialize post processor chain resolver (after children)
                 var factory = SharedContext.GetResolverFactory<IPostProcessorChainResolver>();
                 _postProcessorChainResolver = factory.CreateResolver(this);
-                if (_postProcessorChainResolver != null)
-                {
-                    _postProcessorChainResolver.Element = this;
-                }
             }
 
             _phases = _phases.Remove(ElementPhases.Refreshing);
