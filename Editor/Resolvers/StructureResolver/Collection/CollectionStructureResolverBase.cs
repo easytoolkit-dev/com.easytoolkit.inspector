@@ -5,6 +5,7 @@ using System.Collections.Generic;
 namespace EasyToolKit.Inspector.Editor
 {
     [ResolverPriority(1.0)]
+    [HandlerConstraints]
     public abstract class CollectionStructureResolverBase<TCollection> : ValueStructureResolverBase<TCollection>, ICollectionStructureResolver
     {
         private ICollectionItemDefinition[] _definitions;

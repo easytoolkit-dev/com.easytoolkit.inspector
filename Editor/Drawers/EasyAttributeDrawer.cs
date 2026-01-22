@@ -2,6 +2,7 @@ using System;
 
 namespace EasyToolKit.Inspector.Editor
 {
+    [HandlerConstraints]
     public abstract class EasyAttributeDrawer<TAttribute> : EasyDrawer
         where TAttribute : Attribute
     {
@@ -37,6 +38,7 @@ namespace EasyToolKit.Inspector.Editor
         }
     }
 
+    [HandlerConstraints]
     public abstract class EasyAttributeDrawer<TAttribute, TValue> : EasyAttributeDrawer<TAttribute>
         where TAttribute : Attribute
     {

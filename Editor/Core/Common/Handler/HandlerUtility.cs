@@ -83,21 +83,32 @@ namespace EasyToolKit.Inspector.Editor
             s_typeMatcher = TypeMatcherFactory.CreateDefault();
             s_typeMatcher.SetTypeMatchCandidates(s_elementTypes
                 .OrderByDescending(GetElementPriority)
-                .Select((type, i) =>
-                {
-                    Type[] constraints = null;
-                    if (type.BaseType != null && type.BaseType.IsGenericType)
-                    {
-                        // For generic inspector elements, extract the target generic type from the inheritance chain.
-                        // Example: For `SerializedDictionaryValueDrawer<TValue> : EasyValueDrawer<SerializedDictionary<string, TValue>>`,
-                        // `OpenGenericType` is `EasyValueDrawer<>` (the base class), and
-                        // `GetArgumentsOfInheritedOpenGenericType` returns `SerializedDictionary<string, TValue>`,
-                        // which is stored in `index.Targets` for later matching in `GetMatchedType`.
-                        constraints = type.GetGenericArgumentsRelativeTo(type.BaseType.GetGenericTypeDefinition());
-                    }
+                .Select((type, i) => new TypeMatchCandidate(type, s_elementTypes.Length - i, GetConstraints(type))));
+        }
 
-                    return new TypeMatchCandidate(type, s_elementTypes.Length - i, constraints);
-                }));
+        public static Type[] GetConstraints(Type type)
+        {
+            // For generic inspector elements, extract the target generic type from the inheritance chain.
+            // Example: For `SerializedDictionaryValueDrawer<TValue> : EasyValueDrawer<SerializedDictionary<string, TValue>>`,
+            // `OpenGenericType` is `EasyValueDrawer<>` (the base class), and
+            // `GetArgumentsOfInheritedOpenGenericType` returns `SerializedDictionary<string, TValue>`,
+            // which is stored in `index.Targets` for later matching in `GetMatchedType`.
+            Type currentType = type;
+            do
+            {
+                if (currentType.IsDefined<HandlerConstraintsAttribute>())
+                {
+                    return currentType.GetGenericArguments();
+                }
+                currentType = currentType.BaseType;
+            } while (currentType != null);
+
+            if (type.BaseType == null || !type.BaseType.IsGenericType)
+            {
+                return null;
+            }
+
+            return type.GetGenericArgumentsRelativeTo(type.BaseType.GetGenericTypeDefinition());
         }
 
         public static Type GetFirstElementType(IElement element, Func<Type, bool> typeFilter = null, IList<Type[]> additionalMatchTypesList = null)
@@ -129,8 +140,14 @@ namespace EasyToolKit.Inspector.Editor
         {
             var results = GetHandlerTypeResults(element, additionalMatchTypesList);
 
+            var set = new HashSet<Type>();
             foreach (var result in results)
             {
+                if (set.Contains(result.MatchedType))
+                {
+                    continue;
+                }
+
                 var type = result.MatchedType;
                 if (typeFilter != null)
                 {
@@ -145,6 +162,7 @@ namespace EasyToolKit.Inspector.Editor
                     continue;
                 }
 
+                set.Add(type);
                 yield return type;
             }
         }
