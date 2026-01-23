@@ -45,8 +45,7 @@ namespace EasyToolKit.Inspector.Editor
 
         static InspectorDrawerUtility()
         {
-            foreach (var type in AppDomain.CurrentDomain.GetAssemblies()
-                         .SelectMany(asm => asm.GetTypes())
+            foreach (var type in AssemblyUtility.GetTypesExcept(AssemblyCategory.System)
                          .Where(t => t.IsClass && !t.IsInterface && !t.IsAbstract && t.IsDerivedFrom<UnityEditor.PropertyDrawer>()))
             {
                 var customPropertyDrawers = type.GetCustomAttributes<UnityEditor.CustomPropertyDrawer>();

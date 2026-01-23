@@ -8,9 +8,6 @@ namespace EasyToolKit.Inspector.Attributes
     [EasySerializable(AllocInherit = true)]
     public abstract class InspectorAttribute : Attribute
     {
-        private static readonly ConcurrentDictionary<Type, StaticInvoker<InspectorAttribute, byte[]>> SerializeInvokerByAttributeType =
-            new ConcurrentDictionary<Type, StaticInvoker<InspectorAttribute, byte[]>>();
-
         private string _id;
 
         private string Id
@@ -19,14 +16,7 @@ namespace EasyToolKit.Inspector.Attributes
             {
                 if (_id == null)
                 {
-                    var invoker = SerializeInvokerByAttributeType.GetOrAdd(GetType(), type =>
-                    {
-                        var method = typeof(InspectorAttribute)
-                            .GetMethod(nameof(SerializeWrapper), MemberAccessFlags.AllStatic)!
-                            .MakeGenericMethod(type);
-                        return ReflectionCompiler.CreateStaticMethodInvoker<InspectorAttribute, byte[]>(method);
-                    });
-                    var data = invoker(this);
+                    var data = EasySerializer.SerializeToBinary(this);
                     _id = GetType().FullName + "+" + Convert.ToBase64String(data);
                 }
                 return _id;
@@ -51,11 +41,6 @@ namespace EasyToolKit.Inspector.Attributes
         public override int GetHashCode()
         {
             return Id.GetHashCode();
-        }
-
-        private static byte[] SerializeWrapper<T>(T attribute)
-        {
-            return EasySerializer.SerializeToBinary(ref attribute);
         }
     }
 }

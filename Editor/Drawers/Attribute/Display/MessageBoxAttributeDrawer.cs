@@ -20,15 +20,12 @@ namespace EasyToolKit.Inspector.Editor
 
             if (Attribute.VisibleIf != null)
             {
-                _visibleIfEvaluator = ExpressionEvaluatorFactory
-                    .Evaluate(Attribute.VisibleIf, targetType)
-                    .Build();
+                _visibleIfEvaluator = ExpressionEvaluatorFactory.CreateEvaluator(
+                    Attribute.VisibleIf, targetType);
             }
 
-            _messageEvaluator = ExpressionEvaluatorFactory
-                .Evaluate(Attribute.Message, targetType)
-                .WithExpressionFlag()
-                .Build();
+            _messageEvaluator = ExpressionEvaluatorFactory.CreateEvaluator(
+                Attribute.Message, targetType, requireExpressionFlag: true);
         }
 
         protected override void Draw(GUIContent label)

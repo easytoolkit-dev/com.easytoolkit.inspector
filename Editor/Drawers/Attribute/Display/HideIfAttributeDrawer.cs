@@ -16,9 +16,8 @@ namespace EasyToolKit.Inspector.Editor
         {
             var targetType = ElementUtility.GetOwnerTypeWithAttribute(Element, Attribute);
 
-            _conditionEvaluator = ExpressionEvaluatorFactory
-                .Evaluate(Attribute.Condition, targetType)
-                .Build();
+            _conditionEvaluator = ExpressionEvaluatorFactory.CreateEvaluator(
+                Attribute.Condition, targetType);
         }
 
         protected override void Draw(GUIContent label)

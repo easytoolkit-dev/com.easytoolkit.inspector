@@ -18,10 +18,8 @@ namespace EasyToolKit.Inspector.Editor
                 ? null
                 : ElementUtility.GetOwnerTypeWithAttribute(Element.AssociatedElement, Attribute);
 
-            _labelEvaluator = ExpressionEvaluatorFactory
-                .Evaluate(Attribute.Label, targetType)
-                .WithExpressionFlag()
-                .Build();
+            _labelEvaluator = ExpressionEvaluatorFactory.CreateEvaluator(
+                Attribute.Label, targetType, requireExpressionFlag: true);
         }
 
         protected override void Draw(GUIContent label)
