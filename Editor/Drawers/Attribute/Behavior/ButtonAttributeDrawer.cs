@@ -19,10 +19,8 @@ namespace EasyToolKit.Inspector.Editor
 
             if (Attribute.Label.IsNotNullOrEmpty())
             {
-                _buttonLabelEvaluator = ExpressionEvaluatorFactory
-                    .Evaluate(Attribute.Label, targetType)
-                    .WithExpressionFlag()
-                    .Build();
+                _buttonLabelEvaluator = ExpressionEvaluatorFactory.CreateEvaluator(
+                    Attribute.Label, targetType, requireExpressionFlag: true);
             }
         }
 

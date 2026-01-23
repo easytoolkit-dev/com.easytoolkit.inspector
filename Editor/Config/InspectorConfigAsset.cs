@@ -33,8 +33,7 @@ namespace EasyToolKit.Inspector.Editor
 
         public void UpdateEditors()
         {
-            var drawnTypes = AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(assembly => assembly.GetTypes())
+            var drawnTypes = AssemblyUtility.GetTypes(AssemblyCategory.Custom)
                 .Where(type => type.IsDefined<EasyInspectorAttribute>(inherit: true, includeInterface: true))
                 .Where(type => type.IsSubclassOf(typeof(Component)) ||
                                type.IsSubclassOf(typeof(ScriptableObject)));

@@ -21,7 +21,7 @@ namespace EasyToolKit.Inspector.Editor
 
         static InspectorAttributeUtility()
         {
-            _groupAttributeScopes = AppDomain.CurrentDomain.GetAssemblies()
+            _groupAttributeScopes = AssemblyUtility.GetAllAssemblies()
                 .SelectMany(asm => asm.GetCustomAttributes<RegisterGroupAttributeScopeAttribute>())
                 .ToArray();
         }

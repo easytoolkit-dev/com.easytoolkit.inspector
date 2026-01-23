@@ -68,8 +68,7 @@ namespace EasyToolKit.Inspector.Editor
             {
                 var elementTypes = new List<Type>();
 
-                foreach (var type in AppDomain.CurrentDomain.GetAssemblies()
-                             .SelectMany(asm => asm.GetTypes())
+                foreach (var type in AssemblyUtility.GetTypes(AssemblyCategory.Custom)
                              .Where(t => t.IsClass && !t.IsInterface && !t.IsAbstract))
                 {
                     if (type.IsDerivedFrom<IHandler>())

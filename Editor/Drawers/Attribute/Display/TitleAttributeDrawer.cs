@@ -16,14 +16,10 @@ namespace EasyToolKit.Inspector.Editor
         {
             var targetType = ElementUtility.GetOwnerTypeWithAttribute(Element, Attribute);
 
-            _titleEvaluator = ExpressionEvaluatorFactory
-                .Evaluate(Attribute.Title, targetType)
-                .WithExpressionFlag()
-                .Build();
-            _subtitleEvaluator = ExpressionEvaluatorFactory
-                .Evaluate(Attribute.Subtitle, targetType)
-                .WithExpressionFlag()
-                .Build();
+            _titleEvaluator = ExpressionEvaluatorFactory.CreateEvaluator(
+                Attribute.Title, targetType, requireExpressionFlag: true);
+            _subtitleEvaluator = ExpressionEvaluatorFactory.CreateEvaluator(
+                Attribute.Subtitle, targetType, requireExpressionFlag: true);
         }
 
         protected override void Draw(GUIContent label)

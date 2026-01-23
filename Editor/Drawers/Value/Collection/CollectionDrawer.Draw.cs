@@ -99,9 +99,8 @@ namespace EasyToolKit.Inspector.Editor
                 {
                     if (metroListDrawerSettings.IconTextureGetter.IsNotNullOrEmpty())
                     {
-                        _iconTextureGetterEvaluator = ExpressionEvaluatorFactory
-                            .Evaluate(metroListDrawerSettings.IconTextureGetter, _listDrawerTargetType)
-                            .Build();
+                        _iconTextureGetterEvaluator = ExpressionEvaluatorFactory.CreateEvaluator(
+                            metroListDrawerSettings.IconTextureGetter, _listDrawerTargetType);
                     }
                 }
 

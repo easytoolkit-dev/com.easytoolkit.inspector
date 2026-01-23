@@ -63,46 +63,37 @@ namespace EasyToolKit.Inspector.Editor
                 ? null
                 : ElementUtility.GetOwnerTypeWithAttribute(Element.AssociatedElement, Attribute);
 
-            _labelEvaluator = ExpressionEvaluatorFactory
-                .Evaluate(Attribute.Label, targetType)
-                .WithExpressionFlag()
-                .Build();
+            _labelEvaluator = ExpressionEvaluatorFactory.CreateEvaluator(
+                Attribute.Label, targetType, requireExpressionFlag: true);
 
             if (Attribute.Tooltip.IsNotNullOrWhiteSpace())
             {
-                _tooltipEvaluator = ExpressionEvaluatorFactory
-                    .Evaluate(Attribute.Tooltip, targetType)
-                    .WithExpressionFlag()
-                    .Build();
+                _tooltipEvaluator = ExpressionEvaluatorFactory.CreateEvaluator(
+                    Attribute.Tooltip, targetType, requireExpressionFlag: true);
             }
 
             if (Attribute.RightLabel.IsNotNullOrWhiteSpace())
             {
-                _rightLabelEvaluator = ExpressionEvaluatorFactory
-                    .Evaluate(Attribute.RightLabel, targetType)
-                    .WithExpressionFlag()
-                    .Build();
+                _rightLabelEvaluator = ExpressionEvaluatorFactory.CreateEvaluator(
+                    Attribute.RightLabel, targetType, requireExpressionFlag: true);
             }
 
             if (Attribute.RightLabelColorGetter.IsNotNullOrWhiteSpace())
             {
-                _rightLabelColorGetterEvaluator = ExpressionEvaluatorFactory
-                    .Evaluate(Attribute.RightLabelColorGetter, targetType)
-                    .Build();
+                _rightLabelColorGetterEvaluator = ExpressionEvaluatorFactory.CreateEvaluator(
+                    Attribute.RightLabelColorGetter, targetType);
             }
 
             if (Attribute.IconTextureGetter.IsNotNullOrWhiteSpace())
             {
-                _iconTextureGetterEvaluator = ExpressionEvaluatorFactory
-                    .Evaluate(Attribute.IconTextureGetter, targetType)
-                    .Build();
+                _iconTextureGetterEvaluator = ExpressionEvaluatorFactory.CreateEvaluator(
+                    Attribute.IconTextureGetter, targetType);
             }
 
             if (Attribute.SideLineColorGetter.IsNotNullOrWhiteSpace())
             {
-                _sideLineColorGetterEvaluator = ExpressionEvaluatorFactory
-                    .Evaluate(Attribute.SideLineColorGetter, targetType)
-                    .Build();
+                _sideLineColorGetterEvaluator = ExpressionEvaluatorFactory.CreateEvaluator(
+                    Attribute.SideLineColorGetter, targetType);
             }
         }
 
