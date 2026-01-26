@@ -5,7 +5,7 @@ namespace EasyToolKit.Inspector.Attributes
 {
     [Conditional("UNITY_EDITOR")]
     [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]
-    public class ShowOdinSerializedPropertiesInInspector : InspectorAttribute
+    public class ShowEasySerializeFieldsInInspector : InspectorAttribute
     {
     }
 }

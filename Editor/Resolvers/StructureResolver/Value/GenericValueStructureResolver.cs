@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using EasyToolKit.Core;
 using EasyToolKit.Core.Reflection;
 using EasyToolKit.Inspector.Attributes;
-using EasyToolKit.OdinSerializer;
+using EasyToolKit.Serialization;
 using UnityEngine;
 
 namespace EasyToolKit.Inspector.Editor
@@ -37,7 +37,7 @@ namespace EasyToolKit.Inspector.Editor
                 .OrderBy(Order)
                 .ToList();
 
-            var showOdinSerializersInInspector = targetType.IsDefined<ShowOdinSerializedPropertiesInInspector>(true);
+            var showEasySerializeFieldsInInspector = targetType.IsDefined<ShowEasySerializeFieldsInInspector>(true);
 
             // Use for loop instead of foreach to avoid enumerator allocation
             for (int i = 0; i < filteredMembers.Count; i++)
@@ -59,8 +59,8 @@ namespace EasyToolKit.Inspector.Editor
                         continue;
                     }
 
-                    // Handle Odin serialized fields
-                    if (showOdinSerializersInInspector && fieldInfo.IsDefined<OdinSerializeAttribute>())
+                    // Handle Easy serialize fields
+                    if (showEasySerializeFieldsInInspector && fieldInfo.IsDefined<EasySerializeFieldAttribute>())
                     {
                         _definitions.Add(CreateDefinition(memberInfo));
                         continue;

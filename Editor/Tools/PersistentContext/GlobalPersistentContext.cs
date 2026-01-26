@@ -1,5 +1,5 @@
 using System;
-using EasyToolKit.OdinSerializer;
+using UnityEngine;
 
 namespace EasyToolKit.Inspector.Editor
 {
@@ -9,7 +9,7 @@ namespace EasyToolKit.Inspector.Editor
     [Serializable]
     public abstract class GlobalPersistentContext
     {
-        [OdinSerialize]
+        [SerializeField]
         private long _timeStamp;
 
         public long TimeStamp => _timeStamp;
@@ -37,7 +37,7 @@ namespace EasyToolKit.Inspector.Editor
     [Serializable]
     public sealed class GlobalPersistentContext<T> : GlobalPersistentContext
     {
-        [OdinSerialize]
+        [SerializeField]
         private T value;
 
         /// <summary>

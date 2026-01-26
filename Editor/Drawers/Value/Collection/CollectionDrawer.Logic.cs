@@ -4,7 +4,7 @@ using EasyToolKit.Core.Textual;
 using EasyToolKit.Core.Diagnostics;
 using EasyToolKit.Core.Editor;
 using EasyToolKit.Core.Reflection;
-using EasyToolKit.OdinSerializer;
+using EasyToolKit.Serialization;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -258,7 +258,7 @@ namespace EasyToolKit.Inspector.Editor
                 return null;
             }
 
-            return UnitySerializationUtility.CreateDefaultUnityInitializedObject(ValueEntry.ItemType);
+            return EasySerializer.DeserializeFromBinary(ValueEntry.ItemType, Array.Empty<byte>());
         }
     }
 }

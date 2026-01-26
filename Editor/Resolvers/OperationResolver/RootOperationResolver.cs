@@ -1,7 +1,6 @@
 ﻿using System;
 using EasyToolKit.Core;
 using EasyToolKit.Core.Reflection;
-using EasyToolKit.OdinSerializer.Utilities;
 
 namespace EasyToolKit.Inspector.Editor
 {

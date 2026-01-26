@@ -3,7 +3,6 @@
     "rootNamespace": "",
     "references": [
         "EasyToolKit.Core",
-        "EasyToolKit.OdinSerializer",
         "EasyToolKit.Serialization"
     ],
     "includePlatforms": [],
