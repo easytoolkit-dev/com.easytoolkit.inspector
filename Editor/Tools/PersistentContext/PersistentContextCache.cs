@@ -115,10 +115,11 @@ namespace EasyToolKit.Inspector.Editor
         {
             try
             {
+                if (!Directory.Exists(CacheDirectory))
+                    Directory.CreateDirectory(CacheDirectory);
                 if (!File.Exists(CacheFilePath))
-                {
                     File.Create(CacheFilePath).Close();
-                }
+
                 var data = File.ReadAllBytes(CacheFilePath);
                 _cache = EasySerializer.DeserializeFromBinary<PersistentContextDirectory>(data);
                 _cache ??= new PersistentContextDirectory();
