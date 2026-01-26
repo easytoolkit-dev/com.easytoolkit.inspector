@@ -2,7 +2,7 @@
 using System.Reflection;
 using EasyToolKit.Core;
 using EasyToolKit.Core.Reflection;
-using EasyToolKit.OdinSerializer;
+using EasyToolKit.Serialization;
 using UnityEngine;
 
 namespace EasyToolKit.Inspector.Editor
@@ -57,7 +57,7 @@ namespace EasyToolKit.Inspector.Editor
                 return true;
             }
 
-            return !nonSerialized && (fieldInfo.IsDefined<SerializeField>() || fieldInfo.IsDefined<OdinSerializeAttribute>());
+            return !nonSerialized && (fieldInfo.IsDefined<SerializeField>(true) || fieldInfo.IsDefined<EasySerializeFieldAttribute>(true));
         }
     }
 }

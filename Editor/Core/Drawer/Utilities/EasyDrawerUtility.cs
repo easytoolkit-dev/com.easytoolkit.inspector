@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using EasyToolKit.Core;
 using EasyToolKit.Core.Reflection;
-using EasyToolKit.OdinSerializer;
 
 namespace EasyToolKit.Inspector.Editor
 {
@@ -26,7 +25,7 @@ namespace EasyToolKit.Inspector.Editor
 
         public static string GetKey(IEasyDrawer drawer)
         {
-            var key1 = TwoWaySerializationBinder.Default.BindToName(drawer.GetType());
+            var key1 = TypeUtility.GetTypeName(drawer.GetType());
             var key2 = ElementUtility.GetKey(drawer.Element);
             return string.Join("+", key1, key2);
         }

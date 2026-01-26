@@ -1,5 +1,5 @@
 using System;
-using EasyToolKit.OdinSerializer.Utilities;
+using EasyToolKit.Core.Reflection;
 
 namespace EasyToolKit.Inspector.Editor
 {
@@ -9,15 +9,15 @@ namespace EasyToolKit.Inspector.Editor
     /// <typeparam name="TValue">Value type</typeparam>
     public class GenericValueOperation<TValue> : ValueOperationBase<TValue>
     {
-        private readonly WeakValueGetter<TValue> _getter;
-        private readonly WeakValueSetter<TValue> _setter;
+        private readonly InstanceGetter<object, TValue> _getter;
+        private readonly InstanceSetter<object, TValue> _setter;
 
         /// <summary>
         /// Initializes a new instance of GenericPropertyOperation
         /// </summary>
         /// <param name="getter">Value getter delegate</param>
         /// <param name="setter">Value setter delegate</param>
-        public GenericValueOperation(Type ownerType, WeakValueGetter<TValue> getter, WeakValueSetter<TValue> setter)
+        public GenericValueOperation(Type ownerType, InstanceGetter<object, TValue> getter, InstanceSetter<object, TValue> setter)
             : base(ownerType)
         {
             _getter = getter;

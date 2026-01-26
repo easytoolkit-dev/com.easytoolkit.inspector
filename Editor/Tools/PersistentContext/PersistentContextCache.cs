@@ -1,19 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using EasyToolKit.Core;
 using EasyToolKit.Core.Collections;
-using EasyToolKit.Core.Textual;
 using EasyToolKit.Core.Editor;
 using EasyToolKit.Core.Editor.Internal;
 using EasyToolKit.Core.Patterns;
-using EasyToolKit.OdinSerializer;
+using EasyToolKit.Serialization;
 using UnityEditor;
 using UnityEngine;
-using SerializationUtility = EasyToolKit.OdinSerializer.SerializationUtility;
 
 namespace EasyToolKit.Inspector.Editor
 {
+    [Serializable]
     class PersistentContextDirectory : Dictionary<string, GlobalPersistentContext>
     {
     }
@@ -115,18 +113,16 @@ namespace EasyToolKit.Inspector.Editor
 
         void LoadCache()
         {
-            var fileInfo = new FileInfo(CacheFilePath);
             try
             {
-                if (!fileInfo.Exists)
+                if (!File.Exists(CacheFilePath))
                 {
-                    _cache.Clear();
-                    return;
+                    File.Create(CacheFilePath).Close();
                 }
-                using var fileStream = fileInfo.OpenRead();
-                _cache = SerializationUtility.DeserializeValue<PersistentContextDirectory>(fileStream, DataFormat.Binary);
+                var data = File.ReadAllBytes(CacheFilePath);
+                _cache = EasySerializer.DeserializeFromBinary<PersistentContextDirectory>(data);
                 _cache ??= new PersistentContextDirectory();
-                _cacheMemorySize = fileInfo.Length;
+                _cacheMemorySize = data.Length;
             }
             catch (Exception e)
             {
@@ -149,8 +145,9 @@ namespace EasyToolKit.Inspector.Editor
 
                 if (!Directory.Exists(CacheDirectory))
                     Directory.CreateDirectory(CacheDirectory);
-                using var fileStream = fileInfo.OpenWrite();
-                SerializationUtility.SerializeValue(_cache, fileStream, DataFormat.Binary, out var unityReferences);
+
+                var unityReferences = new List<UnityEngine.Object>();
+                File.WriteAllBytes(CacheDirectory, EasySerializer.SerializeToBinary(_cache, ref unityReferences));
                 if (unityReferences.IsNotNullOrEmpty())
                 {
                     Debug.Log($"Reference unity objects({string.Join(", ", unityReferences)}) in persistent context is not supported.");
