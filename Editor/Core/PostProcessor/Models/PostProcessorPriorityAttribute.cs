@@ -1,4 +1,5 @@
 using System;
+using EasyToolKit.Core.Mathematics;
 
 namespace EasyToolKit.Inspector.Editor
 {
@@ -13,27 +14,27 @@ namespace EasyToolKit.Inspector.Editor
         /// <summary>
         /// Represents the lowest possible post processor priority.
         /// </summary>
-        public static readonly Priority LowestPriority = new Priority(PostProcessorPriorityLevel.Lowest);
+        public static readonly OrderPriority LowestPriority = new OrderPriority(PostProcessorPriorityLevel.Lowest);
 
         /// <summary>
         /// Represents the standard priority for validation post processors.
         /// </summary>
-        public static readonly Priority ValidationPriority = new Priority(PostProcessorPriorityLevel.Validation);
+        public static readonly OrderPriority ValidationPriority = new OrderPriority(PostProcessorPriorityLevel.Validation);
 
         /// <summary>
         /// Represents the priority for cleanup post processors.
         /// </summary>
-        public static readonly Priority CleanupPriority = new Priority(PostProcessorPriorityLevel.Cleanup);
+        public static readonly OrderPriority CleanupPriority = new OrderPriority(PostProcessorPriorityLevel.Cleanup);
 
         /// <summary>
         /// Represents the highest standard post processor priority.
         /// </summary>
-        public static readonly Priority SuperPriority = new Priority(PostProcessorPriorityLevel.Super);
+        public static readonly OrderPriority SuperPriority = new OrderPriority(PostProcessorPriorityLevel.Super);
 
         /// <summary>
         /// Gets the priority value for the post processor.
         /// </summary>
-        public Priority Priority { get; }
+        public OrderPriority Priority { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PostProcessorPriorityAttribute"/> class.
@@ -41,7 +42,7 @@ namespace EasyToolKit.Inspector.Editor
         /// <param name="value">The priority value for the post processor..</param>
         public PostProcessorPriorityAttribute(double value = 0.0)
         {
-            Priority = new Priority(value);
+            Priority = new OrderPriority(value);
         }
     }
 }

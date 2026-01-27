@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
+using EasyToolKit.Core.Mathematics;
 using EasyToolKit.Core.Reflection;
 using UnityEngine;
 
@@ -22,10 +23,10 @@ namespace EasyToolKit.Inspector.Editor
         private static readonly object InitializationLock = new object();
 
         /// <summary>
-        /// Gets or sets a callback that provides a default <see cref="Priority"/> when no priority attribute is found.
+        /// Gets or sets a callback that provides a default <see cref="OrderPriority"/> when no priority attribute is found.
         /// If not set, returns null when no priority attribute is present.
         /// </summary>
-        private static readonly List<Func<Type, Priority>> NullPriorityFallbacks = new List<Func<Type, Priority>>();
+        private static readonly List<Func<Type, OrderPriority?>> NullPriorityFallbacks = new List<Func<Type, OrderPriority?>>();
 
         public static ITypeMatcher TypeMatcher
         {
@@ -41,7 +42,7 @@ namespace EasyToolKit.Inspector.Editor
         /// This will reset the type matcher to ensure newly added elements are sorted with the updated fallback.
         /// </summary>
         /// <param name="fallback">The fallback function to add.</param>
-        public static void AddNullPriorityFallback(Func<Type, Priority> fallback)
+        public static void AddNullPriorityFallback(Func<Type, OrderPriority?> fallback)
         {
             NullPriorityFallbacks.Add(fallback);
             lock (InitializationLock)
@@ -81,7 +82,7 @@ namespace EasyToolKit.Inspector.Editor
 
             s_typeMatcher = TypeMatcherFactory.CreateDefault();
             s_typeMatcher.SetTypeMatchCandidates(s_elementTypes
-                .OrderByDescending(GetElementPriority)
+                .OrderByDescending(GetHandlerPriority)
                 .Select((type, i) => new TypeMatchCandidate(type, s_elementTypes.Length - i, GetConstraints(type))));
         }
 
@@ -189,18 +190,11 @@ namespace EasyToolKit.Inspector.Editor
             return TypeMatcher.GetMergedResults(resultsList);
         }
 
-        /// <summary>
-        /// Gets the priority of an inspector element type.
-        /// Priority is obtained from the <see cref="IPriorityAccessor"/> attribute if present;
-        /// otherwise, falls back to <see cref="NullPriorityFallbacks"/> if set.
-        /// </summary>
-        /// <param name="elementType">The element type to examine.</param>
-        /// <returns>The priority of the element, or null if no priority could be determined.</returns>
-        private static Priority GetElementPriority(Type elementType)
+        private static OrderPriority GetHandlerPriority(Type handlerType)
         {
-            Priority priority = null;
+            OrderPriority? priority = null;
 
-            if (elementType.GetCustomAttributes(true)
+            if (handlerType.GetCustomAttributes(true)
                     .FirstOrDefault(attr => attr is IPriorityAccessor) is IPriorityAccessor priorityAttribute)
             {
                 priority = priorityAttribute.Priority;
@@ -210,7 +204,7 @@ namespace EasyToolKit.Inspector.Editor
             {
                 foreach (var fallback in NullPriorityFallbacks)
                 {
-                    priority = fallback(elementType);
+                    priority = fallback(handlerType);
                     if (priority != null)
                     {
                         break;
@@ -218,7 +212,7 @@ namespace EasyToolKit.Inspector.Editor
                 }
             }
 
-            return priority ?? Priority.Default;
+            return priority ?? OrderPriority.Default;
         }
 
         /// <summary>
