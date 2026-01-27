@@ -1,4 +1,5 @@
 using System;
+using EasyToolKit.Core.Mathematics;
 
 namespace EasyToolKit.Inspector.Editor
 {
@@ -13,27 +14,27 @@ namespace EasyToolKit.Inspector.Editor
         /// <summary>
         /// Represents the lowest possible drawer priority.
         /// </summary>
-        public static readonly Priority LowestPriority = new Priority(DrawerPriorityLevel.Lowest);
+        public static readonly OrderPriority LowestPriority = new OrderPriority(DrawerPriorityLevel.Lowest);
 
         /// <summary>
         /// Represents the standard priority for value drawers.
         /// </summary>
-        public static readonly Priority ValuePriority = new Priority(DrawerPriorityLevel.Value);
+        public static readonly OrderPriority ValuePriority = new OrderPriority(DrawerPriorityLevel.Value);
 
         /// <summary>
         /// Represents the priority for attribute-based drawers.
         /// </summary>
-        public static readonly Priority AttributePriority = new Priority(DrawerPriorityLevel.Attribute);
+        public static readonly OrderPriority AttributePriority = new OrderPriority(DrawerPriorityLevel.Attribute);
 
         /// <summary>
         /// Represents the highest standard drawer priority.
         /// </summary>
-        public static readonly Priority SuperPriority = new Priority(DrawerPriorityLevel.Super);
+        public static readonly OrderPriority SuperPriority = new OrderPriority(DrawerPriorityLevel.Super);
 
         /// <summary>
         /// Gets the priority value for the drawer.
         /// </summary>
-        public Priority Priority { get; }
+        public OrderPriority Priority { get; }
 
         /// <summary>
         /// Initializes a new instance of the DrawerPriorityAttribute class.
@@ -41,7 +42,7 @@ namespace EasyToolKit.Inspector.Editor
         /// <param name="value">The priority value for the drawer. Defaults to <see cref="DrawerPriorityLevel.Lowest"/>.</param>
         public DrawerPriorityAttribute(double value = DrawerPriorityLevel.Lowest)
         {
-            Priority = new Priority(value);
+            Priority = new OrderPriority(value);
         }
     }
 }

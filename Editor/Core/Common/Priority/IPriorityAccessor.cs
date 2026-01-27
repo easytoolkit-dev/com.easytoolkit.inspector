@@ -1,7 +1,9 @@
-﻿namespace EasyToolKit.Inspector.Editor
+﻿using EasyToolKit.Core.Mathematics;
+
+namespace EasyToolKit.Inspector.Editor
 {
     public interface IPriorityAccessor
     {
-        Priority Priority { get; }
+        OrderPriority Priority { get; }
     }
 }
