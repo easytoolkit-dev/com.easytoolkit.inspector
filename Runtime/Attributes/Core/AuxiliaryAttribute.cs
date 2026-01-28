@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasyToolKit.Inspector.Attributes
+namespace EasyToolkit.Inspector.Attributes
 {
     public abstract class AuxiliaryAttribute : InspectorAttribute
     {

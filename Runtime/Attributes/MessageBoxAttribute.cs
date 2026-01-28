@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace EasyToolKit.Inspector.Attributes
+namespace EasyToolkit.Inspector.Attributes
 {
     public enum MessageBoxType
     {

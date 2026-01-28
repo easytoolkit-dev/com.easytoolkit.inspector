@@ -1,7 +1,7 @@
 ﻿using System;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Value element interface for all data-containing elements.

@@ -2,7 +2,7 @@
 
 ## 概述
 
-元素系统是 EasyToolKit.Inspector.Editor 的核心，所有 Inspector 中的可见项都是 Element。元素系统采用树形结构，支持动态创建、销毁和重组。
+元素系统是 EasyToolkit.Inspector.Editor 的核心，所有 Inspector 中的可见项都是 Element。元素系统采用树形结构，支持动态创建、销毁和重组。
 
 ## 核心接口层次
 

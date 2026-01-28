@@ -1,4 +1,4 @@
-﻿namespace EasyToolKit.Inspector.Editor
+﻿namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Base interface for read-only element list wrappers.

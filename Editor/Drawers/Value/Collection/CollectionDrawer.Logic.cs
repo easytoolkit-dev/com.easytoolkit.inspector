@@ -1,14 +1,14 @@
 using System;
 using System.Linq;
-using EasyToolKit.Core.Textual;
-using EasyToolKit.Core.Diagnostics;
-using EasyToolKit.Core.Editor;
-using EasyToolKit.Core.Reflection;
-using EasyToolKit.Serialization;
+using EasyToolkit.Core.Textual;
+using EasyToolkit.Core.Diagnostics;
+using EasyToolkit.Core.Editor;
+using EasyToolkit.Core.Reflection;
+using EasyToolkit.Serialization;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     public partial class CollectionDrawer<T>
     {

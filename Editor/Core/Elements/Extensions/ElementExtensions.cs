@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EasyToolKit.Core;
-using EasyToolKit.Core.Reflection;
+using EasyToolkit.Core;
+using EasyToolkit.Core.Reflection;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     public static class ElementExtensions
     {

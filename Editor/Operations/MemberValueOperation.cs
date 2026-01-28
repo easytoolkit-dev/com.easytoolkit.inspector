@@ -1,9 +1,9 @@
 using System;
 using System.Reflection;
-using EasyToolKit.Core;
-using EasyToolKit.Core.Reflection;
+using EasyToolkit.Core;
+using EasyToolkit.Core.Reflection;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Property operation implementation for member access (fields and properties)

@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using EasyToolKit.Core.Editor;
-using EasyToolKit.Inspector;
-using EasyToolKit.Inspector.Attributes;
+using EasyToolkit.Core.Editor;
+using EasyToolkit.Inspector;
+using EasyToolkit.Inspector.Attributes;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     public class EnumDrawer<T> : EasyValueDrawer<T>
     {

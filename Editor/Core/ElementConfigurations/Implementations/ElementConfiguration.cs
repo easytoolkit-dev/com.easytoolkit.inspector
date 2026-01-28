@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EasyToolKit.Core;
-using EasyToolKit.Core.Textual;
+using EasyToolkit.Core;
+using EasyToolkit.Core.Textual;
 
-namespace EasyToolKit.Inspector.Editor.Implementations
+namespace EasyToolkit.Inspector.Editor.Implementations
 {
     /// <summary>
     /// Base configuration class for all element configurations in the inspector system.

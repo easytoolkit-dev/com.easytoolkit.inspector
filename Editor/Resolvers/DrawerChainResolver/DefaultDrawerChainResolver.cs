@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using EasyToolKit.Core;
-using EasyToolKit.Core.Reflection;
+using EasyToolkit.Core;
+using EasyToolkit.Core.Reflection;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Default implementation of drawer chain resolver for <see cref="InspectorProperty"/>

@@ -1,4 +1,4 @@
-﻿namespace EasyToolKit.Inspector.Editor
+﻿namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Represents the state of values when multiple targets are selected in the inspector.

@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using EasyToolKit.Core.Reflection;
+using EasyToolkit.Core.Reflection;
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor.Implementations
+namespace EasyToolkit.Inspector.Editor.Implementations
 {
     /// <summary>
     /// Represents a value entry that manages property values for multiple target objects.

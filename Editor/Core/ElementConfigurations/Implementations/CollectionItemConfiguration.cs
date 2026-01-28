@@ -1,4 +1,4 @@
-namespace EasyToolKit.Inspector.Editor.Implementations
+namespace EasyToolkit.Inspector.Editor.Implementations
 {
     /// <summary>
     /// Configuration interface for creating collection item element definitions.

@@ -1,6 +1,6 @@
-﻿using EasyToolKit.Core.Mathematics;
+﻿using EasyToolkit.Core.Mathematics;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     public interface IPriorityAccessor
     {

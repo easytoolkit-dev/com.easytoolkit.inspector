@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Editor.Implementations
+namespace EasyToolkit.Inspector.Editor.Implementations
 {
     /// <summary>
     /// Property element implementation representing properties on an object.

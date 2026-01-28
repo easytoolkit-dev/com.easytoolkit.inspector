@@ -1,4 +1,4 @@
-﻿namespace EasyToolKit.Inspector.Editor
+﻿namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Factory interface for creating element configuration instances.

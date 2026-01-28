@@ -1,9 +1,9 @@
 {
-    "name": "EasyToolKit.Inspector",
+    "name": "EasyToolkit.Inspector",
     "rootNamespace": "",
     "references": [
-        "EasyToolKit.Core",
-        "EasyToolKit.Serialization"
+        "EasyToolkit.Core",
+        "EasyToolkit.Serialization"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

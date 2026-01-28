@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using EasyToolKit.Core.Editor;
+using EasyToolkit.Core.Editor;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     public static class ResolverUtility
     {

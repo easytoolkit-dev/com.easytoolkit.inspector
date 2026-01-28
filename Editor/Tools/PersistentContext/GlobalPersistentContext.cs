@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Context that persists across reloading and restarting Unity.

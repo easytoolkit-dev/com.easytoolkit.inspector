@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Property definition interface that handles <see cref="System.Reflection.PropertyInfo"/>.

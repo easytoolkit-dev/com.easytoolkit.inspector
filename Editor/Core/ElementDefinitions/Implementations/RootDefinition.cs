@@ -1,6 +1,6 @@
 using System;
 
-namespace EasyToolKit.Inspector.Editor.Implementations
+namespace EasyToolkit.Inspector.Editor.Implementations
 {
     /// <summary>
     /// Root definition implementation for the inspector tree.

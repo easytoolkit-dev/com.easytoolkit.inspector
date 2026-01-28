@@ -1,8 +1,8 @@
 ﻿using System;
-using EasyToolKit.Inspector.Attributes;
+using EasyToolkit.Inspector.Attributes;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     public class OnInspectorGUIAttributeDrawer : EasyMethodAttributeDrawer<OnInspectorGUIAttribute>
     {

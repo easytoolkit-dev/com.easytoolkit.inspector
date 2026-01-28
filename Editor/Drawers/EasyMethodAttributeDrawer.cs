@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Reflection;
-using EasyToolKit.Inspector.Attributes;
+using EasyToolkit.Inspector.Attributes;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     [HandlerConstraints]
     public class EasyMethodAttributeDrawer<TAttribute> : EasyAttributeDrawer<TAttribute>

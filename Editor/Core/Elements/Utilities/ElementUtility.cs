@@ -1,8 +1,8 @@
 ﻿using System;
-using EasyToolKit.Core.Reflection;
+using EasyToolkit.Core.Reflection;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     public static class ElementUtility
     {

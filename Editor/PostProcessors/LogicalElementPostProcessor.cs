@@ -1,4 +1,4 @@
-﻿namespace EasyToolKit.Inspector.Editor
+﻿namespace EasyToolkit.Inspector.Editor
 {
     [PostProcessorPriority(PostProcessorPriorityLevel.Super)]
     public class LogicalElementPostProcessor : PostProcessor

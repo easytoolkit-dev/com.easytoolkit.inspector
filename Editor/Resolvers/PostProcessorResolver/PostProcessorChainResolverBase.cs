@@ -1,8 +1,8 @@
 using System;
-using EasyToolKit.Core;
+using EasyToolkit.Core;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Abstract base class for post processor chain resolution in the <see cref="IElement"/> system

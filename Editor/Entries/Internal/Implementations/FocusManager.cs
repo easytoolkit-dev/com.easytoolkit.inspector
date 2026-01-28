@@ -1,8 +1,8 @@
-using EasyToolKit.Core.Editor;
+using EasyToolkit.Core.Editor;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor.Internal
+namespace EasyToolkit.Inspector.Editor.Internal
 {
     /// <summary>
     /// Manages focus state for editor windows.

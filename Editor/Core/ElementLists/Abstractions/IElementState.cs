@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Represents the state of an element in the inspector.

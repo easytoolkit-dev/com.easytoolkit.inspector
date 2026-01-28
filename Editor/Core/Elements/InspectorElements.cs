@@ -1,7 +1,7 @@
-﻿namespace EasyToolKit.Inspector.Editor
+﻿namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
-    /// Provides centralized access to the core factory services of the EasyToolKit inspector system.
+    /// Provides centralized access to the core factory services of the EasyToolkit inspector system.
     /// This static class serves as the main entry point for accessing element configuration and tree creation services.
     /// </summary>
     public static class InspectorElements

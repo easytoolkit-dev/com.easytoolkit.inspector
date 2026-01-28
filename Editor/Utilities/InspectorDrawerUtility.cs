@@ -1,14 +1,14 @@
-using EasyToolKit.Core;
+using EasyToolkit.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
-using EasyToolKit.Core.Reflection;
+using EasyToolkit.Core.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     public static class InspectorDrawerUtility
     {

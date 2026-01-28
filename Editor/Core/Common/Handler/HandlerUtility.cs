@@ -1,14 +1,14 @@
-using EasyToolKit.Core;
+using EasyToolkit.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
-using EasyToolKit.Core.Mathematics;
-using EasyToolKit.Core.Reflection;
+using EasyToolkit.Core.Mathematics;
+using EasyToolkit.Core.Reflection;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Utility class for discovering and matching inspector elements that implement <see cref="IHandler"/>.

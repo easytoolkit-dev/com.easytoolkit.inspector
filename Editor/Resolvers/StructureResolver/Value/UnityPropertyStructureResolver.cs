@@ -1,10 +1,10 @@
 // using System;
 // using System.Collections.Generic;
-// using EasyToolKit.Core;
+// using EasyToolkit.Core;
 // using UnityEditor;
 // using UnityEngine;
 //
-// namespace EasyToolKit.Inspector.Editor
+// namespace EasyToolkit.Inspector.Editor
 // {
 //     /// <summary>
 //     /// Property structure resolver implementation for Unity's SerializedProperty system.

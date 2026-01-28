@@ -1,6 +1,6 @@
-using EasyToolKit.Core;
+using EasyToolkit.Core;
 
-namespace EasyToolKit.Inspector.Editor.Implementations
+namespace EasyToolkit.Inspector.Editor.Implementations
 {
     /// <summary>
     /// Default implementation of <see cref="IPostProcessorChainResolverFactory"/>

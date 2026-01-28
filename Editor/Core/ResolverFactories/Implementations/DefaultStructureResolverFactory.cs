@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using EasyToolKit.Core;
+using EasyToolkit.Core;
 
-namespace EasyToolKit.Inspector.Editor.Implementations
+namespace EasyToolkit.Inspector.Editor.Implementations
 {
     public class DefaultStructureResolverFactory : IStructureResolverFactory
     {

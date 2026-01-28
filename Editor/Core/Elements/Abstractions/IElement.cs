@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
-    /// Defines the base contract for all inspector elements in the EasyToolKit inspector system.
+    /// Defines the base contract for all inspector elements in the EasyToolkit inspector system.
     /// This interface serves as the foundational abstraction for all UI elements that can be displayed
     /// in the Unity inspector, providing essential properties and methods for element management,
     /// hierarchy traversal, and rendering.

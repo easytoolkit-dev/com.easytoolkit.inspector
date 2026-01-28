@@ -2,7 +2,7 @@
 
 ## 概述
 
-ElementTree 是 EasyToolKit.Inspector.Editor 的核心管理系统，负责管理整个 Inspector 元素的层次结构、更新、绘制和生命周期。
+ElementTree 是 EasyToolkit.Inspector.Editor 的核心管理系统，负责管理整个 Inspector 元素的层次结构、更新、绘制和生命周期。
 
 ## IElementTree 接口
 

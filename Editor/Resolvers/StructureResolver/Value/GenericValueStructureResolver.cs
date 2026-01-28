@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using EasyToolKit.Core;
-using EasyToolKit.Core.Reflection;
-using EasyToolKit.Inspector.Attributes;
-using EasyToolKit.Serialization;
+using EasyToolkit.Core;
+using EasyToolkit.Core.Reflection;
+using EasyToolkit.Inspector.Attributes;
+using EasyToolkit.Serialization;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Generic value structure resolver implementation using reflection to discover elements.

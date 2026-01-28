@@ -1,7 +1,7 @@
-﻿using EasyToolKit.Core.Reflection;
+﻿using EasyToolkit.Core.Reflection;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Editor.Implementations
+namespace EasyToolkit.Inspector.Editor.Implementations
 {
     public class CollectionElement : ValueElement, ICollectionElement
     {

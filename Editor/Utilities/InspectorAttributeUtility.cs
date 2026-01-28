@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using EasyToolKit.Core;
-using EasyToolKit.Core.Reflection;
-using EasyToolKit.Inspector.Attributes;
+using EasyToolkit.Core;
+using EasyToolkit.Core.Reflection;
+using EasyToolkit.Inspector.Attributes;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     public static class InspectorAttributeUtility
     {

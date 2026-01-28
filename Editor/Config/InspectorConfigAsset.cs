@@ -1,15 +1,15 @@
 using System;
-using EasyToolKit.Core;
-using EasyToolKit.Core.Editor;
-using EasyToolKit.Core.Editor.Internal;
+using EasyToolkit.Core;
+using EasyToolkit.Core.Editor;
+using EasyToolkit.Core.Editor.Internal;
 using UnityEditor;
 using UnityEngine;
 using System.Linq;
-using EasyToolKit.Core.Patterns;
-using EasyToolKit.Core.Reflection;
-using EasyToolKit.Inspector.Attributes;
+using EasyToolkit.Core.Patterns;
+using EasyToolkit.Core.Reflection;
+using EasyToolkit.Inspector.Attributes;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     [ScriptableObjectSingletonConfiguration(null, ScriptableObjectLoadMode.TryLoadAssetOrFallback)]
     public class InspectorConfigAsset : ScriptableObjectSingleton<InspectorConfigAsset>, ISerializationCallbackReceiver

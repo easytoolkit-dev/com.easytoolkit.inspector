@@ -1,9 +1,9 @@
 using System;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
-    /// Provides extension methods for EasyToolKit drawers.
+    /// Provides extension methods for EasyToolkit drawers.
     /// These extensions add utility functionality for drawer operations.
     /// </summary>
     public static class EasyDrawerExtensions

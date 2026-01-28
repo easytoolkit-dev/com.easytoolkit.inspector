@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using EasyToolKit.Core.Editor;
-using EasyToolKit.Core.Reflection;
+using EasyToolkit.Core.Editor;
+using EasyToolkit.Core.Reflection;
 using UnityEditor;
 
-namespace EasyToolKit.Inspector.Editor.Internal
+namespace EasyToolkit.Inspector.Editor.Internal
 {
     /// <summary>
     /// Manages the lifecycle of Unity Editors and ElementTrees for an EasyEditorWindow.

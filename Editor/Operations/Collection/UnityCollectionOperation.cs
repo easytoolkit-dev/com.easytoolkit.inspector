@@ -1,10 +1,10 @@
-// using EasyToolKit.Core.Editor;
+// using EasyToolkit.Core.Editor;
 // using System;
 // using System.Collections.Generic;
 // using System.Diagnostics.CodeAnalysis;
 // using UnityEditor;
 //
-// namespace EasyToolKit.Inspector.Editor
+// namespace EasyToolkit.Inspector.Editor
 // {
 //     public class UnityCollectionOperation<TItem> : OrderedCollectionOperationBase<IList<TItem>, TItem>
 //     {

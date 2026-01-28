@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Method definition interface for function handling in the inspector.

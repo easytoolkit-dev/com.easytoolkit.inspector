@@ -1,6 +1,6 @@
-# EasyToolKit.Inspector.Editor 架构设计文档
+# EasyToolkit.Inspector.Editor 架构设计文档
 
-本文档目录详细描述了 `EasyToolKit.Inspector.Editor` 项目的架构设计、模块关系和实现细节。
+本文档目录详细描述了 `EasyToolkit.Inspector.Editor` 项目的架构设计、模块关系和实现细节。
 
 ## 文档导航
 
