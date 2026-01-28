@@ -1,6 +1,6 @@
 using System;
 
-namespace EasyToolKit.Inspector.Attributes
+namespace EasyToolkit.Inspector.Attributes
 {
     [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]
     public class HideIfAttribute : InspectorAttribute

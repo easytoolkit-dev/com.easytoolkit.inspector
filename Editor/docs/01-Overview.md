@@ -1,8 +1,8 @@
-# EasyToolKit.Inspector.Editor 项目概述
+# EasyToolkit.Inspector.Editor 项目概述
 
 ## 项目简介
 
-`EasyToolKit.Inspector.Editor` 是一个 Unity 编辑器扩展框架，提供灵活、可扩展的自定义 Inspector 系统。该项目采用模块化设计，通过元素树、解析器、绘制器和值条目等核心组件，实现了高度可定制的属性编辑界面。
+`EasyToolkit.Inspector.Editor` 是一个 Unity 编辑器扩展框架，提供灵活、可扩展的自定义 Inspector 系统。该项目采用模块化设计，通过元素树、解析器、绘制器和值条目等核心组件，实现了高度可定制的属性编辑界面。
 
 ## 核心特性
 
@@ -170,9 +170,9 @@ ValueElement 的值访问和变更管理：
 ## 项目依赖
 
 ### 内部依赖
-- **EasyToolKit.Core** - 核心功能（事件系统、工具类）
-- **EasyToolKit.Core.Editor** - 编辑器工具
-- **EasyToolKit.Inspector** - Inspector 属性定义
+- **EasyToolkit.Core** - 核心功能（事件系统、工具类）
+- **EasyToolkit.Core.Editor** - 编辑器工具
+- **EasyToolkit.Inspector** - Inspector 属性定义
 
 ### 外部依赖
 - **UnityEditor** - Unity 编辑器 API

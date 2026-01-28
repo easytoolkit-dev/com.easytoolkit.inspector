@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using EasyToolKit.Core.Diagnostics;
+using EasyToolkit.Core.Diagnostics;
 using JetBrains.Annotations;
 
-namespace EasyToolKit.Inspector.Editor.Implementations
+namespace EasyToolkit.Inspector.Editor.Implementations
 {
     public abstract class LogicalElementBase : ElementBase, ILogicalElement
     {

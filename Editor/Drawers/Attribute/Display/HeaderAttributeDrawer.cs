@@ -1,9 +1,9 @@
-using EasyToolKit.Core.Editor;
-using EasyToolKit.Core.Reflection;
+using EasyToolkit.Core.Editor;
+using EasyToolkit.Core.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     [DrawerPriority(DrawerPriorityLevel.Attribute + 10)]
     public class HeaderAttributeDrawer : EasyAttributeDrawer<HeaderAttribute>

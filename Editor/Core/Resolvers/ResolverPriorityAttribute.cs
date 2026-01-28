@@ -1,7 +1,7 @@
 ﻿using System;
-using EasyToolKit.Core.Mathematics;
+using EasyToolkit.Core.Mathematics;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class ResolverPriorityAttribute : Attribute, IPriorityAccessor

@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     public interface IMemberDefinition
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using EasyToolKit.Core.Reflection;
-using EasyToolKit.Serialization;
+using EasyToolkit.Core.Reflection;
+using EasyToolkit.Serialization;
 
-namespace EasyToolKit.Inspector.Attributes
+namespace EasyToolkit.Inspector.Attributes
 {
     [EasySerializable(AllocInherit = true)]
     public abstract class InspectorAttribute : Attribute

@@ -2,7 +2,7 @@
 
 ## 概述
 
-绘制器系统是 EasyToolKit.Inspector.Editor 的核心渲染系统，负责在 Unity Editor 中绘制各种元素。通过责任链模式，绘制器系统支持灵活的自定义渲染逻辑。
+绘制器系统是 EasyToolkit.Inspector.Editor 的核心渲染系统，负责在 Unity Editor 中绘制各种元素。通过责任链模式，绘制器系统支持灵活的自定义渲染逻辑。
 
 ## 系统架构
 

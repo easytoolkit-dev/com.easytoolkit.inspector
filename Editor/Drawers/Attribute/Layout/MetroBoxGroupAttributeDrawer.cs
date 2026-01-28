@@ -1,12 +1,12 @@
-using EasyToolKit.Core.Textual;
-using EasyToolKit.Core.Editor;
-using EasyToolKit.Core.Reflection;
-using EasyToolKit.Inspector.Attributes;
-using EasyToolKit.Inspector.Editor.Internal;
+using EasyToolkit.Core.Textual;
+using EasyToolkit.Core.Editor;
+using EasyToolkit.Core.Reflection;
+using EasyToolkit.Inspector.Attributes;
+using EasyToolkit.Inspector.Editor.Internal;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     [DrawerPriority(DrawerPriorityLevel.Attribute + 100)]
     public class MetroBoxGroupAttributeDrawer : EasyGroupAttributeDrawer<MetroBoxGroupAttribute>

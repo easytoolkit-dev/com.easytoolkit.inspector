@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using EasyToolKit.Core;
+using EasyToolkit.Core;
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor.Implementations
+namespace EasyToolkit.Inspector.Editor.Implementations
 {
     /// <summary>
     /// Represents a collection entry that manages collection values for multiple target objects.

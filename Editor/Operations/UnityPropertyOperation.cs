@@ -1,8 +1,8 @@
 using System;
-using EasyToolKit.Core.Editor;
+using EasyToolkit.Core.Editor;
 using UnityEditor;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Property operation implementation for Unity serialized properties

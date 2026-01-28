@@ -2,7 +2,7 @@
 // using System.Collections.Generic;
 // using UnityEditor;
 //
-// namespace EasyToolKit.Inspector.Editor
+// namespace EasyToolkit.Inspector.Editor
 // {
 //     [ResolverPriority(-10000.0)]
 //     public class UnityCollectionStructureResolver<TCollection, TItem> : CollectionStructureResolverBase<TCollection>

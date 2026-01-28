@@ -1,8 +1,8 @@
 using System;
 using System.Reflection;
-using EasyToolKit.Core.Textual;
+using EasyToolkit.Core.Textual;
 
-namespace EasyToolKit.Inspector.Editor.Implementations
+namespace EasyToolkit.Inspector.Editor.Implementations
 {
     /// <summary>
     /// Configuration interface for creating property collection element definitions.

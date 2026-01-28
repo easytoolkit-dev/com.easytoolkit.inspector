@@ -2,7 +2,7 @@
 
 ## 概述
 
-解析器系统是 EasyToolKit.Inspector.Editor 的核心扩展机制，负责解析元素的结构、操作、属性等。通过 Resolver 模式，框架可以灵活地支持各种自定义类型和逻辑。
+解析器系统是 EasyToolkit.Inspector.Editor 的核心扩展机制，负责解析元素的结构、操作、属性等。通过 Resolver 模式，框架可以灵活地支持各种自定义类型和逻辑。
 
 ## 解析器层次结构
 

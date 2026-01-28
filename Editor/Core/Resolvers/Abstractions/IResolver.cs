@@ -1,7 +1,7 @@
-﻿using EasyToolKit.Core;
-using EasyToolKit.Core.Pooling;
+﻿using EasyToolkit.Core;
+using EasyToolkit.Core.Pooling;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     public interface IResolver : IHandler, IPoolItem
     {

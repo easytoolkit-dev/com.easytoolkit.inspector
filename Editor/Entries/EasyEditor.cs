@@ -1,12 +1,12 @@
 using System;
 using System.Reflection;
-using EasyToolKit.Core;
-using EasyToolKit.Core.Reflection;
-using EasyToolKit.Core.Unity;
+using EasyToolkit.Core;
+using EasyToolkit.Core.Reflection;
+using EasyToolkit.Core.Unity;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Enhanced Unity editor that provides property tree-based inspector functionality

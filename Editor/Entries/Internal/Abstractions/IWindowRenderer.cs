@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor.Internal
+namespace EasyToolkit.Inspector.Editor.Internal
 {
     /// <summary>
     /// Handles the rendering of an EasyEditorWindow's GUI.

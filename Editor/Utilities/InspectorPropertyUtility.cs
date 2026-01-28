@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Reflection;
-using EasyToolKit.Core;
-using EasyToolKit.Core.Reflection;
-using EasyToolKit.Serialization;
+using EasyToolkit.Core;
+using EasyToolkit.Core.Reflection;
+using EasyToolkit.Serialization;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     public static class InspectorPropertyUtility
     {

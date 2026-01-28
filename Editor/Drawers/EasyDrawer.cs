@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     public abstract class EasyDrawer : IEasyDrawer
     {

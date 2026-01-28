@@ -1,8 +1,8 @@
 using System;
-using EasyToolKit.Core;
+using EasyToolkit.Core;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     [HandlerConstraints]
     public abstract class EasyValueDrawer<TValue> : EasyDrawer

@@ -1,4 +1,4 @@
-namespace EasyToolKit.Inspector.Editor.Internal
+namespace EasyToolkit.Inspector.Editor.Internal
 {
     /// <summary>
     /// Manages focus state for editor windows.

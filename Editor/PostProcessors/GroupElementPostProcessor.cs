@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EasyToolKit.Core;
-using EasyToolKit.Core.Textual;
-using EasyToolKit.Core.Reflection;
-using EasyToolKit.Inspector.Attributes;
+using EasyToolkit.Core;
+using EasyToolkit.Core.Textual;
+using EasyToolkit.Core.Reflection;
+using EasyToolkit.Inspector.Attributes;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     [PostProcessorPriority(PostProcessorPriorityLevel.Super - 1)]
     public class GroupElementPostProcessor : PostProcessor

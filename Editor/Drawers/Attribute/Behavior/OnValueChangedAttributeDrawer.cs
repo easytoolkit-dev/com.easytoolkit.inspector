@@ -1,13 +1,13 @@
 using System;
 using System.Reflection;
-using EasyToolKit.Core.Textual;
-using EasyToolKit.Core.Editor;
-using EasyToolKit.Core.Reflection;
-using EasyToolKit.Inspector.Attributes;
+using EasyToolkit.Core.Textual;
+using EasyToolkit.Core.Editor;
+using EasyToolkit.Core.Reflection;
+using EasyToolkit.Inspector.Attributes;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     public class OnValueChangedAttributeDrawer<T> : EasyAttributeDrawer<OnValueChangedAttribute, T>
     {

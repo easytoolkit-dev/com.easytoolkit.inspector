@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using EasyToolKit.Core.Collections;
-using EasyToolKit.Core.Editor;
-using EasyToolKit.Core.Editor.Internal;
-using EasyToolKit.Core.Patterns;
-using EasyToolKit.Serialization;
+using EasyToolkit.Core.Collections;
+using EasyToolkit.Core.Editor;
+using EasyToolkit.Core.Editor.Internal;
+using EasyToolkit.Core.Patterns;
+using EasyToolkit.Serialization;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     [Serializable]
     class PersistentContextDirectory : Dictionary<string, GlobalPersistentContext>

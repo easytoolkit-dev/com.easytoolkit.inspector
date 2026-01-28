@@ -1,9 +1,9 @@
 using System;
-using EasyToolKit.Core;
-using EasyToolKit.Core.Diagnostics;
-using EasyToolKit.Core.Reflection;
+using EasyToolkit.Core;
+using EasyToolkit.Core.Diagnostics;
+using EasyToolkit.Core.Reflection;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Abstract base class for property operations

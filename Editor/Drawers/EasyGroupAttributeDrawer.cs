@@ -1,7 +1,7 @@
-using EasyToolKit.Inspector.Attributes;
+using EasyToolkit.Inspector.Attributes;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     [HandlerConstraints]
     public abstract class EasyGroupAttributeDrawer<TAttribute> : EasyDrawer

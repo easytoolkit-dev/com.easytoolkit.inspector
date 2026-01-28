@@ -1,10 +1,10 @@
 {
-    "name": "EasyToolKit.Inspector.Editor",
+    "name": "EasyToolkit.Inspector.Editor",
     "references": [
-        "EasyToolKit.Core",
-        "EasyToolKit.Core.Editor",
-        "EasyToolKit.Inspector",
-        "EasyToolKit.Serialization"
+        "EasyToolkit.Core",
+        "EasyToolkit.Core.Editor",
+        "EasyToolkit.Inspector",
+        "EasyToolkit.Serialization"
     ],
     "includePlatforms": [
         "Editor"

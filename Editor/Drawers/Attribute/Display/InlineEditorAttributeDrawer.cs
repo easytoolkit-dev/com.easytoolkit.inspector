@@ -1,10 +1,10 @@
 using System;
-using EasyToolKit.Core.Editor;
-using EasyToolKit.Inspector.Attributes;
+using EasyToolkit.Core.Editor;
+using EasyToolkit.Inspector.Attributes;
 using UnityEditor;
 using UnityEngine;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     public class InlineEditorAttributeDrawer<T> : EasyAttributeDrawer<InlineEditorAttribute, T>
         where T : UnityEngine.Object

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     public abstract class CollectionElementOperationBase<TCollection, TValue> : ValueOperationBase<TValue>, ICollectionElementOperation<TValue>
     {

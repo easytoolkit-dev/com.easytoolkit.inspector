@@ -1,7 +1,7 @@
 using System;
-using EasyToolKit.Core.Reflection;
+using EasyToolkit.Core.Reflection;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Generic property operation implementation with type safety

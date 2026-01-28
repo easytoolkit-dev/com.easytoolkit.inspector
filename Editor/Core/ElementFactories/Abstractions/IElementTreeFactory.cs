@@ -1,10 +1,10 @@
 ﻿using JetBrains.Annotations;
 using UnityEditor;
 
-namespace EasyToolKit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
-    /// Defines a factory interface for creating <see cref="IElementTree"/> instances in the EasyToolKit inspector system.
+    /// Defines a factory interface for creating <see cref="IElementTree"/> instances in the EasyToolkit inspector system.
     /// </summary>
     public interface IElementTreeFactory
     {
