@@ -1,0 +1,24 @@
+{
+    "name": "EasyToolkit.Inspector.Editor.Tests",
+    "rootNamespace": "EasyToolkit.Inspector.Editor.Tests",
+    "references": [
+        "EasyToolkit.Inspector",
+        "EasyToolkit.Core",
+        "EasyToolkit.Serialization",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "EasyToolkit.Inspector.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
