@@ -25,7 +25,8 @@ namespace EasyToolkit.Inspector.Editor
                 }
 
                 return !propertyType.IsSubclassOf(typeof(UnityEngine.Object)) &&
-                       InspectorDrawerUtility.IsDefinedUnityPropertyDrawer(propertyType);
+                       InspectorDrawerUtility.IsDefinedUnityPropertyDrawer(propertyType) &&
+                       !InspectorDrawerUtility.IsDefinedEasyValueDrawer(propertyType);
             }
 
             return false;
