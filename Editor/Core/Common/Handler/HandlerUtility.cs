@@ -28,7 +28,7 @@ namespace EasyToolkit.Inspector.Editor
         /// </summary>
         private static readonly List<Func<Type, OrderPriority?>> NullPriorityFallbacks = new List<Func<Type, OrderPriority?>>();
 
-        public static ITypeMatcher TypeMatcher
+        internal static ITypeMatcher TypeMatcher
         {
             get
             {
@@ -42,7 +42,7 @@ namespace EasyToolkit.Inspector.Editor
         /// This will reset the type matcher to ensure newly added elements are sorted with the updated fallback.
         /// </summary>
         /// <param name="fallback">The fallback function to add.</param>
-        public static void AddNullPriorityFallback(Func<Type, OrderPriority?> fallback)
+        internal static void AddNullPriorityFallback(Func<Type, OrderPriority?> fallback)
         {
             NullPriorityFallbacks.Add(fallback);
             lock (InitializationLock)

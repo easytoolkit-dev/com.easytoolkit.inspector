@@ -1,12 +1,9 @@
-using EasyToolkit.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.Serialization;
 using EasyToolkit.Core.Reflection;
 using UnityEditor;
-using UnityEngine;
 
 namespace EasyToolkit.Inspector.Editor
 {
@@ -40,22 +37,33 @@ namespace EasyToolkit.Inspector.Editor
         private static readonly Dictionary<Type, Type> UnityPropertyDrawerTypesByDrawnType =
             new Dictionary<Type, Type>();
 
+        private static readonly Dictionary<Type, Type> EasyValueDrawerTypesByDrawnType =
+            new Dictionary<Type, Type>();
+
         private static readonly FieldInfo CustomPropertyDrawerTypeFieldInfo =
             typeof(UnityEditor.CustomPropertyDrawer).GetField("m_Type", MemberAccessFlags.AllInstance);
 
         static InspectorDrawerUtility()
         {
             foreach (var type in AssemblyUtility.GetTypesExcept(AssemblyCategory.System)
-                         .Where(t => t.IsClass && !t.IsInterface && !t.IsAbstract && t.IsDerivedFrom<UnityEditor.PropertyDrawer>()))
+                         .Where(t => t.IsClass && !t.IsInterface && !t.IsAbstract && !t.ContainsGenericParameters))
             {
-                var customPropertyDrawers = type.GetCustomAttributes<UnityEditor.CustomPropertyDrawer>();
-                foreach (var drawer in customPropertyDrawers)
+                if (type.IsDerivedFrom<PropertyDrawer>())
                 {
-                    var drawnType = (Type)CustomPropertyDrawerTypeFieldInfo.GetValue(drawer);
-                    if (drawnType != null)
+                    var customPropertyDrawers = type.GetCustomAttributes<UnityEditor.CustomPropertyDrawer>();
+                    foreach (var drawer in customPropertyDrawers)
                     {
-                        UnityPropertyDrawerTypesByDrawnType[drawnType] = type;
+                        var drawnType = (Type)CustomPropertyDrawerTypeFieldInfo.GetValue(drawer);
+                        if (drawnType != null)
+                        {
+                            UnityPropertyDrawerTypesByDrawnType[drawnType] = type;
+                        }
                     }
+                }
+
+                if (type.IsImplementsGenericDefinition(typeof(EasyValueDrawer<>)))
+                {
+                    EasyValueDrawerTypesByDrawnType[type.GetGenericArgumentsRelativeTo(typeof(EasyValueDrawer<>))[0]] = type;
                 }
             }
         }
@@ -77,6 +85,11 @@ namespace EasyToolkit.Inspector.Editor
             }
 
             return false;
+        }
+
+        public static bool IsDefinedEasyValueDrawer(Type targetType)
+        {
+            return EasyValueDrawerTypesByDrawnType.ContainsKey(targetType);
         }
     }
 }
