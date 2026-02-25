@@ -476,7 +476,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
                         originalIndex = rootVisualElement.IndexOf(_visualElement);
                         if (originalIndex == -1)
                         {
-                            Debug.LogError("");
+                            Debug.LogError($"VisualElementNotFound: Existing visual element not found in root hierarchy (Path: {Path}, VisualElement: {_visualElement.GetType()})");
                         }
                         rootVisualElement.RemoveAt(originalIndex);
                     }
