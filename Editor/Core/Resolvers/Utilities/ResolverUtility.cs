@@ -42,7 +42,7 @@ namespace EasyToolkit.Inspector.Editor
         [CanBeNull]
         public static Type GetResolverType(IElement element, Type resolverBaseType)
         {
-            return HandlerUtility.GetFirstElementType(element, type =>
+            return HandlerUtility.GetFirstHandlerType(element, type =>
             {
                 if (resolverBaseType.IsInterface)
                 {

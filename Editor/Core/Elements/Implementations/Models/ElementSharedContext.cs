@@ -67,6 +67,8 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             yield return ServiceDescriptor.Singleton<IResolverFactory<IValueOperationResolver>, DefaultValueOperationResolverFactory>();
             yield return ServiceDescriptor.Singleton<IResolverFactory<IDrawerChainResolver>, DefaultDrawerChainResolverFactory>();
             yield return ServiceDescriptor.Singleton<IResolverFactory<IPostProcessorChainResolver>, DefaultPostProcessorChainResolverFactory>();
+            yield return ServiceDescriptor.Singleton<IResolverFactory<IVisualBuilderResolver>, DefaultVisualBuilderResolverFactory>();
+            yield return ServiceDescriptor.Singleton<IResolverFactory<IVisualProcessorChainResolver>, DefaultVisualProcessorChainResolverFactory>();
         }
 
         /// <summary>

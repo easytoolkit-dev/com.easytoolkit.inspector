@@ -1,5 +1,6 @@
 ﻿using JetBrains.Annotations;
 using UnityEditor;
+using UnityEngine.UIElements;
 
 namespace EasyToolkit.Inspector.Editor
 {
@@ -13,7 +14,10 @@ namespace EasyToolkit.Inspector.Editor
         /// </summary>
         /// <param name="serializedObject">The serialized object to create a tree for. Must not be null.</param>
         /// <returns>A new <see cref="IElementTree"/> instance representing the complete inspector element hierarchy.</returns>
-        IElementTree CreateTree([NotNull] SerializedObject serializedObject);
+        IElementTree CreateTree(
+            [NotNull] SerializedObject serializedObject,
+            InspectorBackendMode backendMode = InspectorBackendMode.IMGUI,
+            [CanBeNull] VisualElement rootVisualElement = null);
 
         /// <summary>
         /// Creates an element tree for multiple target objects with an optional serialized object.
@@ -25,6 +29,10 @@ namespace EasyToolkit.Inspector.Editor
         /// If <paramref name="serializedObject"/> is not null, all objects in <paramref name="targets"/>
         /// must match the objects in <see cref="SerializedObject.targetObjects"/>.
         /// </remarks>
-        IElementTree CreateTree([NotNull] object[] targets, [CanBeNull] SerializedObject serializedObject);
+        IElementTree CreateTree(
+            [NotNull] object[] targets,
+            [CanBeNull] SerializedObject serializedObject,
+            InspectorBackendMode backendMode = InspectorBackendMode.IMGUI,
+            [CanBeNull] VisualElement rootVisualElement = null);
     }
 }
