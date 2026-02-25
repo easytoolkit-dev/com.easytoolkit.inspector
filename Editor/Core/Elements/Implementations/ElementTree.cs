@@ -89,8 +89,8 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         public ElementTree(
             [NotNull] object[] targets,
             [CanBeNull] SerializedObject serializedObject,
-            [CanBeNull] VisualElement rootVisualElement = null,
-            InspectorBackendMode backendMode = InspectorBackendMode.IMGUI)
+            InspectorBackendMode backendMode = InspectorBackendMode.IMGUI,
+            [CanBeNull] VisualElement rootVisualElement = null)
         {
             if (targets == null || targets.Length == 0)
                 throw new ArgumentException("Targets cannot be null or empty.", nameof(targets));

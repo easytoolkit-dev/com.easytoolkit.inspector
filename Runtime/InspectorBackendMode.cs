@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace EasyToolkit.Inspector.Editor
+namespace EasyToolkit.Inspector
 {
     /// <summary>
     /// Specifies the backend rendering mode for the inspector.

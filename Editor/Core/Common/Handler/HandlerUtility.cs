@@ -111,7 +111,7 @@ namespace EasyToolkit.Inspector.Editor
             return type.GetGenericArgumentsRelativeTo(type.BaseType.GetGenericTypeDefinition());
         }
 
-        public static Type GetFirstElementType(IElement element, Func<Type, bool> typeFilter = null, IList<Type[]> additionalMatchTypesList = null)
+        public static Type GetFirstHandlerType(IElement element, Func<Type, bool> typeFilter = null, IList<Type[]> additionalMatchTypesList = null)
         {
             var results = GetHandlerTypeResults(element, additionalMatchTypesList);
             foreach (var result in results)

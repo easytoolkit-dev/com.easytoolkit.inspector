@@ -3,8 +3,10 @@ using System.Reflection;
 using EasyToolkit.Core;
 using EasyToolkit.Core.Reflection;
 using EasyToolkit.Core.Unity;
+using EasyToolkit.Inspector.Attributes;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace EasyToolkit.Inspector.Editor
 {
@@ -27,30 +29,9 @@ namespace EasyToolkit.Inspector.Editor
         // Instance fields for property tree and audio filter GUI
         private IElementTree _tree;
         private object _audioFilterGUIInstance;
+        private EasyInspectorAttribute _inspectorAttribute;
 
-        /// <summary>
-        /// Gets the property tree for the current serialized object.
-        /// Creates the tree if it doesn't exist.
-        /// </summary>
-        public IElementTree Tree
-        {
-            get
-            {
-                if (_tree == null)
-                {
-                    try
-                    {
-                        _tree = InspectorElements.TreeFactory.CreateTree(serializedObject);
-                    }
-                    catch (ArgumentException e)
-                    {
-                        Debug.LogException(e);
-                    }
-                }
-
-                return _tree;
-            }
-        }
+        public IElementTree Tree => _tree;
 
         /// <summary>
         /// Gets or sets whether this editor is being used as an inline editor.
@@ -63,7 +44,29 @@ namespace EasyToolkit.Inspector.Editor
         /// </summary>
         public override void OnInspectorGUI()
         {
-            DrawInspector();
+            DrawIMGUI();
+        }
+
+        public override VisualElement CreateInspectorGUI()
+        {
+            if (_inspectorAttribute.BackendMode != InspectorBackendMode.UIToolkit)
+            {
+                return null;
+            }
+
+            var root = new VisualElement();
+
+            try
+            {
+                _tree = InspectorElements.TreeFactory.CreateTree(serializedObject, InspectorBackendMode.UIToolkit, root);
+            }
+            catch (ArgumentException e)
+            {
+                Debug.LogException(e);
+                return null;
+            }
+
+            return root;
         }
 
         /// <summary>
@@ -73,6 +76,9 @@ namespace EasyToolkit.Inspector.Editor
         protected virtual void OnEnable()
         {
             EnsureInitialized();
+            _inspectorAttribute = target.GetType().GetCustomAttribute<EasyInspectorAttribute>();
+
+            EditorApplication.update += DrawUIToolkit;
         }
 
         /// <summary>
@@ -85,6 +91,7 @@ namespace EasyToolkit.Inspector.Editor
                 (_tree as IDisposable)?.Dispose();
                 _tree = null;
             }
+            EditorApplication.update -= DrawUIToolkit;
         }
 
         /// <summary>
@@ -135,11 +142,19 @@ namespace EasyToolkit.Inspector.Editor
         /// Main method that draws the inspector GUI.
         /// Handles property tree drawing and audio filter GUI integration.
         /// </summary>
-        private void DrawInspector()
+        private void DrawIMGUI()
         {
             // Fall back to default inspector if property tree creation failed
-            if (Tree == null)
+            if (_tree == null)
             {
+                try
+                {
+                    _tree = InspectorElements.TreeFactory.CreateTree(serializedObject);
+                }
+                catch (ArgumentException e)
+                {
+                    Debug.LogException(e);
+                }
                 base.OnInspectorGUI();
                 return;
             }
@@ -147,10 +162,10 @@ namespace EasyToolkit.Inspector.Editor
             // Configure MonoScript field visibility during layout phase
             if (Event.current.type == EventType.Layout)
             {
-                Tree.DrawMonoScriptObjectField = Tree.SerializedObject != null &&
-                                                 Tree.TargetType != null &&
-                                                 InspectorConfigAsset.Instance.DrawMonoScriptInEditor &&
-                                                 !IsInlineEditor;
+                _tree.DrawMonoScriptObjectField = _tree.SerializedObject != null &&
+                                                  _tree.TargetType != null &&
+                                                  InspectorConfigAsset.Instance.DrawMonoScriptInEditor &&
+                                                  !IsInlineEditor;
             }
 
             // Draw the inspector within localization context
@@ -179,13 +194,21 @@ namespace EasyToolkit.Inspector.Editor
             }
         }
 
+        private void DrawUIToolkit()
+        {
+            if (_tree != null)
+            {
+                DrawTree();
+            }
+        }
+
         /// <summary>
         /// Draws the property tree.
         /// Can be overridden by derived classes to customize tree drawing behavior.
         /// </summary>
         protected virtual void DrawTree()
         {
-            Tree.Draw();
+            _tree.Draw();
         }
     }
 }

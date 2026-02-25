@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using JetBrains.Annotations;
 using UnityEditor;
+using UnityEngine.UIElements;
 
 namespace EasyToolkit.Inspector.Editor.Implementations
 {
@@ -10,32 +11,20 @@ namespace EasyToolkit.Inspector.Editor.Implementations
     /// </summary>
     public class ElementTreeFactory : IElementTreeFactory
     {
-        /// <summary>
-        /// Creates an element tree for a single serialized object.
-        /// Extracts target objects from the <see cref="SerializedObject.targetObjects"/> collection.
-        /// </summary>
-        /// <param name="serializedObject">The serialized object to create a tree for. Must not be null.</param>
-        /// <returns>A new <see cref="IElementTree"/> instance representing the complete inspector element hierarchy.</returns>
-        public IElementTree CreateTree(SerializedObject serializedObject)
+        /// <inheritdoc/>
+        public IElementTree CreateTree(SerializedObject serializedObject, InspectorBackendMode backendMode,
+            VisualElement rootVisualElement)
         {
             if (serializedObject == null)
                 throw new ArgumentNullException(nameof(serializedObject));
 
             var targets = serializedObject.targetObjects.Cast<object>().ToArray();
-            return CreateTree(targets, serializedObject);
+            return CreateTree(targets, serializedObject, backendMode, rootVisualElement);
         }
 
-        /// <summary>
-        /// Creates an element tree for multiple target objects with an optional serialized object.
-        /// </summary>
-        /// <param name="targets">The array of target objects to create a tree for. Must not be null or empty.</param>
-        /// <param name="serializedObject">The optional serialized object containing shared serialized data. Can be null.</param>
-        /// <returns>A new <see cref="IElementTree"/> instance representing the multi-object inspector element hierarchy.</returns>
-        /// <remarks>
-        /// If <paramref name="serializedObject"/> is not null, all objects in <paramref name="targets"/>
-        /// must match the objects in <see cref="SerializedObject.targetObjects"/>.
-        /// </remarks>
-        public IElementTree CreateTree(object[] targets, SerializedObject serializedObject)
+        /// <inheritdoc/>
+        public IElementTree CreateTree(object[] targets, SerializedObject serializedObject,
+            InspectorBackendMode backendMode, VisualElement rootVisualElement)
         {
             if (targets == null)
                 throw new ArgumentNullException(nameof(targets));
@@ -89,7 +78,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
                 }
             }
 
-            return new ElementTree(targets, serializedObject);
+            return new ElementTree(targets, serializedObject, backendMode, rootVisualElement);
         }
     }
 }
