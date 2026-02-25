@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace EasyToolkit.Inspector.Editor
 {
@@ -68,6 +69,8 @@ namespace EasyToolkit.Inspector.Editor
         /// </para>
         /// </remarks>
         [CanBeNull] IElementList<IElement> Children { get; }
+
+        [CanBeNull] VisualElement VisualElement { get; }
 
         /// <summary>
         /// Gets all custom attribute infos applied to this value element.

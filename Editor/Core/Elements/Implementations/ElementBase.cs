@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using EasyToolkit.Core;
+using EasyToolkit.Core.Diagnostics;
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace EasyToolkit.Inspector.Editor.Implementations
 {
@@ -18,10 +20,13 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         private int? _lastUpdateId;
         private GUIContent _label;
         private ElementPhases _phases;
+        [CanBeNull] private VisualElement _visualElement;
 
         [CanBeNull] private IAttributeResolver _attributeResolver;
         [CanBeNull] private IDrawerChainResolver _drawerChainResolver;
         [CanBeNull] private IPostProcessorChainResolver _postProcessorChainResolver;
+        [CanBeNull] private IVisualBuilderResolver _visualBuilderResolver;
+        [CanBeNull] private IVisualProcessorChainResolver _visualProcessorChainResolver;
         [CanBeNull] private IMessageDispatcher _messageDispatcher;
 
         /// <summary>
@@ -92,6 +97,15 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             {
                 ValidateDisposed();
                 return _children;
+            }
+        }
+
+        public VisualElement VisualElement
+        {
+            get
+            {
+                ValidateDisposed();
+                return _visualElement;
             }
         }
 
@@ -218,14 +232,17 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             ValidateDisposed();
             ((IElement)this).Update();
 
-            var chain = GetDrawerChain();
-            chain.Reset();
-
-            if (chain.MoveNext() && chain.Current != null)
+            if (SharedContext.Tree.BackendMode == InspectorBackendMode.IMGUI)
             {
-                _phases = _phases.Add(ElementPhases.Drawing);
-                chain.Current.Draw(label);
-                _phases = _phases.Remove(ElementPhases.Drawing);
+                var chain = GetDrawerChain();
+                chain.Reset();
+
+                if (chain.MoveNext() && chain.Current != null)
+                {
+                    _phases = _phases.Add(ElementPhases.Drawing);
+                    chain.Current.Draw(label);
+                    _phases = _phases.Remove(ElementPhases.Drawing);
+                }
             }
         }
 
@@ -299,6 +316,18 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             {
                 ResolverUtility.ReleaseResolver(_postProcessorChainResolver);
                 _postProcessorChainResolver = null;
+            }
+
+            if (_visualBuilderResolver != null)
+            {
+                ResolverUtility.ReleaseResolver(_visualBuilderResolver);
+                _visualBuilderResolver = null;
+            }
+
+            if (_visualProcessorChainResolver != null)
+            {
+                ResolverUtility.ReleaseResolver(_visualProcessorChainResolver);
+                _visualProcessorChainResolver = null;
             }
         }
 
@@ -395,43 +424,88 @@ namespace EasyToolkit.Inspector.Editor.Implementations
                 _children = null;
             }
 
+            // Release old attribute resolver before creating new one
+            if (_attributeResolver != null)
             {
-                // Release old attribute resolver before creating new one
-                if (_attributeResolver != null)
-                {
-                    ResolverUtility.ReleaseResolver(_attributeResolver);
-                    _attributeResolver = null;
-                }
-
-                // Initialize attribute resolver (after children)
-                var factory = SharedContext.GetResolverFactory<IAttributeResolver>();
-                _attributeResolver = factory.CreateResolver(this);
+                ResolverUtility.ReleaseResolver(_attributeResolver);
+                _attributeResolver = null;
             }
 
-            {
-                // Release old drawer chain resolver before creating new one
-                if (_drawerChainResolver != null)
-                {
-                    ResolverUtility.ReleaseResolver(_drawerChainResolver);
-                    _drawerChainResolver = null;
-                }
+            _attributeResolver = SharedContext.GetResolverFactory<IAttributeResolver>()
+                .CreateResolver(this);
 
-                // Initialize drawer chain resolver (after children)
-                var factory = SharedContext.GetResolverFactory<IDrawerChainResolver>();
-                _drawerChainResolver = factory.CreateResolver(this);
+            // Release old post processor chain resolver before creating new one
+            if (_postProcessorChainResolver != null)
+            {
+                ResolverUtility.ReleaseResolver(_postProcessorChainResolver);
+                _postProcessorChainResolver = null;
             }
 
-            {
-                // Release old post processor chain resolver before creating new one
-                if (_postProcessorChainResolver != null)
-                {
-                    ResolverUtility.ReleaseResolver(_postProcessorChainResolver);
-                    _postProcessorChainResolver = null;
-                }
+            _postProcessorChainResolver = SharedContext.GetResolverFactory<IPostProcessorChainResolver>()
+                .CreateResolver(this);
 
-                // Initialize post processor chain resolver (after children)
-                var factory = SharedContext.GetResolverFactory<IPostProcessorChainResolver>();
-                _postProcessorChainResolver = factory.CreateResolver(this);
+            switch (SharedContext.Tree.BackendMode)
+            {
+                case InspectorBackendMode.UIToolkit:
+                {
+                    // Release old visual builder resolver before creating new one
+                    if (_visualBuilderResolver != null)
+                    {
+                        ResolverUtility.ReleaseResolver(_visualBuilderResolver);
+                        _visualBuilderResolver = null;
+                    }
+
+                    _visualBuilderResolver = SharedContext.GetResolverFactory<IVisualBuilderResolver>()
+                        .CreateResolver(this);
+
+                    // Release old visual processor chain resolver before creating new one
+                    if (_visualProcessorChainResolver != null)
+                    {
+                        ResolverUtility.ReleaseResolver(_visualProcessorChainResolver);
+                        _visualProcessorChainResolver = null;
+                    }
+
+                    _visualProcessorChainResolver = SharedContext.GetResolverFactory<IVisualProcessorChainResolver>()
+                            .CreateResolver(this);
+
+                    var rootVisualElement = SharedContext.Tree.RootVisualElement;
+                    Assert.IsTrue(rootVisualElement != null);
+                    int originalIndex = -1;
+                    if (_visualElement != null)
+                    {
+                        originalIndex = rootVisualElement.IndexOf(_visualElement);
+                        if (originalIndex == -1)
+                        {
+                            Debug.LogError("");
+                        }
+                        rootVisualElement.RemoveAt(originalIndex);
+                    }
+                    _visualElement = CreateVisualElement();
+                    if (originalIndex != -1)
+                    {
+                        rootVisualElement.Insert(originalIndex, _visualElement);
+                    }
+                    else
+                    {
+                        rootVisualElement.Add(_visualElement);
+                    }
+                    break;
+                }
+                case InspectorBackendMode.IMGUI:
+                {
+                    // Release old drawer chain resolver before creating new one
+                    if (_drawerChainResolver != null)
+                    {
+                        ResolverUtility.ReleaseResolver(_drawerChainResolver);
+                        _drawerChainResolver = null;
+                    }
+
+                    _drawerChainResolver = SharedContext.GetResolverFactory<IDrawerChainResolver>()
+                        .CreateResolver(this);
+                    break;
+                }
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
             _phases = _phases.Remove(ElementPhases.Refreshing);
@@ -459,7 +533,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             return false;
         }
 
-        void IElement.Update(bool forceUpdate)
+        public void Update(bool forceUpdate)
         {
             if (_lastUpdateId == SharedContext.UpdateId && !forceUpdate)
             {
@@ -478,6 +552,20 @@ namespace EasyToolkit.Inspector.Editor.Implementations
 
             _lastUpdateId = SharedContext.UpdateId;
             OnUpdate(forceUpdate);
+        }
+
+        protected virtual VisualElement CreateVisualElement()
+        {
+            var visualElement = _visualBuilderResolver!.GetVisualBuilder().CreateVisualElement();
+            var chain = _visualProcessorChainResolver!.GetVisualProcessorChain();
+            chain.Reset();
+
+            if (chain.MoveNext() && chain.Current != null)
+            {
+                chain.Current.Process(visualElement);
+            }
+
+            return visualElement;
         }
 
         void IDisposable.Dispose()
