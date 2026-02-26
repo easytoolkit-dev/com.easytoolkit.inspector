@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using EasyToolkit.Core.Diagnostics;
 using EasyToolkit.Core.Editor;
+using EasyToolkit.Core.Reflection;
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
@@ -259,7 +260,11 @@ namespace EasyToolkit.Inspector.Editor.Implementations
                         continue;
                     }
                     element.ValueEntry.ApplyChanges();
-                    element.RequestRefresh();
+
+                    if (BackendMode == InspectorBackendMode.IMGUI)
+                    {
+                        element.RequestRefresh();
+                    }
                 }
 
                 restDirtyElementsCount = _dirtyValueElements.Count;

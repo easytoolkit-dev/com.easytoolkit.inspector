@@ -20,6 +20,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         private int? _lastUpdateId;
         private GUIContent _label;
         private ElementPhases _phases;
+        private bool _isFirstRefreshed;
         [CanBeNull] private VisualElement _visualElement;
 
         [CanBeNull] private IAttributeResolver _attributeResolver;
@@ -253,6 +254,11 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         {
             ValidateDisposed();
 
+            if (_isFirstRefreshed && !IsNecessaryToRefreshMultiple())
+            {
+                return false;
+            }
+
             _phases = _phases.Add(ElementPhases.PendingRefresh);
             if (Request(Refresh))
             {
@@ -468,27 +474,31 @@ namespace EasyToolkit.Inspector.Editor.Implementations
                     _visualProcessorChainResolver = SharedContext.GetResolverFactory<IVisualProcessorChainResolver>()
                             .CreateResolver(this);
 
-                    var rootVisualElement = SharedContext.Tree.RootVisualElement;
-                    Assert.IsTrue(rootVisualElement != null);
+                    var owningVisualElement = this.GetOwningVisualElement();
+                    Assert.IsTrue(owningVisualElement != null);
                     int originalIndex = -1;
                     if (_visualElement != null)
                     {
-                        originalIndex = rootVisualElement.IndexOf(_visualElement);
+                        originalIndex = owningVisualElement.IndexOf(_visualElement);
                         if (originalIndex == -1)
                         {
                             Debug.LogError($"VisualElementNotFound: Existing visual element not found in root hierarchy (Path: {Path}, VisualElement: {_visualElement.GetType()})");
                         }
-                        rootVisualElement.RemoveAt(originalIndex);
+                        owningVisualElement.RemoveAt(originalIndex);
                     }
                     _visualElement = CreateVisualElement();
-                    if (originalIndex != -1)
+                    if (_visualElement != null)
                     {
-                        rootVisualElement.Insert(originalIndex, _visualElement);
+                        if (originalIndex != -1)
+                        {
+                            owningVisualElement.Insert(originalIndex, _visualElement);
+                        }
+                        else
+                        {
+                            owningVisualElement.Add(_visualElement);
+                        }
                     }
-                    else
-                    {
-                        rootVisualElement.Add(_visualElement);
-                    }
+
                     break;
                 }
                 case InspectorBackendMode.IMGUI:
@@ -511,6 +521,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             _phases = _phases.Remove(ElementPhases.Refreshing);
             _phases = _phases.Add(ElementPhases.JustRefreshed);
             _phases = _phases.Add(ElementPhases.PendingPostProcess);
+            _isFirstRefreshed = true;
         }
 
         public virtual bool PostProcessIfNeeded()
@@ -556,7 +567,51 @@ namespace EasyToolkit.Inspector.Editor.Implementations
 
         protected virtual VisualElement CreateVisualElement()
         {
-            var visualElement = _visualBuilderResolver!.GetVisualBuilder().CreateVisualElement();
+            var visualBuilder = _visualBuilderResolver!.GetVisualBuilder();
+            if (visualBuilder == null)
+            {
+                var elementType = GetType();
+
+                if (this is IValueElement valueElement)
+                {
+                    var valueType = valueElement.ValueEntry.ValueType;
+                    Debug.LogError(
+                        $"VisualBuilderNotFound: No VisualBuilder defined for element type '{elementType}' (ValueType: {valueType}). " +
+                        $"The visual builder resolver could not find a visual builder to create the UI representation. " +
+                        $"To fix this, define a VisualValueBuilder<{valueType}> for the value type.");
+                }
+                else if (this is IMethodElement methodElement)
+                {
+                    Debug.LogError(
+                        $"VisualBuilderNotFound: No VisualBuilder defined for element type '{elementType}'." +
+                        $"The visual builder resolver could not find a visual builder to create the UI representation. " +
+                        $"To fix this, define a VisualMethodBuilder<TMethodAttribute> for the method '{methodElement.Definition.MethodInfo}'.");
+                }
+                else if (this is IGroupElement groupElement)
+                {
+                    Debug.LogError(
+                        $"VisualBuilderNotFound: No VisualBuilder defined for element type '{elementType}'." +
+                        $"The visual builder resolver could not find a visual builder to create the UI representation. " +
+                        $"To fix this, define a VisualGroupBuilder<TGroupAttribute> for the group '{groupElement.Definition.BeginGroupAttributeType}' and '{groupElement.Definition.EndGroupAttributeType}'.");
+                }
+                else
+                {
+                    Debug.LogError(
+                        $"VisualBuilderNotFound: No VisualBuilder defined for element type '{elementType}'. " +
+                        $"The visual builder resolver could not find a visual builder to create the UI representation. " +
+                        $"To fix this, define a VisualBuilder for the element type.");
+                }
+
+                return null;
+            }
+
+            visualBuilder.Element = this;
+            var visualElement = visualBuilder.CreateVisualElement();
+            if (visualElement == null)
+            {
+                return null;
+            }
+
             var chain = _visualProcessorChainResolver!.GetVisualProcessorChain();
             chain.Reset();
 
@@ -566,6 +621,11 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             }
 
             return visualElement;
+        }
+
+        protected virtual bool IsNecessaryToRefreshMultiple()
+        {
+            return true;
         }
 
         void IDisposable.Dispose()
