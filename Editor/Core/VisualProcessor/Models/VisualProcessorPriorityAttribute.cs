@@ -17,14 +17,14 @@ namespace EasyToolkit.Inspector.Editor
         public static readonly OrderPriority LowestPriority = new OrderPriority(VisualProcessorPriorityLevel.Lowest);
 
         /// <summary>
-        /// Represents the standard priority for style processors.
+        /// Represents the standard priority for value processors.
         /// </summary>
-        public static readonly OrderPriority StylePriority = new OrderPriority(VisualProcessorPriorityLevel.Style);
+        public static readonly OrderPriority ValuePriority = new OrderPriority(VisualProcessorPriorityLevel.Value);
 
         /// <summary>
-        /// Represents the priority for layout processors.
+        /// Represents the priority for attribute processors.
         /// </summary>
-        public static readonly OrderPriority LayoutPriority = new OrderPriority(VisualProcessorPriorityLevel.Layout);
+        public static readonly OrderPriority AttributePriority = new OrderPriority(VisualProcessorPriorityLevel.Attribute);
 
         /// <summary>
         /// Represents the highest standard visual processor priority.

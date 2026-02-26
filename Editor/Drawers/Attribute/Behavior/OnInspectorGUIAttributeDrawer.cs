@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace EasyToolkit.Inspector.Editor
 {
-    public class OnInspectorGUIAttributeDrawer : EasyMethodAttributeDrawer<OnInspectorGUIAttribute>
+    public class OnInspectorGUIAttributeDrawer : EasyMethodDrawer<OnInspectorGUIAttribute>
     {
         protected override void Initialize()
         {

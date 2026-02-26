@@ -13,14 +13,14 @@ namespace EasyToolkit.Inspector.Editor
         public const double Lowest = -100000.0;
 
         /// <summary>
-        /// The standard priority level for style processors that handle visual styling.
+        /// The standard priority level for value processors that handle visual styling.
         /// </summary>
-        public const double Style = 100000.0;
+        public const double Value = 100000.0;
 
         /// <summary>
-        /// The priority level for layout processors that handle element layout and arrangement.
+        /// The priority level for attribute processors that handle element attribute and arrangement.
         /// </summary>
-        public const double Layout = 200000.0;
+        public const double Attribute = 200000.0;
 
         /// <summary>
         /// The highest standard priority level for visual processors that should execute first.

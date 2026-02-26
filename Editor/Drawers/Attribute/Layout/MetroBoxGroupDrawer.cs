@@ -9,7 +9,7 @@ using UnityEngine;
 namespace EasyToolkit.Inspector.Editor
 {
     [DrawerPriority(DrawerPriorityLevel.Attribute + 100)]
-    public class MetroBoxGroupAttributeDrawer : EasyGroupAttributeDrawer<MetroBoxGroupAttribute>
+    public class MetroBoxGroupDrawer : EasyGroupDrawer<MetroBoxGroupAttribute>
     {
         private static GUIStyle s_boxHeaderLabelStyle;
         public static GUIStyle BoxHeaderLabelStyle

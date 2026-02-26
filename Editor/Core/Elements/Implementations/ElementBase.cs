@@ -231,20 +231,65 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         public virtual void Draw(GUIContent label)
         {
             ValidateDisposed();
+
             ((IElement)this).Update();
 
-            if (SharedContext.Tree.BackendMode == InspectorBackendMode.IMGUI)
+            switch (SharedContext.Tree.BackendMode)
             {
-                var chain = GetDrawerChain();
-                chain.Reset();
-
-                if (chain.MoveNext() && chain.Current != null)
+                case InspectorBackendMode.IMGUI:
                 {
-                    _phases = _phases.Add(ElementPhases.Drawing);
-                    chain.Current.Draw(label);
-                    _phases = _phases.Remove(ElementPhases.Drawing);
+                    var chain = GetDrawerChain();
+                    chain.Reset();
+
+                    if (chain.MoveNext() && chain.Current != null)
+                    {
+                        _phases = _phases.Add(ElementPhases.Drawing);
+                        chain.Current.Draw(label);
+                        _phases = _phases.Remove(ElementPhases.Drawing);
+                    }
+
+                    break;
                 }
+                case InspectorBackendMode.UIToolkit:
+                {
+                    if (_phases.IsPendingDraw())
+                    {
+                        var owningVisualElement = this.GetOwningVisualElement();
+                        Assert.IsTrue(owningVisualElement != null);
+                        int originalIndex = -1;
+                        if (_visualElement != null)
+                        {
+                            originalIndex = owningVisualElement.IndexOf(_visualElement);
+                            if (originalIndex == -1)
+                            {
+                                Debug.LogError(
+                                    $"VisualElementNotFound: Existing visual element not found in root hierarchy (Path: {Path}, VisualElement: {_visualElement.GetType()})");
+                            }
+
+                            owningVisualElement.RemoveAt(originalIndex);
+                        }
+
+                        _visualElement = CreateVisualElement();
+                        if (_visualElement != null)
+                        {
+                            if (originalIndex != -1)
+                            {
+                                owningVisualElement.Insert(originalIndex, _visualElement);
+                            }
+                            else
+                            {
+                                owningVisualElement.Add(_visualElement);
+                            }
+                        }
+
+                    }
+
+                    break;
+                }
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
+            _phases = _phases.Remove(ElementPhases.PendingDraw);
         }
 
         /// <summary>
@@ -264,6 +309,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             {
                 return true;
             }
+
             _phases = _phases.Remove(ElementPhases.PendingRefresh);
             return false;
         }
@@ -472,32 +518,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
                     }
 
                     _visualProcessorChainResolver = SharedContext.GetResolverFactory<IVisualProcessorChainResolver>()
-                            .CreateResolver(this);
-
-                    var owningVisualElement = this.GetOwningVisualElement();
-                    Assert.IsTrue(owningVisualElement != null);
-                    int originalIndex = -1;
-                    if (_visualElement != null)
-                    {
-                        originalIndex = owningVisualElement.IndexOf(_visualElement);
-                        if (originalIndex == -1)
-                        {
-                            Debug.LogError($"VisualElementNotFound: Existing visual element not found in root hierarchy (Path: {Path}, VisualElement: {_visualElement.GetType()})");
-                        }
-                        owningVisualElement.RemoveAt(originalIndex);
-                    }
-                    _visualElement = CreateVisualElement();
-                    if (_visualElement != null)
-                    {
-                        if (originalIndex != -1)
-                        {
-                            owningVisualElement.Insert(originalIndex, _visualElement);
-                        }
-                        else
-                        {
-                            owningVisualElement.Add(_visualElement);
-                        }
-                    }
+                        .CreateResolver(this);
 
                     break;
                 }
@@ -521,6 +542,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             _phases = _phases.Remove(ElementPhases.Refreshing);
             _phases = _phases.Add(ElementPhases.JustRefreshed);
             _phases = _phases.Add(ElementPhases.PendingPostProcess);
+            _phases = _phases.Add(ElementPhases.PendingDraw);
             _isFirstRefreshed = true;
         }
 

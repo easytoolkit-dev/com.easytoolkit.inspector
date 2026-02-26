@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using EasyToolkit.Core.Reflection;
+using UnityEditor;
 
 namespace EasyToolkit.Inspector.Editor
 {
@@ -9,6 +10,31 @@ namespace EasyToolkit.Inspector.Editor
     /// </summary>
     public static class VisualBuilderUtility
     {
+        [InitializeOnLoad]
+        private class NullPriorityFallbackInitializer
+        {
+            static NullPriorityFallbackInitializer()
+            {
+                HandlerUtility.AddNullPriorityFallback(type =>
+                {
+                    if (type.IsImplementsGenericDefinition(typeof(VisualAttributeBuilder<>)))
+                    {
+                        return VisualBuilderPriorityAttribute.AttributePriority;
+                    }
+                    if (type.IsImplementsGenericDefinition(typeof(VisualGroupBuilder<>)))
+                    {
+                        return VisualBuilderPriorityAttribute.AttributePriority;
+                    }
+                    if (type.IsImplementsGenericDefinition(typeof(VisualValueBuilder<>)))
+                    {
+                        return VisualBuilderPriorityAttribute.ValuePriority;
+                    }
+
+                    return null;
+                });
+            }
+        }
+
         /// <summary>
         /// Gets the first visual builder type that can handle the specified element.
         /// </summary>

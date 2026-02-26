@@ -2,11 +2,37 @@
 using System.Collections.Generic;
 using EasyToolkit.Core;
 using EasyToolkit.Core.Reflection;
+using UnityEditor;
 
 namespace EasyToolkit.Inspector.Editor
 {
     public static class EasyDrawerUtility
     {
+        [InitializeOnLoad]
+        private class NullPriorityFallbackInitializer
+        {
+            static NullPriorityFallbackInitializer()
+            {
+                HandlerUtility.AddNullPriorityFallback(type =>
+                {
+                    if (type.IsImplementsGenericDefinition(typeof(EasyAttributeDrawer<>)))
+                    {
+                        return DrawerPriorityAttribute.AttributePriority;
+                    }
+                    if (type.IsImplementsGenericDefinition(typeof(EasyGroupDrawer<>)))
+                    {
+                        return DrawerPriorityAttribute.AttributePriority;
+                    }
+                    if (type.IsImplementsGenericDefinition(typeof(EasyValueDrawer<>)))
+                    {
+                        return DrawerPriorityAttribute.ValuePriority;
+                    }
+
+                    return null;
+                });
+            }
+        }
+
         public static IEnumerable<Type> GetDrawerTypes(IElement element)
         {
             var additionalMatchTypesList = new List<Type[]>();

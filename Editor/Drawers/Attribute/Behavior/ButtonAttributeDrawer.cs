@@ -9,7 +9,7 @@ using UnityEngine;
 namespace EasyToolkit.Inspector.Editor
 {
     //TODO support parameters
-    public class ButtonAttributeDrawer : EasyMethodAttributeDrawer<ButtonAttribute>
+    public class ButtonAttributeDrawer : EasyMethodDrawer<ButtonAttribute>
     {
         [CanBeNull] private IExpressionEvaluator _buttonLabelEvaluator;
 

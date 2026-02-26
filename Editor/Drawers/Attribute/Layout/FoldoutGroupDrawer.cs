@@ -8,7 +8,7 @@ using UnityEngine;
 namespace EasyToolkit.Inspector.Editor
 {
     [DrawerPriority(DrawerPriorityLevel.Attribute + 100)]
-    public class FoldoutBoxGroupAttributeDrawer : EasyGroupAttributeDrawer<FoldoutBoxGroupAttribute>
+    public class FoldoutGroupDrawer : EasyGroupDrawer<FoldoutGroupAttribute>
     {
         private IExpressionEvaluator _labelEvaluator;
 
@@ -35,19 +35,18 @@ namespace EasyToolkit.Inspector.Editor
 
         protected override void BeginDrawGroup(GUIContent label)
         {
-            EasyEditorGUI.BeginBox();
-            EasyEditorGUI.BeginBoxHeader();
             var resolveTarget = Element.AssociatedElement == null
                 ? null
                 : ElementUtility.GetOwnerWithAttribute(Element.AssociatedElement, Attribute);
             var labelText = _labelEvaluator.Evaluate<string>(resolveTarget);
             Element.State.Expanded = EasyEditorGUI.Foldout(Element.State.Expanded, EditorHelper.TempContent(labelText));
-            EasyEditorGUI.EndBoxHeader();
+
+            EditorGUI.indentLevel++;
         }
 
         protected override void EndDrawGroup()
         {
-            EasyEditorGUI.EndBox();
+            EditorGUI.indentLevel--;
         }
     }
 }

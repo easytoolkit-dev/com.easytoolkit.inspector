@@ -9,31 +9,6 @@ namespace EasyToolkit.Inspector.Editor
 {
     public static class InspectorDrawerUtility
     {
-        [InitializeOnLoad]
-        private class NullPriorityFallbackInitializer
-        {
-            static NullPriorityFallbackInitializer()
-            {
-                HandlerUtility.AddNullPriorityFallback(type =>
-                {
-                    if (type.IsImplementsGenericDefinition(typeof(EasyAttributeDrawer<>)))
-                    {
-                        return DrawerPriorityAttribute.AttributePriority;
-                    }
-                    if (type.IsImplementsGenericDefinition(typeof(EasyGroupAttributeDrawer<>)))
-                    {
-                        return DrawerPriorityAttribute.AttributePriority;
-                    }
-                    if (type.IsImplementsGenericDefinition(typeof(EasyValueDrawer<>)))
-                    {
-                        return DrawerPriorityAttribute.ValuePriority;
-                    }
-
-                    return null;
-                });
-            }
-        }
-
         private static readonly Dictionary<Type, Type> UnityPropertyDrawerTypesByDrawnType =
             new Dictionary<Type, Type>();
 

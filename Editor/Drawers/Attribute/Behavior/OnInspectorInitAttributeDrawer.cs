@@ -3,7 +3,7 @@ using EasyToolkit.Inspector.Attributes;
 
 namespace EasyToolkit.Inspector.Editor
 {
-    public class OnInspectorInitAttributeDrawer : EasyMethodAttributeDrawer<OnInspectorInitAttribute>
+    public class OnInspectorInitAttributeDrawer : EasyMethodDrawer<OnInspectorInitAttribute>
     {
         protected override void Initialize()
         {
