@@ -4,7 +4,7 @@ using UnityEngine;
 namespace EasyToolkit.Inspector.Editor
 {
     [HandlerConstraints]
-    public abstract class EasyGroupAttributeDrawer<TAttribute> : EasyDrawer
+    public abstract class EasyGroupDrawer<TAttribute> : EasyDrawer
         where TAttribute : BeginGroupAttribute
     {
         private TAttribute _attribute;

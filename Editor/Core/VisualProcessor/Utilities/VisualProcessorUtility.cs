@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using EasyToolkit.Core;
 using EasyToolkit.Core.Reflection;
+using UnityEditor;
 
 namespace EasyToolkit.Inspector.Editor
 {
@@ -10,6 +11,31 @@ namespace EasyToolkit.Inspector.Editor
     /// </summary>
     public static class VisualProcessorUtility
     {
+        [InitializeOnLoad]
+        private class NullPriorityFallbackInitializer
+        {
+            static NullPriorityFallbackInitializer()
+            {
+                HandlerUtility.AddNullPriorityFallback(type =>
+                {
+                    if (type.IsImplementsGenericDefinition(typeof(VisualAttributeProcessor<>)))
+                    {
+                        return VisualProcessorPriorityAttribute.AttributePriority;
+                    }
+                    if (type.IsImplementsGenericDefinition(typeof(VisualGroupProcessor<>)))
+                    {
+                        return VisualProcessorPriorityAttribute.AttributePriority;
+                    }
+                    if (type.IsImplementsGenericDefinition(typeof(VisualValueProcessor<>)))
+                    {
+                        return VisualProcessorPriorityAttribute.ValuePriority;
+                    }
+
+                    return null;
+                });
+            }
+        }
+
         /// <summary>
         /// Gets the visual processor types that can handle the specified element.
         /// </summary>

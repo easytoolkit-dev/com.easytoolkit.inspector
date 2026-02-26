@@ -98,6 +98,16 @@ namespace EasyToolkit.Inspector.Editor
         }
 
         /// <summary>
+        /// Determines if the element is waiting to be drawn in the inspector UI.
+        /// </summary>
+        /// <param name="phases">The element phase to check.</param>
+        /// <returns>True if the element has the PendingDraw phase set.</returns>
+        public static bool IsPendingDraw(this ElementPhases phases)
+        {
+            return (phases & ElementPhases.PendingDraw) == ElementPhases.PendingDraw;
+        }
+
+        /// <summary>
         /// Determines if the element has no phases set.
         /// </summary>
         /// <param name="phases">The element phase to check.</param>

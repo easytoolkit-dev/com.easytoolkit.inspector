@@ -11,7 +11,7 @@ using UnityEngine;
 namespace EasyToolkit.Inspector.Editor
 {
     [DrawerPriority(DrawerPriorityLevel.Attribute + 100)]
-    public class MetroFoldoutGroupAttributeDrawer : EasyGroupAttributeDrawer<MetroFoldoutGroupAttribute>
+    public class MetroFoldoutGroupDrawer : EasyGroupDrawer<MetroFoldoutGroupAttribute>
     {
         private static GUIStyle s_foldoutStyle;
 

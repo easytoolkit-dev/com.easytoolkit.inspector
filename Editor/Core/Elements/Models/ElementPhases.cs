@@ -54,5 +54,11 @@ namespace EasyToolkit.Inspector.Editor
         /// The element has been destroyed.
         /// </summary>
         Destroyed = 1 << 9,
+
+        /// <summary>
+        /// The element is waiting to be drawn in the inspector UI.
+        /// This is set after a refresh operation to indicate that the element needs to be redrawn.
+        /// </summary>
+        PendingDraw = 1 << 10,
     }
 }

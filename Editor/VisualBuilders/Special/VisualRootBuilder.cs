@@ -2,6 +2,7 @@ using UnityEngine.UIElements;
 
 namespace EasyToolkit.Inspector.Editor
 {
+    [VisualBuilderPriority(VisualBuilderPriorityLevel.Attribute - 1)]
     public class VisualRootBuilder<T> : VisualValueBuilder<T>
         where T : UnityEngine.Object
     {
@@ -12,6 +13,10 @@ namespace EasyToolkit.Inspector.Editor
 
         public override VisualElement CreateVisualElement()
         {
+            foreach (var child in Element.Children)
+            {
+                child.Draw(child.Label);
+            }
             return null;
         }
     }
