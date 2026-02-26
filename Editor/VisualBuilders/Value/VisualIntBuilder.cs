@@ -7,9 +7,10 @@ namespace EasyToolkit.Inspector.Editor
         public override VisualElement CreateVisualElement()
         {
             var field = new IntegerField(Element.Label.text);
+            field.value = ValueEntry.SmartValue;
             field.RegisterValueChangedCallback(evt =>
             {
-                Element.ValueEntry.WeakSmartValue = evt.newValue;
+                ValueEntry.SmartValue = evt.newValue;
             });
             return field;
         }

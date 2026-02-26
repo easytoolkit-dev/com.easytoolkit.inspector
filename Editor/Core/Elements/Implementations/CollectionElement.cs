@@ -60,7 +60,10 @@ namespace EasyToolkit.Inspector.Editor.Implementations
 
         private void OnCollectionChanged(object sender, CollectionChangedEventArgs e)
         {
-            RequestRefresh();
+            if (SharedContext.Tree.BackendMode == InspectorBackendMode.IMGUI)
+            {
+                RequestRefresh();
+            }
         }
     }
 }
