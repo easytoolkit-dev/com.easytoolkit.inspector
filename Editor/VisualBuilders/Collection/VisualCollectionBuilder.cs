@@ -50,6 +50,10 @@ namespace EasyToolkit.Inspector.Editor
         private VisualElement MakeDraggableItem()
         {
             var root = new VisualElement();
+            root.AddToClassList("draggable-list-item");
+            // var content = new VisualElement();
+            // content.AddToClassList("list-item-content");
+            // root.Add(content);
             return root;
         }
 

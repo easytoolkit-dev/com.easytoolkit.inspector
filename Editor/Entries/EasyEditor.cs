@@ -1,6 +1,8 @@
 using System;
 using System.Reflection;
 using EasyToolkit.Core;
+using EasyToolkit.Core.Editor;
+using EasyToolkit.Core.Editor.Internal;
 using EasyToolkit.Core.Reflection;
 using EasyToolkit.Core.Unity;
 using EasyToolkit.Inspector.Attributes;
@@ -55,6 +57,9 @@ namespace EasyToolkit.Inspector.Editor
             }
 
             var root = new VisualElement();
+
+            var style = EditorResourcesUtility.Load<StyleSheet>("inspector", "DefaultStyleSheet.uss");
+            root.styleSheets.Add(style);
 
             try
             {
