@@ -225,12 +225,46 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             }
         }
 
+        /// <summary>
+        /// Removes all elements from the collection.
+        /// Triggers remove events for each element before clearing.
+        /// </summary>
         public virtual void Clear()
         {
             ValidateDisposed();
+
+            // Send remove events for all elements
+            for (var i = Count - 1; i >= 0; i--)
+            {
+                var element = _elements[i];
+
+                using (var eventArgs = ElementMovedEventArgs.Create(ElementListChangeType.Remove, element, i, _ownerElement, null, ElementMovedTiming.Before))
+                {
+                    OnBeforeElementChanged(eventArgs);
+                }
+            }
+
+            // Clear collections
+            var elements = _elements.ToList();
             _elements.Clear();
             _nameToIndex.Clear();
             _pathByIndex.Clear();
+
+            // Send after events
+            for (var i = 0; i < elements.Count; i++)
+            {
+                var element = elements[i];
+                var postArgs = ElementMovedEventArgs.Create(ElementListChangeType.Remove, element, i, _ownerElement, null, ElementMovedTiming.After);
+                try
+                {
+                    OnAfterElementChanged(postArgs);
+                    DirectNotifyElementMoved(element, postArgs);
+                }
+                finally
+                {
+                    postArgs.Dispose();
+                }
+            }
         }
 
         /// <summary>

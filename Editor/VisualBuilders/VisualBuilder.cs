@@ -1,4 +1,5 @@
-﻿using UnityEngine.UIElements;
+﻿using System;
+using UnityEngine.UIElements;
 
 namespace EasyToolkit.Inspector.Editor
 {
@@ -47,7 +48,7 @@ namespace EasyToolkit.Inspector.Editor
         /// Creates and returns a visual element for the inspector.
         /// </summary>
         /// <returns>A new visual element instance.</returns>
-        public abstract VisualElement CreateVisualElement();
+        protected abstract VisualElement CreateVisualElement();
 
         /// <summary>
         /// Ensures that the builder has been initialized before processing.
@@ -59,6 +60,10 @@ namespace EasyToolkit.Inspector.Editor
                 Initialize();
                 _isInitialized = true;
             }
+        }
+
+        protected virtual void Dispose()
+        {
         }
 
         /// <summary>
@@ -80,8 +85,11 @@ namespace EasyToolkit.Inspector.Editor
             return CreateVisualElement();
         }
 
-        public virtual void Dispose()
+        void IDisposable.Dispose()
         {
+            _element = null;
+            _isInitialized = false;
+            Dispose();
         }
     }
 }

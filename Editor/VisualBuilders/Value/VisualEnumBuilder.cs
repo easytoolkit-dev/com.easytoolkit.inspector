@@ -12,7 +12,7 @@ namespace EasyToolkit.Inspector.Editor
         /// <summary>
         /// Creates an EnumField configured for the current value entry.
         /// </summary>
-        public override VisualElement CreateVisualElement()
+        protected override VisualElement CreateVisualElement()
         {
             var enumType = ValueEntry.ValueType;
             var field = new EnumField(Element.Label.text, ValueEntry.SmartValue);

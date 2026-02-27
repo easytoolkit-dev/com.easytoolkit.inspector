@@ -12,5 +12,9 @@ namespace EasyToolkit.Inspector.Editor
         /// Gets the type of elements in the collection.
         /// </summary>
         Type ItemType { get; }
+
+        void IncrementItemCount();
+        void DecrementItemCount();
+        void ClearItemCount();
     }
 }

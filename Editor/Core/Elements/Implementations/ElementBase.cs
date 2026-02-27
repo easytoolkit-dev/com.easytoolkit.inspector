@@ -230,7 +230,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         /// Draws this element in the inspector with the specified label.
         /// </summary>
         /// <param name="label">The label to display. If null, uses the element's default label.</param>
-        public virtual void Draw(GUIContent label)
+        public virtual void Draw(GUIContent label, bool forceDraw)
         {
             ValidateDisposed();
 
@@ -254,24 +254,14 @@ namespace EasyToolkit.Inspector.Editor.Implementations
                 }
                 case InspectorBackendMode.UIToolkit:
                 {
-                    if (_phases.IsPendingDraw())
+                    if (_phases.IsPendingDraw() || forceDraw)
                     {
                         _phases = _phases.Add(ElementPhases.Drawing);
 
                         var owningVisualElement = GetOwningVisualElement();
                         Assert.IsTrue(owningVisualElement != null);
-                        int originalIndex = -1;
-                        if (_visualElement != null)
-                        {
-                            originalIndex = owningVisualElement.IndexOf(_visualElement);
-                            if (originalIndex == -1)
-                            {
-                                Debug.LogError(
-                                    $"VisualElementNotFound: Existing visual element not found in root hierarchy (Path: {Path}, VisualElement: {_visualElement.GetType()})");
-                            }
 
-                            owningVisualElement.RemoveAt(originalIndex);
-                        }
+                        int originalIndex = RemoveVisualElementFromParent(owningVisualElement);
 
                         _visualElement = CreateVisualElement();
                         if (_visualElement != null)
@@ -343,6 +333,13 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         /// </summary>
         protected virtual void Dispose()
         {
+            // Remove visual element from its parent container
+            if (_visualElement != null)
+            {
+                RemoveVisualElementFromParent(null);
+                _visualElement = null;
+            }
+
             if (Parent != null)
             {
                 Parent.Children.TryRemove(this);
@@ -694,6 +691,32 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             } while (false);
 
             return null;
+        }
+
+        /// <summary>
+        /// Removes the visual element from its parent container.
+        /// </summary>
+        /// <param name="owningVisualElement">The owning visual element to check for original index.</param>
+        /// <returns>The original index of the visual element in the owning element, or -1 if not found.</returns>
+        private int RemoveVisualElementFromParent([CanBeNull] VisualElement owningVisualElement)
+        {
+            if (_visualElement == null || _visualElement.parent == null)
+            {
+                return -1;
+            }
+
+            var index = _visualElement.parent.IndexOf(_visualElement);
+            if (index == -1)
+            {
+                Debug.LogError(
+                    $"VisualElementNotFound: Existing visual element not found in root hierarchy (Path: {Path}, VisualElement: {_visualElement.GetType()})");
+                return -1;
+            }
+
+            // Store original index if it's in the owning element
+            int originalIndex = (_visualElement.parent == owningVisualElement) ? index : -1;
+            _visualElement.parent.RemoveAt(index);
+            return originalIndex;
         }
 
         void IDisposable.Dispose()

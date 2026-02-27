@@ -12,7 +12,7 @@ namespace EasyToolkit.Inspector.Editor
         /// <summary>
         /// Creates a BoundsField configured for the current value entry.
         /// </summary>
-        public override VisualElement CreateVisualElement()
+        protected override VisualElement CreateVisualElement()
         {
             var field = new BoundsField(Element.Label.text);
             field.value = ValueEntry.SmartValue;

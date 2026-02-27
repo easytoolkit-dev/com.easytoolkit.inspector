@@ -14,7 +14,7 @@ namespace EasyToolkit.Inspector.Editor
         /// Creates an ObjectField configured for the current value entry.
         /// </summary>
         /// <returns>A configured ObjectField for editing the object reference.</returns>
-        public override VisualElement CreateVisualElement()
+        protected override VisualElement CreateVisualElement()
         {
             var objectType = ValueEntry.ValueType;
             var field = new ObjectField(Element.Label.text)

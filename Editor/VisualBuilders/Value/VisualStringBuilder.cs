@@ -11,7 +11,7 @@ namespace EasyToolkit.Inspector.Editor
         /// <summary>
         /// Creates a TextField configured for the current value entry.
         /// </summary>
-        public override VisualElement CreateVisualElement()
+        protected override VisualElement CreateVisualElement()
         {
             var field = new TextField(Element.Label.text);
             field.value = ValueEntry.SmartValue;

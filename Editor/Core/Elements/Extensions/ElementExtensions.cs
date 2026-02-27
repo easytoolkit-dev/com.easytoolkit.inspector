@@ -26,9 +26,9 @@ namespace EasyToolkit.Inspector.Editor
             throw new InvalidCastException($"Element '{element}' is not of type '{typeof(T)}'");
         }
 
-        public static void Draw(this IElement element)
+        public static void Draw(this IElement element, bool forceDraw = false)
         {
-            element.Draw(element.Label);
+            element.Draw(element.Label, forceDraw);
         }
 
         public static LocalPersistentContext<T> GetPersistentContext<T>(this IElement element, string key, T defaultValue = default)

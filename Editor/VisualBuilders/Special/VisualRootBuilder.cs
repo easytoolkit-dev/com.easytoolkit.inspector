@@ -11,7 +11,7 @@ namespace EasyToolkit.Inspector.Editor
             return element is IRootElement;
         }
 
-        public override VisualElement CreateVisualElement()
+        protected override VisualElement CreateVisualElement()
         {
             foreach (var child in Element.Children)
             {

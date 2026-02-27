@@ -12,7 +12,7 @@ namespace EasyToolkit.Inspector.Editor
         /// <summary>
         /// Creates a Vector4Field configured for the current value entry.
         /// </summary>
-        public override VisualElement CreateVisualElement()
+        protected override VisualElement CreateVisualElement()
         {
             var field = new Vector4Field(Element.Label.text);
             field.value = ValueEntry.SmartValue;

@@ -29,7 +29,7 @@ namespace EasyToolkit.Inspector.Editor
             ValueEntry.AfterCollectionChanged += OnCollectionChanged;
         }
 
-        public override VisualElement CreateVisualElement()
+        protected override VisualElement CreateVisualElement()
         {
             var listView = new DraggableListView(
                 Element.Label.text,
@@ -55,14 +55,16 @@ namespace EasyToolkit.Inspector.Editor
 
         private void BindDraggableItem(VisualElement element, int index)
         {
-            element.Clear();
             var item = Element.LogicalChildren[index];
             item.SpecificOwningVisualElement = element;
-            item.Draw();
+            item.Draw(forceDraw: true);
         }
 
         private void OnDraggableListItemIndexChanged(int oldIndex, int newIndex)
         {
+            var value = OrderedValueEntry.GetItemAt(0, oldIndex);
+            OrderedValueEntry.RemoveItemAt(0, oldIndex);
+            OrderedValueEntry.InsertItemAt(0, newIndex, value);
         }
 
         private void OnDraggableListSelectionChanged(object selectedItem)
@@ -77,26 +79,33 @@ namespace EasyToolkit.Inspector.Editor
 
         private void OnCollectionChanged(object sender, CollectionChangedEventArgs e)
         {
-            switch (e.ChangeType)
+            var changeType = e.ChangeType;
+            var item = e.Item;
+            var itemIndex = e.ItemIndex ?? -1;
+
+            Element.SharedContext.Tree.QueueCallback(() =>
             {
-                case CollectionChangeType.Add:
-                    _draggableListView.AddItem(e.Item);
-                    break;
-                case CollectionChangeType.Remove:
-                    _draggableListView.RemoveItem(e.Item);
-                    break;
-                case CollectionChangeType.Insert:
-                    _draggableListView.InsertItem(e.ItemIndex.Value, e.Item);
-                    break;
-                case CollectionChangeType.RemoveAt:
-                    _draggableListView.RemoveItemAt(e.ItemIndex.Value);
-                    break;
-                case CollectionChangeType.Clear:
-                    _draggableListView.ClearItems();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+                switch (changeType)
+                {
+                    case CollectionChangeType.Add:
+                        _draggableListView.AddItem(item);
+                        break;
+                    case CollectionChangeType.Remove:
+                        _draggableListView.RemoveItem(item);
+                        break;
+                    case CollectionChangeType.Insert:
+                        _draggableListView.InsertItem(itemIndex, item);
+                        break;
+                    case CollectionChangeType.RemoveAt:
+                        _draggableListView.RemoveItemAt(itemIndex);
+                        break;
+                    case CollectionChangeType.Clear:
+                        _draggableListView.ClearItems();
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            });
         }
 
         private void OnRemoveDraggableItem(DraggableListView listView, int obj)
@@ -104,7 +113,7 @@ namespace EasyToolkit.Inspector.Editor
             OrderedValueEntry.RemoveItemAt(0, obj);
         }
 
-        public override void Dispose()
+        protected override void Dispose()
         {
             ValueEntry.AfterCollectionChanged -= OnCollectionChanged;
         }
