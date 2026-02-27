@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using EasyToolkit.Core.Editor;
 using EasyToolkit.Core.Reflection;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace EasyToolkit.Inspector.Editor
@@ -60,8 +62,8 @@ namespace EasyToolkit.Inspector.Editor
             };
 
             // 设置高度计算方式
-            _listView.makeItem = _makeItem;
-            _listView.bindItem = _bindItem;
+            _listView.makeItem = MakeItemWithRemoveButton;
+            _listView.bindItem = BindItemWithRemoveButton;
 
             _listView.virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight;
             _listView.fixedItemHeight = 0;
@@ -295,6 +297,77 @@ namespace EasyToolkit.Inspector.Editor
             {
                 _listView.selectedIndex = index;
             }
+        }
+
+        /// <summary>
+        /// 创建带有删除按钮的列表项
+        /// </summary>
+        private VisualElement MakeItemWithRemoveButton()
+        {
+            VisualElement itemContainer = new VisualElement
+            {
+                name = "list-item-container",
+                style =
+                {
+                    flexDirection = FlexDirection.Row,
+                    alignItems = Align.Center,
+                    paddingRight = 4
+                }
+            };
+
+            VisualElement originalItem = _makeItem();
+            originalItem.style.flexGrow = 1;
+            itemContainer.Add(originalItem);
+
+            Button removeButton = CreateIconButton(EasyEditorIcons.X.HighlightedTexture, 14);
+            removeButton.name = "item-remove-button";
+            removeButton.AddToClassList("item-remove-button");
+            removeButton.style.flexShrink = 0;
+            itemContainer.Add(removeButton);
+
+            return itemContainer;
+        }
+
+        /// <summary>
+        /// 绑定带有删除按钮的列表项
+        /// </summary>
+        private void BindItemWithRemoveButton(VisualElement element, int index)
+        {
+            VisualElement originalItem = element[0];
+            if (element[1] is not Button removeButton) return;
+
+            _bindItem(originalItem, index);
+
+            removeButton.clickable = null;
+            removeButton.RegisterCallback<ClickEvent>(evt =>
+            {
+                RemoveItemRequested?.Invoke(this, index);
+                evt.StopPropagation();
+            });
+        }
+
+        /// <summary>
+        /// 创建图标按钮
+        /// </summary>
+        private Button CreateIconButton(Texture2D icon, int iconSize)
+        {
+            Button button = new Button
+            {
+                style =
+                {
+                    width = iconSize + 6,
+                    height = iconSize + 6,
+                    paddingLeft = 2,
+                    paddingRight = 2,
+                    paddingTop = 2,
+                    paddingBottom = 2,
+                    backgroundImage = icon,
+                    // backgroundPosition = BackgroundPosition.Center,
+                    // backgroundRepeat = BackgroundRepeat.NoRepeat,
+                    backgroundSize = new BackgroundSize(iconSize, iconSize)
+                }
+            };
+            return button;
         }
     }
 }
