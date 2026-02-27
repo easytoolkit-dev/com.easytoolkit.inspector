@@ -144,6 +144,6 @@ namespace EasyToolkit.Inspector.Editor
         /// Draws this element in the inspector with the specified label.
         /// </summary>
         /// <param name="label">The label to display. If null, uses the element's default label.</param>
-        void Draw(GUIContent label);
+        void Draw(GUIContent label, bool forceDraw = false);
     }
 }

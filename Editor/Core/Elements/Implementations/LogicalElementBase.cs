@@ -23,6 +23,8 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             Parent = logicalParent;
         }
 
+        protected IStructureResolver StructureResolver => _structureResolver;
+
         /// <summary>
         /// Gets the logical parent element that owns this element in the code structure.
         /// </summary>

@@ -13,7 +13,7 @@ namespace EasyToolkit.Inspector.Editor
         /// <summary>
         /// Creates a ColorField configured for the current value entry.
         /// </summary>
-        public override VisualElement CreateVisualElement()
+        protected override VisualElement CreateVisualElement()
         {
             var field = new ColorField(Element.Label.text);
             field.value = ValueEntry.SmartValue;

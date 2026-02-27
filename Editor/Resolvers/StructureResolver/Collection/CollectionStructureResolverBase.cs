@@ -26,17 +26,37 @@ namespace EasyToolkit.Inspector.Editor
             _definitions = new ICollectionItemDefinition[count];
             for (int i = 0; i < count; i++)
             {
-                _definitions[i] = InspectorElements.Configurator.CollectionItem()
-                    .WithItemIndex(i)
-                    .WithValueType(ItemType)
-                    .WithName($"Array.data[{i}]")
-                    .CreateDefinition();
+                _definitions[i] = CreateItemDefinition(i);
             }
+        }
+
+        public void IncrementItemCount()
+        {
+            UpdateItemCount(_definitions.Length + 1);
+        }
+
+        public void DecrementItemCount()
+        {
+            UpdateItemCount(_definitions.Length - 1);
+        }
+
+        public void ClearItemCount()
+        {
+            UpdateItemCount(0);
         }
 
         protected override IElementDefinition[] GetChildrenDefinitions()
         {
             return _definitions;
+        }
+
+        protected virtual ICollectionItemDefinition CreateItemDefinition(int itemIndex)
+        {
+            return InspectorElements.Configurator.CollectionItem()
+                .WithItemIndex(itemIndex)
+                .WithValueType(ItemType)
+                .WithName($"Array.data[{itemIndex}]")
+                .CreateDefinition();
         }
 
         /// <summary>
@@ -49,5 +69,21 @@ namespace EasyToolkit.Inspector.Editor
         }
 
         protected abstract int CalculateChildCount();
+
+        private void UpdateItemCount(int count)
+        {
+            if (count != _definitions.Length)
+            {
+                var originalCount = _definitions.Length;
+                Array.Resize(ref _definitions, count);
+                if (count > originalCount)
+                {
+                    for (int i = originalCount; i < count; i++)
+                    {
+                        _definitions[i] = CreateItemDefinition(i);
+                    }
+                }
+            }
+        }
     }
 }

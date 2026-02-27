@@ -1,10 +1,14 @@
-﻿using EasyToolkit.Core.Reflection;
+﻿using System;
+using System.Collections.Generic;
+using EasyToolkit.Core.Reflection;
 using JetBrains.Annotations;
 
 namespace EasyToolkit.Inspector.Editor.Implementations
 {
     public class CollectionElement : ValueElement, ICollectionElement
     {
+        private ElementList<ILogicalElement> _mutableLogicalChildren;
+
         public CollectionElement(
             [NotNull] IValueDefinition definition,
             [NotNull] IElementSharedContext sharedContext,
@@ -29,6 +33,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         protected override IReadOnlyElementList<ILogicalElement> CreateLogicalChildren()
         {
             var baseLogicalChildren = base.CreateLogicalChildren();
+            _mutableLogicalChildren = (ElementList<ILogicalElement>)baseLogicalChildren;
             var wrapper = new ReadOnlyElementListWrapper<ICollectionItemElement, ILogicalElement>(baseLogicalChildren);
             return new ReadOnlyElementListBoxedWrapper<ILogicalElement, ICollectionItemElement>(wrapper);
         }
@@ -60,7 +65,80 @@ namespace EasyToolkit.Inspector.Editor.Implementations
 
         private void OnCollectionChanged(object sender, CollectionChangedEventArgs e)
         {
-            RequestRefresh();
+            // UIToolkit uses incremental updates, IMGUI uses full refresh
+            if (SharedContext.Tree.BackendMode == InspectorBackendMode.UIToolkit)
+            {
+                OnCollectionChangedIncremental(e);
+            }
+            else
+            {
+                RequestRefresh();
+            }
+        }
+
+        private void OnCollectionChangedIncremental(CollectionChangedEventArgs e)
+        {
+            if (StructureResolver is not ICollectionStructureResolver collectionStructureResolver)
+            {
+                RequestRefresh();
+                return;
+            }
+
+            switch (e.ChangeType)
+            {
+                case CollectionChangeType.Add:
+                    HandleAddItem(collectionStructureResolver);
+                    break;
+
+                case CollectionChangeType.Remove:
+                    HandleRemoveItem(collectionStructureResolver);
+                    break;
+
+                case CollectionChangeType.Insert:
+                    HandleAddItem(collectionStructureResolver);
+                    break;
+
+                case CollectionChangeType.RemoveAt:
+                    HandleRemoveItem(collectionStructureResolver);
+                    break;
+
+                case CollectionChangeType.Clear:
+                    HandleClearCollection(collectionStructureResolver);
+                    break;
+            }
+        }
+
+        private void HandleAddItem(ICollectionStructureResolver structureResolver)
+        {
+            structureResolver.IncrementItemCount();
+            var definition = (ICollectionItemDefinition)structureResolver.GetChildrenDefinitions()[^1];
+            var newElement = SharedContext.Tree.ElementFactory.CreateCollectionItemElement(definition, this);
+            _mutableLogicalChildren.Add(newElement);
+        }
+
+        private void HandleRemoveItem(ICollectionStructureResolver structureResolver)
+        {
+            var element = _mutableLogicalChildren[^1];
+            _mutableLogicalChildren.RemoveAt(_mutableLogicalChildren.Count - 1);
+            element.Destroy();
+            structureResolver.DecrementItemCount();
+        }
+
+        private void HandleClearCollection(ICollectionStructureResolver structureResolver)
+        {
+            var children = new List<ILogicalElement>(_mutableLogicalChildren);
+            _mutableLogicalChildren.Clear();
+            foreach (var child in children)
+            {
+                child.Destroy();
+            }
+            structureResolver.ClearItemCount();
+        }
+
+        protected override void Dispose()
+        {
+            base.Dispose();
+            _mutableLogicalChildren = null;
         }
     }
 }
