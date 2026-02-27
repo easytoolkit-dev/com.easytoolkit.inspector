@@ -96,48 +96,5 @@ namespace EasyToolkit.Inspector.Editor
                 yield return attributeInfo.Attribute;
             }
         }
-
-        /// <summary>
-        /// Gets the owning VisualElement for this element by recursively traversing up the parent chain.
-        /// Returns null if the backend mode is not UI Toolkit.
-        /// </summary>
-        /// <param name="element">The element to get the owning VisualElement for.</param>
-        /// <returns>The owning VisualElement, or null if not in UI Toolkit mode or no parent has a VisualElement.</returns>
-        [CanBeNull]
-        public static VisualElement GetOwningVisualElement(this IElement element)
-        {
-            if (element.SharedContext.Tree.BackendMode != InspectorBackendMode.UIToolkit)
-            {
-                return null;
-            }
-
-            if (element is IRootElement)
-            {
-                return element.SharedContext.Tree.RootVisualElement;
-            }
-
-            var current = element;
-            do
-            {
-                current = current.Parent;
-                if (current == null)
-                {
-                    return null;
-                }
-
-                if (current.VisualElement != null)
-                {
-                    return current.VisualElement;
-                }
-
-                if (current is IRootElement)
-                {
-                    return element.SharedContext.Tree.RootVisualElement;
-                }
-
-            } while (false);
-
-            return null;
-        }
     }
 }

@@ -78,7 +78,10 @@ namespace EasyToolkit.Inspector.Editor
             EnsureInitialized();
             _inspectorAttribute = target.GetType().GetCustomAttribute<EasyInspectorAttribute>();
 
-            EditorApplication.update += DrawUIToolkit;
+            if (_inspectorAttribute.BackendMode == InspectorBackendMode.UIToolkit)
+            {
+                EditorApplication.update += DrawUIToolkit;
+            }
         }
 
         /// <summary>
@@ -91,7 +94,11 @@ namespace EasyToolkit.Inspector.Editor
                 (_tree as IDisposable)?.Dispose();
                 _tree = null;
             }
-            EditorApplication.update -= DrawUIToolkit;
+
+            if (_inspectorAttribute.BackendMode == InspectorBackendMode.UIToolkit)
+            {
+                EditorApplication.update -= DrawUIToolkit;
+            }
         }
 
         /// <summary>

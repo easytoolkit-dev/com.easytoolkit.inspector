@@ -11,7 +11,7 @@ using EasyToolkit.Inspector.Attributes;
 
 namespace EasyToolkit.Inspector.Editor
 {
-    [ScriptableObjectSingletonConfiguration(null, ScriptableObjectLoadMode.TryLoadAssetOrFallback)]
+    [ScriptableObjectSingletonConfiguration("Plugins/EasyToolKit/Inspector/Editor/Configs", ScriptableObjectLoadMode.Asset)]
     public class InspectorConfigAsset : ScriptableObjectSingleton<InspectorConfigAsset>, ISerializationCallbackReceiver
     {
         [SerializeField] private bool _drawMonoScriptInEditor = true;

@@ -71,6 +71,7 @@ namespace EasyToolkit.Inspector.Editor
         [CanBeNull] IElementList<IElement> Children { get; }
 
         [CanBeNull] VisualElement VisualElement { get; }
+        [CanBeNull] VisualElement SpecificOwningVisualElement { get; set; }
 
         /// <summary>
         /// Gets all custom attribute infos applied to this value element.

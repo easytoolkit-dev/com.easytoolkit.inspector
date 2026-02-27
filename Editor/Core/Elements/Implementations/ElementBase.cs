@@ -110,6 +110,8 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             }
         }
 
+        public VisualElement SpecificOwningVisualElement { get; set; }
+
         /// <summary>
         /// Gets the current phase of this element.
         /// </summary>
@@ -254,7 +256,9 @@ namespace EasyToolkit.Inspector.Editor.Implementations
                 {
                     if (_phases.IsPendingDraw())
                     {
-                        var owningVisualElement = this.GetOwningVisualElement();
+                        _phases = _phases.Add(ElementPhases.Drawing);
+
+                        var owningVisualElement = GetOwningVisualElement();
                         Assert.IsTrue(owningVisualElement != null);
                         int originalIndex = -1;
                         if (_visualElement != null)
@@ -282,6 +286,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
                             }
                         }
 
+                        _phases = _phases.Remove(ElementPhases.Drawing);
                     }
 
                     break;
@@ -648,6 +653,47 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         protected virtual bool IsNecessaryToRefreshMultiple()
         {
             return true;
+        }
+
+        protected virtual VisualElement GetOwningVisualElement()
+        {
+            if (SharedContext.Tree.BackendMode != InspectorBackendMode.UIToolkit)
+            {
+                return null;
+            }
+
+            if (SpecificOwningVisualElement != null)
+            {
+                return SpecificOwningVisualElement;
+            }
+
+            if (this is IRootElement)
+            {
+                return SharedContext.Tree.RootVisualElement;
+            }
+
+            IElement current = this;
+            do
+            {
+                current = current.Parent;
+                if (current == null)
+                {
+                    return null;
+                }
+
+                if (current.VisualElement != null)
+                {
+                    return current.VisualElement;
+                }
+
+                if (current is IRootElement)
+                {
+                    return SharedContext.Tree.RootVisualElement;
+                }
+
+            } while (false);
+
+            return null;
         }
 
         void IDisposable.Dispose()
