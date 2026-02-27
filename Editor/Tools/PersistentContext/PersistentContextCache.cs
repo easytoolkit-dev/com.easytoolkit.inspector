@@ -148,7 +148,8 @@ namespace EasyToolkit.Inspector.Editor
                     Directory.CreateDirectory(CacheDirectory);
 
                 var unityReferences = new List<UnityEngine.Object>();
-                File.WriteAllBytes(CacheDirectory, EasySerializer.SerializeToBinary(_cache, ref unityReferences));
+
+                File.WriteAllBytes(CacheFilePath, EasySerializer.SerializeToBinary(_cache, ref unityReferences));
                 if (unityReferences.IsNotNullOrEmpty())
                 {
                     Debug.Log($"Reference unity objects({string.Join(", ", unityReferences)}) in persistent context is not supported.");

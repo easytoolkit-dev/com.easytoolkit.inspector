@@ -37,6 +37,7 @@ namespace EasyToolkit.Inspector.Editor
         protected override void OnRelease()
         {
             base.OnRelease();
+            _builder?.Dispose();
             _builder = null;
         }
     }

@@ -79,5 +79,9 @@ namespace EasyToolkit.Inspector.Editor
             EnsureInitialize();
             return CreateVisualElement();
         }
+
+        public virtual void Dispose()
+        {
+        }
     }
 }

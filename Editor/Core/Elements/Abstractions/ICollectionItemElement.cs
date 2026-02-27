@@ -1,4 +1,6 @@
-﻿namespace EasyToolkit.Inspector.Editor
+﻿using UnityEngine.UIElements;
+
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Collection item element interface representing individual elements in collections (arrays, lists, etc.).
