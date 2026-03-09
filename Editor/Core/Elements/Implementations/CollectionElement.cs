@@ -65,19 +65,6 @@ namespace EasyToolkit.Inspector.Editor.Implementations
 
         private void OnCollectionChanged(object sender, CollectionChangedEventArgs e)
         {
-            // UIToolkit uses incremental updates, IMGUI uses full refresh
-            if (SharedContext.Tree.BackendMode == InspectorBackendMode.UIToolkit)
-            {
-                OnCollectionChangedIncremental(e);
-            }
-            else
-            {
-                RequestRefresh();
-            }
-        }
-
-        private void OnCollectionChangedIncremental(CollectionChangedEventArgs e)
-        {
             if (StructureResolver is not ICollectionStructureResolver collectionStructureResolver)
             {
                 RequestRefresh();
