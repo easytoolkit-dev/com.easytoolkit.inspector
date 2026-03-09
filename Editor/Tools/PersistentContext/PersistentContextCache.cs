@@ -11,11 +11,6 @@ using UnityEngine;
 
 namespace EasyToolkit.Inspector.Editor
 {
-    [Serializable]
-    class PersistentContextDirectory : Dictionary<string, GlobalPersistentContext>
-    {
-    }
-
     [InitializeOnLoad]
     public class PersistentContextCache : Singleton<PersistentContextCache>
     {
@@ -142,6 +137,7 @@ namespace EasyToolkit.Inspector.Editor
             }
             catch (Exception e)
             {
+                Debug.LogException(e);
                 Debug.LogError(
                     $"Failed to load persistent context cache due to an unexpected error. " +
                     $"Cache file path: {CacheFilePath}. Error: {e.Message}. " +
