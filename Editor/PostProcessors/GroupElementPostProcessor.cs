@@ -13,6 +13,7 @@ namespace EasyToolkit.Inspector.Editor
     public class GroupElementPostProcessor : PostProcessor
     {
         private Dictionary<Attribute, bool> _processedAttributeCache;
+
         protected override void Process()
         {
             if (Element.Children == null)
@@ -44,7 +45,8 @@ namespace EasyToolkit.Inspector.Editor
 
             var beginGroupAttribute = (BeginGroupAttribute)beginGroupAttributeInfo.Attribute;
             var beginGroupAttributeType = beginGroupAttribute.GetType();
-            var endGroupAttributeType = InspectorAttributeUtility.GetCorrespondGroupAttributeType(beginGroupAttributeType);
+            var endGroupAttributeType =
+                InspectorAttributeUtility.GetCorrespondGroupAttributeType(beginGroupAttributeType);
 
             var newGroupDefinition = InspectorElements.Configurator.Group()
                 .WithGroupAttributes(beginGroupAttributeType, endGroupAttributeType)
@@ -62,50 +64,7 @@ namespace EasyToolkit.Inspector.Editor
 
             if (beginGroupAttributeInfo.Source != ElementAttributeSource.Type)
             {
-                if (!beginGroupAttribute.EndAfterThisProperty)
-                {
-                    var groupCatalogue = beginGroupAttribute.GroupCatalogue;
-                    var subGroupStack = new Stack<IElement>();
-                    for (int i = elementIndex + 1; i < Element.Children.Count; i++)
-                    {
-                        var child = Element.Children[i];
-
-                        var childBeginGroupAttribute = (BeginGroupAttribute)child.GetAttribute(beginGroupAttributeType);
-                        if (childBeginGroupAttribute != null)
-                        {
-                            var childGroupName = childBeginGroupAttribute.GroupCatalogue;
-                            bool isSubGroup = groupCatalogue.IsNotNullOrEmpty() &&
-                                              childGroupName.IsNotNullOrEmpty() &&
-                                              childGroupName.Length > groupCatalogue.Length &&
-                                              childGroupName.StartsWith(groupCatalogue) &&
-                                              childGroupName[groupCatalogue.Length] == '/';
-
-                            if (isSubGroup)
-                            {
-                                subGroupStack.Push(child);
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-
-                        var childEndGroupAttribute = child.GetAttribute(endGroupAttributeType);
-                        if (childEndGroupAttribute != null)
-                        {
-                            if (subGroupStack.Count > 0)
-                            {
-                                subGroupStack.Pop();
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-
-                        childrenToMove.Add(child);
-                    }
-                }
+                CollectAllGroupChildren(beginGroupAttribute, elementIndex + 1, childrenToMove);
             }
 
             Element.Children.Insert(elementIndex, newGroupElement);
@@ -121,7 +80,158 @@ namespace EasyToolkit.Inspector.Editor
             });
         }
 
+        /// <summary>
+        /// Collects children from the current group and all subsequent groups
+        /// with matching catalogue, name, and type.
+        /// </summary>
+        private void CollectAllGroupChildren(
+            BeginGroupAttribute beginGroupAttribute,
+            int startIndex,
+            List<IElement> result)
+        {
+            var beginGroupAttributeType = beginGroupAttribute.GetType();
+
+            while (true)
+            {
+                if (beginGroupAttribute.EndAfterThisProperty)
+                {
+                    break;
+                }
+
+                var groupChildren = FindGroupChildren(beginGroupAttribute, startIndex);
+
+                if (groupChildren.Count == 0)
+                {
+                    break;
+                }
+
+                result.AddRange(groupChildren);
+
+                // Get the index of the last collected element
+                var lastIndex = startIndex + groupChildren.Count;
+
+                if (lastIndex < 0 || lastIndex >= Element.Children.Count - 1)
+                {
+                    break;
+                }
+
+                // Search for the next group with matching properties
+                var nextIndex = lastIndex + 1;
+                if (!TryFindNextMatchingGroup(
+                        nextIndex,
+                        beginGroupAttributeType,
+                        beginGroupAttribute.GroupName,
+                        beginGroupAttribute.GroupCatalogue,
+                        out var nextGroupInfo))
+                {
+                    break;
+                }
+
+                // Update for next iteration
+                beginGroupAttribute = (BeginGroupAttribute)nextGroupInfo.Attribute;
+                startIndex = nextIndex + 1;
+            }
+        }
+
+        private List<IElement> FindGroupChildren(
+            BeginGroupAttribute beginGroupAttribute,
+            int startIndex)
+        {
+            var beginGroupAttributeType = beginGroupAttribute.GetType();
+            var groupName = beginGroupAttribute.GroupName;
+            var groupCatalogue = beginGroupAttribute.GroupCatalogue;
+
+            var endGroupAttributeType =
+                InspectorAttributeUtility.GetCorrespondGroupAttributeType(beginGroupAttributeType);
+
+            var result = new List<IElement>();
+            var subGroupStack = new Stack<IElement>();
+
+            for (int i = startIndex; i < Element.Children.Count; i++)
+            {
+                var child = Element.Children[i];
+
+                var childBeginGroupAttribute = (BeginGroupAttribute)child.GetAttribute(beginGroupAttributeType);
+                if (childBeginGroupAttribute != null)
+                {
+                    var childGroupCatalogue = childBeginGroupAttribute.GroupCatalogue;
+                    var childGroupName = childBeginGroupAttribute.GroupName;
+
+                    var isSameGroup = childGroupName == groupName && childGroupCatalogue == groupCatalogue;
+
+                    if (!isSameGroup)
+                    {
+                        var isSubGroup = groupCatalogue.IsNotNullOrEmpty() &&
+                                         childGroupCatalogue.IsNotNullOrEmpty() &&
+                                         childGroupCatalogue.Length > groupCatalogue.Length &&
+                                         childGroupCatalogue.StartsWith(groupCatalogue) &&
+                                         childGroupCatalogue[groupCatalogue.Length] == '/';
+
+                        if (isSubGroup)
+                        {
+                            subGroupStack.Push(child);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                var childEndGroupAttribute = child.GetAttribute(endGroupAttributeType);
+                if (childEndGroupAttribute != null)
+                {
+                    if (subGroupStack.Count > 0)
+                    {
+                        subGroupStack.Pop();
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                result.Add(child);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Finds the next group element with matching catalogue, name, and attribute type.
+        /// </summary>
+        private bool TryFindNextMatchingGroup(
+            int startIndex,
+            Type beginGroupAttributeType,
+            string groupName,
+            string groupCatalogue,
+            out ElementAttributeInfo matchingGroupInfo)
+        {
+            matchingGroupInfo = null;
+
+            for (int i = startIndex; i < Element.Children.Count; i++)
+            {
+                var child = Element.Children[i];
+                var attributeInfo = child.GetAttributeInfo(beginGroupAttributeType);
+
+                if (attributeInfo != null)
+                {
+                    var attr = (BeginGroupAttribute)attributeInfo.Attribute;
+
+                    if (attr.GroupName == groupName &&
+                        attr.GroupCatalogue == groupCatalogue)
+                    {
+                        matchingGroupInfo = attributeInfo;
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         private int i = 0;
+
         private bool TryFindNextElement(ref int elementIndex, out ElementAttributeInfo beginGroupAttributeInfo)
         {
             beginGroupAttributeInfo = null;
@@ -180,7 +290,8 @@ namespace EasyToolkit.Inspector.Editor
             var attribute = attributeInfo.Attribute;
 
             // Check cache first to avoid redundant parent traversals
-            if (_processedAttributeCache != null && _processedAttributeCache.TryGetValue(attribute, out var cachedResult))
+            if (_processedAttributeCache != null &&
+                _processedAttributeCache.TryGetValue(attribute, out var cachedResult))
             {
                 return cachedResult;
             }
@@ -198,6 +309,7 @@ namespace EasyToolkit.Inspector.Editor
                     found = true;
                     break;
                 }
+
                 current = groupElement.Parent;
             }
 

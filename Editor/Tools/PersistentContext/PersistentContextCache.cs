@@ -125,9 +125,31 @@ namespace EasyToolkit.Inspector.Editor
                 _cache ??= new PersistentContextDirectory();
                 _cacheMemorySize = data.Length;
             }
+            catch (UnauthorizedAccessException)
+            {
+                Debug.LogError(
+                    $"Failed to load persistent context cache due to insufficient permissions. " +
+                    $"Cache file path: {CacheFilePath}. " +
+                    $"Please check file permissions or run Unity as administrator.");
+            }
+            catch (IOException e)
+            {
+                Debug.LogError(
+                    $"Failed to load persistent context cache due to an I/O error. " +
+                    $"Cache file path: {CacheFilePath}. Error: {e.Message}. " +
+                    $"The file may be corrupted or locked by another process. " +
+                    $"Try closing other Unity instances or delete the cache file to reset.");
+            }
             catch (Exception e)
             {
-                Debug.LogException(e);
+                Debug.LogError(
+                    $"Failed to load persistent context cache due to an unexpected error. " +
+                    $"Cache file path: {CacheFilePath}. Error: {e.Message}. " +
+                    $"A new empty cache will be created instead.");
+            }
+            finally
+            {
+                _cache ??= new PersistentContextDirectory();
             }
         }
 
@@ -156,9 +178,27 @@ namespace EasyToolkit.Inspector.Editor
                 }
                 _cacheMemorySize = fileInfo.Length;
             }
+            catch (UnauthorizedAccessException)
+            {
+                Debug.LogError(
+                    $"Failed to save persistent context cache due to insufficient permissions. " +
+                    $"Cache file path: {CacheFilePath}. " +
+                    $"Please check file permissions or run Unity as administrator.");
+            }
+            catch (IOException e)
+            {
+                Debug.LogError(
+                    $"Failed to save persistent context cache due to an I/O error. " +
+                    $"Cache file path: {CacheFilePath}. Error: {e.Message}. " +
+                    $"The disk may be full or the file may be locked by another process. " +
+                    $"Try closing other Unity instances or free up disk space.");
+            }
             catch (Exception e)
             {
-                Debug.LogException(e);
+                Debug.LogError(
+                    $"Failed to save persistent context cache due to an unexpected error. " +
+                    $"Cache file path: {CacheFilePath}. Error: {e.Message}. " +
+                    $"The cache will be saved again on the next attempt.");
             }
         }
 
