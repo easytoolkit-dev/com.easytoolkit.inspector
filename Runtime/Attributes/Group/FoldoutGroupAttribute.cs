@@ -1,14 +1,11 @@
 using System;
 using System.Diagnostics;
-using EasyToolkit.Inspector.Attributes;
-
-[assembly: RegisterGroupAttributeScope(typeof(FoldoutGroupAttribute), typeof(EndFoldoutGroupAttribute))]
 
 namespace EasyToolkit.Inspector.Attributes
 {
     [Conditional("UNITY_EDITOR")]
     [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]
-    public class FoldoutGroupAttribute : BeginGroupAttribute
+    public class FoldoutGroupAttribute : GroupAttribute
     {
         public string Label { get; set; }
         public bool? Expanded { get; set; }
@@ -19,11 +16,5 @@ namespace EasyToolkit.Inspector.Attributes
         {
             Label = label;
         }
-    }
-
-    [Conditional("UNITY_EDITOR")]
-    [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]
-    public class EndFoldoutGroupAttribute : EndGroupAttribute
-    {
     }
 }

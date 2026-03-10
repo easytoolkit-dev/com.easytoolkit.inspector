@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using EasyToolkit.Core.Reflection;
 using EasyToolkit.Serialization.Formatters;
 using EasyToolkit.Serialization.Processors;
 
@@ -29,6 +30,13 @@ namespace EasyToolkit.Inspector.Editor
                     valueType = keyValuePair.Value.GetType();
                 }
                 _typeProcessor.Process("ValueType", ref valueType, formatter);
+
+                var valueItemType = valueType.GetGenericArgumentsRelativeTo(typeof(GlobalPersistentContext<>))[0];
+                if (SerializationProcessorFactory.GetProcessor(valueItemType) == null)
+                {
+                    keyValuePair = new KeyValuePair<string, GlobalPersistentContext>(key, null);
+                    return;
+                }
 
                 object value = keyValuePair.Value;
                 var valueProcessor = SerializationProcessorFactory.GetProcessor(valueType);

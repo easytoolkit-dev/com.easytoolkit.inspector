@@ -9,37 +9,33 @@ namespace EasyToolkit.Inspector.Editor
     public static class GroupConfigurationExtensions
     {
         /// <summary>
-        /// Sets the begin and end attribute types for a group configuration.
+        /// Sets the group attribute type for a group configuration.
+        /// All groups use the unified <see cref="EndGroupAttribute"/> for ending.
         /// </summary>
         /// <typeparam name="TConfiguration">The group configuration type.</typeparam>
         /// <param name="configuration">The configuration instance.</param>
-        /// <param name="beginAttributeType">The attribute type that begins the group.</param>
-        /// <param name="endAttributeType">The attribute type that ends the group.</param>
+        /// <param name="groupAttributeType">The attribute type that begins the group.</param>
         /// <returns>The configuration instance for method chaining.</returns>
-        public static TConfiguration WithGroupAttributes<TConfiguration>(this TConfiguration configuration,
-            Type beginAttributeType, Type endAttributeType)
+        public static TConfiguration WithGroupAttribute<TConfiguration>(this TConfiguration configuration, Type groupAttributeType)
             where TConfiguration : IGroupConfiguration
         {
-            configuration.BeginGroupAttributeType = beginAttributeType;
-            configuration.EndGroupAttributeType = endAttributeType;
+            configuration.GroupAttributeType = groupAttributeType;
             return configuration;
         }
 
         /// <summary>
-        /// Sets the begin and end attribute types for a group configuration using generic type parameters.
+        /// Sets the group attribute type for a group configuration using generic type parameter.
+        /// All groups use the unified <see cref="EndGroupAttribute"/> for ending.
         /// </summary>
-        /// <typeparam name="TBeginAttribute">The attribute type that begins the group.</typeparam>
-        /// <typeparam name="TEndAttribute">The attribute type that ends the group.</typeparam>
+        /// <typeparam name="TGroupAttribute">The attribute type that begins the group.</typeparam>
         /// <typeparam name="TConfiguration">The group configuration type.</typeparam>
         /// <param name="configuration">The configuration instance.</param>
         /// <returns>The configuration instance for method chaining.</returns>
-        public static TConfiguration WithGroupAttributes<TBeginAttribute, TEndAttribute, TConfiguration>(this TConfiguration configuration)
-            where TBeginAttribute : Attribute
-            where TEndAttribute : Attribute
+        public static TConfiguration WithGroupAttribute<TGroupAttribute, TConfiguration>(this TConfiguration configuration)
+            where TGroupAttribute : Attribute
             where TConfiguration : IGroupConfiguration
         {
-            configuration.BeginGroupAttributeType = typeof(TBeginAttribute);
-            configuration.EndGroupAttributeType = typeof(TEndAttribute);
+            configuration.GroupAttributeType = typeof(TGroupAttribute);
             return configuration;
         }
     }

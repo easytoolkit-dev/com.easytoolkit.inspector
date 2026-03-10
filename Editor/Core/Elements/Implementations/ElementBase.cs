@@ -616,7 +616,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
                     Debug.LogError(
                         $"VisualBuilderNotFound: No VisualBuilder defined for element type '{elementType}'." +
                         $"The visual builder resolver could not find a visual builder to create the UI representation. " +
-                        $"To fix this, define a VisualGroupBuilder<TGroupAttribute> for the group '{groupElement.Definition.BeginGroupAttributeType}' and '{groupElement.Definition.EndGroupAttributeType}'.");
+                        $"To fix this, define a VisualGroupBuilder<TGroupAttribute> for the group '{groupElement.Definition.GroupAttributeType}'.");
                 }
                 else
                 {

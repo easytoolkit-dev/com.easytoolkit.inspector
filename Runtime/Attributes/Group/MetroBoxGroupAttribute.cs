@@ -1,14 +1,11 @@
-using EasyToolkit.Inspector.Attributes;
 using System;
 using System.Diagnostics;
-
-[assembly: RegisterGroupAttributeScope(typeof(MetroBoxGroupAttribute), typeof(EndMetroBoxGroupAttribute))]
 
 namespace EasyToolkit.Inspector.Attributes
 {
     [Conditional("UNITY_EDITOR")]
     [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]
-    public class MetroBoxGroupAttribute : BeginGroupAttribute
+    public class MetroBoxGroupAttribute : GroupAttribute
     {
         public string Label { get; set; }
         public string IconTextureGetter { get; set; }
@@ -19,11 +16,5 @@ namespace EasyToolkit.Inspector.Attributes
         {
             Label = label;
         }
-    }
-
-    [Conditional("UNITY_EDITOR")]
-    [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]
-    public class EndMetroBoxGroupAttribute : EndGroupAttribute
-    {
     }
 }

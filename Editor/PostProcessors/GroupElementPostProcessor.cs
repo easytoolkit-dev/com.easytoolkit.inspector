@@ -43,13 +43,11 @@ namespace EasyToolkit.Inspector.Editor
 
             var elementChild = Element.Children[elementIndex];
 
-            var beginGroupAttribute = (BeginGroupAttribute)beginGroupAttributeInfo.Attribute;
+            var beginGroupAttribute = (GroupAttribute)beginGroupAttributeInfo.Attribute;
             var beginGroupAttributeType = beginGroupAttribute.GetType();
-            var endGroupAttributeType =
-                InspectorAttributeUtility.GetCorrespondGroupAttributeType(beginGroupAttributeType);
 
             var newGroupDefinition = InspectorElements.Configurator.Group()
-                .WithGroupAttributes(beginGroupAttributeType, endGroupAttributeType)
+                .WithGroupAttribute(beginGroupAttributeType)
                 .WithAdditionalAttributes(beginGroupAttributeInfo.Attribute)
                 .WithName(beginGroupAttribute.GroupName)
                 .CreateDefinition();
@@ -85,7 +83,7 @@ namespace EasyToolkit.Inspector.Editor
         /// with matching catalogue, name, and type.
         /// </summary>
         private void CollectAllGroupChildren(
-            BeginGroupAttribute beginGroupAttribute,
+            GroupAttribute beginGroupAttribute,
             int startIndex,
             List<IElement> result)
         {
@@ -128,21 +126,18 @@ namespace EasyToolkit.Inspector.Editor
                 }
 
                 // Update for next iteration
-                beginGroupAttribute = (BeginGroupAttribute)nextGroupInfo.Attribute;
+                beginGroupAttribute = (GroupAttribute)nextGroupInfo.Attribute;
                 startIndex = nextIndex + 1;
             }
         }
 
         private List<IElement> FindGroupChildren(
-            BeginGroupAttribute beginGroupAttribute,
+            GroupAttribute beginGroupAttribute,
             int startIndex)
         {
             var beginGroupAttributeType = beginGroupAttribute.GetType();
             var groupName = beginGroupAttribute.GroupName;
             var groupCatalogue = beginGroupAttribute.GroupCatalogue;
-
-            var endGroupAttributeType =
-                InspectorAttributeUtility.GetCorrespondGroupAttributeType(beginGroupAttributeType);
 
             var result = new List<IElement>();
             var subGroupStack = new Stack<IElement>();
@@ -151,11 +146,11 @@ namespace EasyToolkit.Inspector.Editor
             {
                 var child = Element.Children[i];
 
-                var childBeginGroupAttribute = (BeginGroupAttribute)child.GetAttribute(beginGroupAttributeType);
-                if (childBeginGroupAttribute != null)
+                var childGroupAttribute = (GroupAttribute)child.GetAttribute(beginGroupAttributeType);
+                if (childGroupAttribute != null)
                 {
-                    var childGroupCatalogue = childBeginGroupAttribute.GroupCatalogue;
-                    var childGroupName = childBeginGroupAttribute.GroupName;
+                    var childGroupCatalogue = childGroupAttribute.GroupCatalogue;
+                    var childGroupName = childGroupAttribute.GroupName;
 
                     var isSameGroup = childGroupName == groupName && childGroupCatalogue == groupCatalogue;
 
@@ -178,7 +173,7 @@ namespace EasyToolkit.Inspector.Editor
                     }
                 }
 
-                var childEndGroupAttribute = child.GetAttribute(endGroupAttributeType);
+                var childEndGroupAttribute = child.GetAttribute<EndGroupAttribute>();
                 if (childEndGroupAttribute != null)
                 {
                     if (subGroupStack.Count > 0)
@@ -216,7 +211,7 @@ namespace EasyToolkit.Inspector.Editor
 
                 if (attributeInfo != null)
                 {
-                    var attr = (BeginGroupAttribute)attributeInfo.Attribute;
+                    var attr = (GroupAttribute)attributeInfo.Attribute;
 
                     if (attr.GroupName == groupName &&
                         attr.GroupCatalogue == groupCatalogue)
@@ -248,7 +243,7 @@ namespace EasyToolkit.Inspector.Editor
                     }
 
                     var attributeType = attributeInfo.Attribute.GetType();
-                    if (!attributeType.IsDerivedFrom<BeginGroupAttribute>())
+                    if (!attributeType.IsDerivedFrom<GroupAttribute>())
                     {
                         continue;
                     }
