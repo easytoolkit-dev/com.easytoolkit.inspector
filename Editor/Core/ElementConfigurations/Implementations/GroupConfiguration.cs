@@ -10,31 +10,19 @@ namespace EasyToolkit.Inspector.Editor.Implementations
     {
         /// <summary>
         /// Gets or sets the type of the attribute that begins this group
-        /// (e.g., <see cref="FoldoutGroupAttribute"/>).
+        /// (e.g., <see cref="Attributes.GroupAttribute"/>).
         /// </summary>
-        public Type BeginGroupAttributeType { get; set; }
-
-        /// <summary>
-        /// Gets or sets the type of the attribute that ends this group
-        /// (e.g., <see cref="EndFoldoutGroupAttribute"/>).
-        /// </summary>
-        public Type EndGroupAttributeType { get; set; }
+        public Type GroupAttributeType { get; set; }
 
         protected void ProcessDefinition(GroupDefinition definition)
         {
-            if (BeginGroupAttributeType == null)
+            if (GroupAttributeType == null)
             {
-                throw new InvalidOperationException("BeginGroupAttributeType cannot be null");
-            }
-
-            if (EndGroupAttributeType == null)
-            {
-                throw new InvalidOperationException("EndGroupAttributeType cannot be null");
+                throw new InvalidOperationException("GroupAttributeType cannot be null");
             }
 
             definition.Roles = definition.Roles.Add(ElementRoles.Group);
-            definition.BeginGroupAttributeType = BeginGroupAttributeType;
-            definition.EndGroupAttributeType = EndGroupAttributeType;
+            definition.GroupAttributeType = GroupAttributeType;
             base.ProcessDefinition(definition);
         }
 

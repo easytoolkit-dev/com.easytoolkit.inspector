@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace EasyToolkit.Inspector.Editor
 {
@@ -13,6 +14,9 @@ namespace EasyToolkit.Inspector.Editor
         private long _timeStamp;
 
         public long TimeStamp => _timeStamp;
+
+        public abstract Type ValueType { get; }
+        public abstract object UntypedValue { get; set; }
 
         /// <summary>
         /// Instatiates a persistent context.
@@ -38,7 +42,16 @@ namespace EasyToolkit.Inspector.Editor
     public sealed class GlobalPersistentContext<T> : GlobalPersistentContext
     {
         [SerializeField]
-        private T value;
+        private T _value;
+
+
+        public override Type ValueType => typeof(T);
+
+        public override object UntypedValue
+        {
+            get => Value;
+            set => Value = (T)value;
+        }
 
         /// <summary>
         /// The value of the context.
@@ -48,11 +61,11 @@ namespace EasyToolkit.Inspector.Editor
             get
             {
                 this.UpdateTimeStamp();
-                return this.value;
+                return this._value;
             }
             set
             {
-                this.value = value;
+                this._value = value;
                 this.UpdateTimeStamp();
             }
         }
@@ -73,7 +86,7 @@ namespace EasyToolkit.Inspector.Editor
         public override string ToString()
         {
             return new DateTime(this.TimeStamp).ToString("dd/MM/yy HH:mm:ss") + " <" + typeof(T) + "> " +
-                   (this.value != null ? this.value.ToString() : "(null)");
+                   (this._value != null ? this._value.ToString() : "(null)");
         }
     }
 }

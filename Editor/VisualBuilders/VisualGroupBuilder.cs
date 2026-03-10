@@ -6,10 +6,10 @@ namespace EasyToolkit.Inspector.Editor
     /// Abstract base class for visual element builders that handle group-related attributes.
     /// Provides a convenient way to access the associated group attribute and validate group element types.
     /// </summary>
-    /// <typeparam name="TAttribute">The type of begin group attribute this builder handles.</typeparam>
+    /// <typeparam name="TAttribute">The type of group attribute this builder handles.</typeparam>
     [HandlerConstraints]
     public abstract class VisualGroupBuilder<TAttribute> : VisualBuilder
-        where TAttribute : BeginGroupAttribute
+        where TAttribute : GroupAttribute
     {
         private TAttribute _attribute;
 
@@ -19,7 +19,7 @@ namespace EasyToolkit.Inspector.Editor
         public new IGroupElement Element => (IGroupElement)base.Element;
 
         /// <summary>
-        /// Gets the begin group attribute associated with this builder.
+        /// Gets the group attribute associated with this builder.
         /// </summary>
         public TAttribute Attribute
         {

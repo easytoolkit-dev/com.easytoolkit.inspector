@@ -6,10 +6,10 @@ namespace EasyToolkit.Inspector.Editor
     /// Abstract base class for visual element processors that handle group-related attributes.
     /// Provides a convenient way to access the associated group attribute and validate group element types.
     /// </summary>
-    /// <typeparam name="TAttribute">The type of begin group attribute this processor handles.</typeparam>
+    /// <typeparam name="TAttribute">The type of group attribute this processor handles.</typeparam>
     [HandlerConstraints]
     public abstract class VisualGroupProcessor<TAttribute> : VisualProcessor
-        where TAttribute : BeginGroupAttribute
+        where TAttribute : GroupAttribute
     {
         private TAttribute _attribute;
 
@@ -19,7 +19,7 @@ namespace EasyToolkit.Inspector.Editor
         public new IGroupElement Element => (IGroupElement)base.Element;
 
         /// <summary>
-        /// Gets the begin group attribute associated with this processor.
+        /// Gets the group attribute associated with this processor.
         /// </summary>
         public TAttribute Attribute
         {

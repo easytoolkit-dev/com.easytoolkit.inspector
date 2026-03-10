@@ -1,15 +1,12 @@
 using System;
-using EasyToolkit.Inspector.Attributes;
 using System.Diagnostics;
 using UnityEngine;
-
-[assembly: RegisterGroupAttributeScope(typeof(MetroFoldoutGroupAttribute), typeof(EndMetroFoldoutGroupAttribute))]
 
 namespace EasyToolkit.Inspector.Attributes
 {
     [Conditional("UNITY_EDITOR")]
     [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]
-    public class MetroFoldoutGroupAttribute : BeginGroupAttribute
+    public class MetroFoldoutGroupAttribute : GroupAttribute
     {
         public string Label { get; set; }
         public string RightLabel { get; set; }
@@ -45,15 +42,6 @@ namespace EasyToolkit.Inspector.Attributes
         {
             Label = label;
             Tooltip = tooltip;
-        }
-    }
-
-    [Conditional("UNITY_EDITOR")]
-    [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]
-    public class EndMetroFoldoutGroupAttribute : EndGroupAttribute
-    {
-        public EndMetroFoldoutGroupAttribute()
-        {
         }
     }
 }

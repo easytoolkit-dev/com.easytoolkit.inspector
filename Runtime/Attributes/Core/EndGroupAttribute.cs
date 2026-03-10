@@ -1,8 +1,11 @@
 using System;
+using System.Diagnostics;
 
 namespace EasyToolkit.Inspector.Attributes
 {
-    public abstract class EndGroupAttribute : InspectorAttribute
+    [Conditional("UNITY_EDITOR")]
+    [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]
+    public class EndGroupAttribute : InspectorAttribute
     {
     }
 }

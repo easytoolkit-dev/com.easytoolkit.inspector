@@ -191,6 +191,7 @@ namespace EasyToolkit.Inspector.Editor
             }
             catch (Exception e)
             {
+                Debug.LogException(e);
                 Debug.LogError(
                     $"Failed to save persistent context cache due to an unexpected error. " +
                     $"Cache file path: {CacheFilePath}. Error: {e.Message}. " +

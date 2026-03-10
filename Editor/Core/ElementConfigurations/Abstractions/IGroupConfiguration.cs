@@ -9,16 +9,10 @@ namespace EasyToolkit.Inspector.Editor
     public interface IGroupConfiguration : IElementConfiguration
     {
         /// <summary>
-        /// Gets or sets the type of attribute that begins this group (e.g., FoldoutGroupAttribute).
+        /// Gets or sets the type of attribute that begins this group (e.g., <see cref="Attributes.GroupAttribute"/>).
         /// This attribute marks the start of a logical grouping in the inspector.
         /// </summary>
-        Type BeginGroupAttributeType { get; set; }
-
-        /// <summary>
-        /// Gets or sets the type of attribute that ends this group (e.g., EndFoldoutGroupAttribute).
-        /// This attribute marks the end of the logical grouping.
-        /// </summary>
-        Type EndGroupAttributeType { get; set; }
+        Type GroupAttributeType { get; set; }
 
         /// <summary>
         /// Creates a new <see cref="IGroupDefinition"/> instance based on the current configuration.

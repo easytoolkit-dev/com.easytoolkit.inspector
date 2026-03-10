@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace EasyToolkit.Inspector.Editor
 {
@@ -9,13 +9,8 @@ namespace EasyToolkit.Inspector.Editor
     public interface IGroupDefinition : IElementDefinition
     {
         /// <summary>
-        /// Gets the type of the attribute that begins this group (e.g., <see cref="FoldoutGroupAttribute"/>).
+        /// Gets the type of the attribute that begins this group (e.g., <see cref="Attributes.GroupAttribute"/>).
         /// </summary>
-        Type BeginGroupAttributeType { get; }
-
-        /// <summary>
-        /// Gets the type of the attribute that ends this group (e.g., <see cref="EndFoldoutGroupAttribute"/>).
-        /// </summary>
-        Type EndGroupAttributeType { get; }
+        Type GroupAttributeType { get; }
     }
 }

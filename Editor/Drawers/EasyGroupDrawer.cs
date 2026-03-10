@@ -5,7 +5,7 @@ namespace EasyToolkit.Inspector.Editor
 {
     [HandlerConstraints]
     public abstract class EasyGroupDrawer<TAttribute> : EasyDrawer
-        where TAttribute : BeginGroupAttribute
+        where TAttribute : GroupAttribute
     {
         private TAttribute _attribute;
         public new IGroupElement Element => (IGroupElement)base.Element;
