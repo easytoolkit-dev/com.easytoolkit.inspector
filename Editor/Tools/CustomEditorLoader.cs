@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEditor.Callbacks;
 
 namespace EasyToolkit.Inspector.Editor
@@ -5,9 +6,12 @@ namespace EasyToolkit.Inspector.Editor
     internal static class CustomEditorLoader
     {
         [DidReloadScripts]
-        static CustomEditorLoader()
+        private static void OnScriptsReloaded()
         {
-            InspectorConfigAsset.Instance.UpdateEditors();
+            EditorApplication.delayCall += () =>
+            {
+                InspectorConfigAsset.Instance.UpdateEditors();
+            };
         }
     }
 }

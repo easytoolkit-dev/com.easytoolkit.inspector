@@ -10,7 +10,7 @@ namespace EasyToolkit.Inspector.Editor
     /// Provides data for the element destroyed event.
     /// </summary>
     [MustDisposeResource]
-    public class ElementDestroyedEventArgs : EventArgs, IPoolItem, IDisposable
+    public class ElementDestroyedEventArgs : EventArgs, IPoolObject, IDisposable
     {
         /// <summary>
         /// Gets the element that was destroyed.
@@ -37,11 +37,11 @@ namespace EasyToolkit.Inspector.Editor
             EditorPoolUtility.Release(this);
         }
 
-        void IPoolItem.Rent()
+        void IPoolObject.OnRent()
         {
         }
 
-        void IPoolItem.Release()
+        void IPoolObject.OnRelease()
         {
             Element = null;
         }

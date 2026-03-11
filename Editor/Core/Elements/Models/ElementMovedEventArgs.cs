@@ -39,7 +39,7 @@ namespace EasyToolkit.Inspector.Editor
     }
 
     [MustDisposeResource]
-    public class ElementMovedEventArgs : EventArgs, IPoolItem, IDisposable
+    public class ElementMovedEventArgs : EventArgs, IPoolObject, IDisposable
     {
         /// <summary>
         /// Gets the type of change that occurred.
@@ -101,11 +101,11 @@ namespace EasyToolkit.Inspector.Editor
             EditorPoolUtility.Release(this);
         }
 
-        void IPoolItem.Rent()
+        void IPoolObject.OnRent()
         {
         }
 
-        void IPoolItem.Release()
+        void IPoolObject.OnRelease()
         {
             ChangeType = default;
             Element = null;
