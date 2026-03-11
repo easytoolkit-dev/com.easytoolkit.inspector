@@ -24,12 +24,17 @@ namespace EasyToolkit.Inspector.Editor
                 var key = keyValuePair.Key;
                 _keyProcessor.Process("Key", ref key, formatter);
 
-                Type valueType = null;
-                if (formatter.Operation == FormatterOperation.Write)
+                var valueType = typeof(GlobalPersistentContext);
+                if (formatter.Operation == FormatterOperation.Write && keyValuePair.Value != null)
                 {
                     valueType = keyValuePair.Value.GetType();
                 }
                 _typeProcessor.Process("ValueType", ref valueType, formatter);
+                if (valueType.IsAbstract)
+                {
+                    keyValuePair = new KeyValuePair<string, GlobalPersistentContext>(key, null);
+                    return;
+                }
 
                 var valueItemType = valueType.GetGenericArgumentsRelativeTo(typeof(GlobalPersistentContext<>))[0];
                 if (SerializationProcessorFactory.GetProcessor(valueItemType) == null)

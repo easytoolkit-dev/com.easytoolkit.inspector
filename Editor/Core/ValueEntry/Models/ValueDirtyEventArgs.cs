@@ -10,7 +10,7 @@ namespace EasyToolkit.Inspector.Editor
     /// Provides data for the value dirty event.
     /// </summary>
     [MustDisposeResource]
-    public class ValueDirtyEventArgs : EventArgs, IPoolItem, IDisposable
+    public class ValueDirtyEventArgs : EventArgs, IPoolObject, IDisposable
     {
         /// <summary>
         /// Creates a new instance of the <see cref="ValueDirtyEventArgs"/> class from the object pool.
@@ -29,11 +29,11 @@ namespace EasyToolkit.Inspector.Editor
             EditorPoolUtility.Release(this);
         }
 
-        void IPoolItem.Rent()
+        void IPoolObject.OnRent()
         {
         }
 
-        void IPoolItem.Release()
+        void IPoolObject.OnRelease()
         {
         }
     }

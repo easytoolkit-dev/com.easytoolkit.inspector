@@ -3,7 +3,7 @@ using EasyToolkit.Core.Pooling;
 
 namespace EasyToolkit.Inspector.Editor
 {
-    public interface IResolver : IHandler, IPoolItem
+    public interface IResolver : IHandler, IPoolObject
     {
     }
 }
