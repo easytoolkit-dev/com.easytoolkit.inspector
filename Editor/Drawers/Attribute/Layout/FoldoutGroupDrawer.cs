@@ -20,6 +20,11 @@ namespace EasyToolkit.Inspector.Editor
 
             _labelEvaluator = ExpressionEvaluatorFactory.CreateEvaluator(
                 Attribute.Label, targetType, requireExpressionFlag: true);
+
+            if (Attribute.IsDefinedExpanded)
+            {
+                Element.State.DefaultExpanded = Attribute.Expanded;
+            }
         }
 
         protected override void Draw(GUIContent label)
