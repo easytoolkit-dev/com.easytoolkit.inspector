@@ -95,6 +95,11 @@ namespace EasyToolkit.Inspector.Editor
                 _sideLineColorGetterEvaluator = ExpressionEvaluatorFactory.CreateEvaluator(
                     Attribute.SideLineColorGetter, targetType);
             }
+
+            if (Attribute.IsDefinedExpanded)
+            {
+                Element.State.DefaultExpanded = Attribute.Expanded;
+            }
         }
 
         protected override void Draw(GUIContent label)
