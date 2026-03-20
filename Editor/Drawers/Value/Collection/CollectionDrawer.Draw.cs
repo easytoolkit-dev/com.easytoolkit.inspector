@@ -5,6 +5,7 @@ using EasyToolkit.Core.Mathematics;
 using EasyToolkit.Core.Reflection;
 using EasyToolkit.Inspector.Attributes;
 using EasyToolkit.Inspector.Editor.Internal;
+using EasyToolkit.Serialization;
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
@@ -71,6 +72,7 @@ namespace EasyToolkit.Inspector.Editor
         public static readonly bool DefaultDraggable = true;
     }
 
+    [EasySerializable(Ignore = true)]
     class CollectionItemContext
     {
         public Rect RemoveBtnRect;
@@ -106,7 +108,7 @@ namespace EasyToolkit.Inspector.Editor
 
                 if (_showIndexLabel && _listDrawerSettings.CustomIndexLabelFunction.IsNotNullOrEmpty())
                 {
-                    var customIndexLabelFunction = _listDrawerTargetType.GetOverloadMethod(
+                    var customIndexLabelFunction = _listDrawerTargetType.FindMethod(
                         _listDrawerSettings.CustomIndexLabelFunction,
                         MemberAccessFlags.All, typeof(int)) ?? throw new Exception(
                         $"Cannot find method '{_listDrawerSettings.CustomIndexLabelFunction}' in '{_listDrawerTargetType}'");
@@ -118,7 +120,7 @@ namespace EasyToolkit.Inspector.Editor
 
                 if (_listDrawerSettings.CustomRemoveIndexFunction.IsNotNullOrEmpty())
                 {
-                    var customRemoveIndexFunction = _listDrawerTargetType.GetOverloadMethod(
+                    var customRemoveIndexFunction = _listDrawerTargetType.FindMethod(
                         _listDrawerSettings.CustomRemoveIndexFunction,
                         MemberAccessFlags.All, typeof(int)) ?? throw new Exception(
                         $"Cannot find method '{_listDrawerSettings.CustomRemoveIndexFunction}' in '{_listDrawerTargetType}'");
@@ -360,6 +362,8 @@ namespace EasyToolkit.Inspector.Editor
         private void DrawItem(ICollectionItemElement itemElement, DragHandle dragHandle, int index, IElement drawnElement)
         {
             var itemContext = itemElement.GetPersistentContext("ItemContext", new CollectionItemContext()).Value;
+            itemContext ??= new CollectionItemContext();
+
             if (_listDrawerSettings is MetroListDrawerSettingsAttribute)
             {
                 EasyGUIHelper.PushColor(CollectionDrawerStyles.MetroItemBackgroundColor);

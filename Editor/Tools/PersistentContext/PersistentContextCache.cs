@@ -14,7 +14,8 @@ namespace EasyToolkit.Inspector.Editor
     [InitializeOnLoad]
     public class PersistentContextCache : Singleton<PersistentContextCache>
     {
-        private static readonly string CacheFileName = "PersistentContextCache.bytes";
+        private static readonly string CacheFileName = "PersistentContextCache.json";
+
         private static string s_cacheFilePath;
         private static string s_cacheDirectory;
 
@@ -115,8 +116,12 @@ namespace EasyToolkit.Inspector.Editor
                 if (!File.Exists(CacheFilePath))
                     File.Create(CacheFilePath).Close();
 
-                var data = File.ReadAllBytes(CacheFilePath);
-                _cache = EasySerializer.DeserializeFromBinary<PersistentContextDirectory>(data);
+                var data = File.ReadAllText(CacheFilePath);
+
+                if (!data.IsNullOrEmpty())
+                {
+                    _cache = EasySerializer.DeserializeFromJson<PersistentContextDirectory>(data);
+                }
                 _cache ??= new PersistentContextDirectory();
                 _cacheMemorySize = data.Length;
             }
@@ -167,7 +172,8 @@ namespace EasyToolkit.Inspector.Editor
 
                 var unityReferences = new List<UnityEngine.Object>();
 
-                File.WriteAllBytes(CacheFilePath, EasySerializer.SerializeToBinary(_cache, ref unityReferences));
+                var data = EasySerializer.SerializeToJson(_cache, ref unityReferences);
+                File.WriteAllText(CacheFilePath, data);
                 if (unityReferences.IsNotNullOrEmpty())
                 {
                     Debug.Log($"Reference unity objects({string.Join(", ", unityReferences)}) in persistent context is not supported.");

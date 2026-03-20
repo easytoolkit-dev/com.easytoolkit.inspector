@@ -65,7 +65,7 @@ namespace EasyToolkit.Inspector.Editor
         {
             if (!functionName.IsNotNullOrWhiteSpace()) return null;
 
-            var methodInfo = _listDrawerTargetType.GetOverloadMethod(functionName, MemberAccessFlags.All)
+            var methodInfo = _listDrawerTargetType.FindMethod(functionName, MemberAccessFlags.All)
                              ?? throw new Exception($"Cannot find method '{functionName}' in '{_listDrawerTargetType}'");
 
             return instance => methodInfo.Invoke(instance, null);
@@ -75,7 +75,7 @@ namespace EasyToolkit.Inspector.Editor
         {
             if (!functionName.IsNotNullOrWhiteSpace()) return null;
 
-            var methodInfo = _listDrawerTargetType.GetOverloadMethod(functionName, MemberAccessFlags.All)
+            var methodInfo = _listDrawerTargetType.FindMethod(functionName, MemberAccessFlags.All)
                              ?? throw new Exception($"Cannot find method '{functionName}' in '{_listDrawerTargetType}'");
 
             return (instance, value) => methodInfo.Invoke(instance, new object[] { value });

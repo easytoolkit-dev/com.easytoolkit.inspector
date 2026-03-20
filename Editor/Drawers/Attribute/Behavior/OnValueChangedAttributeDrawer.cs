@@ -29,11 +29,11 @@ namespace EasyToolkit.Inspector.Editor
                 {
                     try
                     {
-                        _methodInfo = targetType.GetOverloadMethod(Attribute.Method, MemberAccessFlags.All, ValueEntry.ValueType);
+                        _methodInfo = targetType.FindMethod(Attribute.Method, MemberAccessFlags.All, ValueEntry.ValueType);
                     }
                     catch (Exception e)
                     {
-                        _methodInfo = targetType.GetOverloadMethod(Attribute.Method, MemberAccessFlags.All);
+                        _methodInfo = targetType.FindMethod(Attribute.Method, MemberAccessFlags.All);
                     }
 
                     ValueEntry.AfterValueChanged += OnValueChanged;

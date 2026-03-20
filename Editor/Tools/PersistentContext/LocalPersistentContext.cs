@@ -1,44 +1,34 @@
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace EasyToolkit.Inspector.Editor
 {
-    /// <summary>
-    /// Helper class that provides a local copy of a <see cref="GlobalPersistentContext{T}"/>.
-    /// When the local value is changed, it also changed the global value, but the global value does not change the local value.
-    /// </summary>
-    /// <typeparam name="T">The type of the context value.</typeparam>
     public sealed class LocalPersistentContext<T>
     {
-        private GlobalPersistentContext<T> context;
-        private T localValue;
+        private readonly GlobalPersistentContext<T> _context;
+        [CanBeNull] private T _localValue;
 
-        /// <summary>
-        /// The value of the context.
-        /// Changing this value, also changes the global context value, but the global value does not change the local value.
-        /// </summary>
-        public T Value
+        [CanBeNull] public T Value
         {
-            get
-            {
-                return this.localValue;
-            }
+            get => _localValue;
             set
             {
-                if (!EqualityComparer<T>.Default.Equals(this.localValue, value))
+                if (!EqualityComparer<T>.Default.Equals(_localValue, value))
                 {
-                    this.context.Value = value;
-                    this.localValue = value;
+                    _context.Value = value;
+                    _localValue = value;
                 }
             }
         }
 
         private LocalPersistentContext(GlobalPersistentContext<T> global)
         {
-            if (global == null) { throw new ArgumentNullException("global"); }
+            if (global == null)
+                throw new ArgumentNullException(nameof(global));
 
-            this.context = global;
-            this.localValue = this.context.Value;
+            _context = global;
+            _localValue = _context.Value;
         }
 
         /// <summary>
@@ -55,7 +45,7 @@ namespace EasyToolkit.Inspector.Editor
         /// </summary>
         public void UpdateLocalValue()
         {
-            this.localValue = this.context.Value;
+            _localValue = _context.Value;
         }
     }
 }
