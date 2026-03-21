@@ -1,11 +1,11 @@
 using System;
 using System.Linq;
 using EasyToolkit.Core.Textual;
-using EasyToolkit.Core.Diagnostics;
 using EasyToolkit.Core.Editor;
 using EasyToolkit.Core.Reflection;
 using EasyToolkit.Serialization;
 using JetBrains.Annotations;
+using NUnit.Framework;
 using UnityEngine;
 
 namespace EasyToolkit.Inspector.Editor
@@ -210,7 +210,7 @@ namespace EasyToolkit.Inspector.Editor
             }
             else
             {
-                Assert.IsTrue(_orderedCollectionAccessor != null);
+                Assert.IsNotNull(_orderedCollectionAccessor);
                 ValueEntry.EnqueueChange(() =>
                 {
                     var valueToRemove = Element.LogicalChildren[index].ValueEntry.GetWeakValue(targetIndex);

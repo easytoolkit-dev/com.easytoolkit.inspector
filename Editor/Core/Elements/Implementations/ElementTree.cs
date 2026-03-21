@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using EasyToolkit.Core.Diagnostics;
 using EasyToolkit.Core.Editor;
-using EasyToolkit.Core.Reflection;
 using JetBrains.Annotations;
+using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -281,7 +280,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
                 }
             }
 
-            Assert.IsTrue(_dirtyValueElements.Count == 0, "Dirty value elements count is not zero.");
+            Assert.AreEqual(_dirtyValueElements.Count, 0, "Dirty value elements count is not zero.");
             return changed;
         }
 

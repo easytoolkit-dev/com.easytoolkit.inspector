@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using EasyToolkit.Core.Diagnostics;
 using JetBrains.Annotations;
+using NUnit.Framework;
 
 namespace EasyToolkit.Inspector.Editor.Implementations
 {
@@ -190,7 +190,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
                 foreach (var logicalChild in _logicalChildren)
                 {
                     Assert.IsFalse(Children.Contains(logicalChild),
-                        () => $"Disposed logical child '{logicalChild}' is still in children list.");
+                        $"Disposed logical child '{logicalChild}' is still in children list.");
                 }
 #endif
             }

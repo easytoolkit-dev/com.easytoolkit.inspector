@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using EasyToolkit.Core;
-using EasyToolkit.Core.Diagnostics;
+﻿using System.Linq;
 using EasyToolkit.Core.Editor;
 using EasyToolkit.Core.Reflection;
+using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
 
@@ -57,7 +54,7 @@ namespace EasyToolkit.Inspector.Editor
                 CollectionDrawerStaticContext.CurrentDroppingPropertyInfo = Element;
                 object droppedObject = _dropZone.ClaimObject();
 
-                Assert.IsTrue(_insertAt != null, "InsertAt is null");
+                Assert.IsNotNull(_insertAt, "InsertAt is null");
                 if (_dropZone.IsCrossWindowDrag)
                 {
                     // If it's a cross-window drag, the changes will for some reason be lost if we don't do this.
@@ -77,7 +74,7 @@ namespace EasyToolkit.Inspector.Editor
                 var droppedObjects = HandleUnityObjectsDrop();
                 if (droppedObjects != null)
                 {
-                    Assert.IsTrue(_insertAt != null, "InsertAt is null");
+                    Assert.IsNotNull(_insertAt, "InsertAt is null");
                     foreach (var obj in droppedObjects)
                     {
                         object[] values = new object[Element.SharedContext.Tree.Targets.Count];

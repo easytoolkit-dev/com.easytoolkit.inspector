@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using EasyToolkit.Core;
-using EasyToolkit.Core.Diagnostics;
 using JetBrains.Annotations;
+using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -259,7 +257,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
                         _phases = _phases.Add(ElementPhases.Drawing);
 
                         var owningVisualElement = GetOwningVisualElement();
-                        Assert.IsTrue(owningVisualElement != null);
+                        Assert.IsNotNull(owningVisualElement);
 
                         int originalIndex = RemoveVisualElementFromParent(owningVisualElement);
 

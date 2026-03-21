@@ -1,7 +1,6 @@
 using System;
-using EasyToolkit.Core;
-using EasyToolkit.Core.Diagnostics;
 using EasyToolkit.Core.Reflection;
+using NUnit.Framework;
 
 namespace EasyToolkit.Inspector.Editor
 {
@@ -64,7 +63,7 @@ namespace EasyToolkit.Inspector.Editor
         {
             var o = owner;
             Assert.IsTrue(owner.GetType().IsDerivedFrom(OwnerType),
-                () => $"Owner type mismatch. Expected: {OwnerType}, Actual: {o.GetType()}");
+                $"Owner type mismatch. Expected: {OwnerType}, Actual: {o.GetType()}");
             return GetValueRuntimeType(ref owner);
         }
 
@@ -72,7 +71,7 @@ namespace EasyToolkit.Inspector.Editor
         {
             var o = owner;
             Assert.IsTrue(owner.GetType().IsDerivedFrom(OwnerType),
-                () => $"Owner type mismatch. Expected: {OwnerType}, Actual: {o.GetType()}");
+                $"Owner type mismatch. Expected: {OwnerType}, Actual: {o.GetType()}");
             return GetWeakValue(ref owner);
         }
 
@@ -80,10 +79,10 @@ namespace EasyToolkit.Inspector.Editor
         {
             var o = owner;
             Assert.IsTrue(owner.GetType().IsDerivedFrom(OwnerType),
-                () => $"Owner type mismatch. Expected: {OwnerType}, Actual: {o.GetType()}");
+                $"Owner type mismatch. Expected: {OwnerType}, Actual: {o.GetType()}");
 
             Assert.IsTrue(value == null || value.GetType() == ValueType,
-                () => $"Value type mismatch. Expected: {ValueType}, Actual: {value?.GetType()}");
+                $"Value type mismatch. Expected: {ValueType}, Actual: {value?.GetType()}");
             SetWeakValue(ref owner, value);
         }
     }
@@ -142,7 +141,7 @@ namespace EasyToolkit.Inspector.Editor
         {
             var o = owner;
             Assert.IsTrue(owner.GetType().IsDerivedFrom(OwnerType),
-                () => $"Owner type mismatch. Expected: {OwnerType}, Actual: {o.GetType()}");
+                $"Owner type mismatch. Expected: {OwnerType}, Actual: {o.GetType()}");
             return GetValue(ref owner);
         }
 
@@ -150,7 +149,7 @@ namespace EasyToolkit.Inspector.Editor
         {
             var o = owner;
             Assert.IsTrue(owner.GetType().IsDerivedFrom(OwnerType),
-                () => $"Owner type mismatch. Expected: {OwnerType}, Actual: {o.GetType()}");
+                $"Owner type mismatch. Expected: {OwnerType}, Actual: {o.GetType()}");
             SetValue(ref owner, value);
         }
     }

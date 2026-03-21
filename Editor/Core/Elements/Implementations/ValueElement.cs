@@ -1,6 +1,6 @@
-using EasyToolkit.Core.Diagnostics;
 using EasyToolkit.Core.Reflection;
 using JetBrains.Annotations;
+using NUnit.Framework;
 
 namespace EasyToolkit.Inspector.Editor.Implementations
 {
@@ -84,11 +84,10 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         {
             _baseValueEntry.Update();
 
-            if (_baseValueEntry.State == ValueEntryState.TypeConsistent || _baseValueEntry.State == ValueEntryState.Consistent)
+            if (_baseValueEntry.State is ValueEntryState.TypeConsistent or ValueEntryState.Consistent)
             {
                 var runtimeType = _baseValueEntry.RuntimeValueType;
-                Assert.IsTrue(runtimeType != null,
-                    () => $"Runtime type of value entry is null, element is '{this}'");
+                Assert.IsNotNull(runtimeType, $"Runtime type of value entry is null, element is '{this}'");
                 if (runtimeType != _baseValueEntry.ValueType)
                 {
                     if (_valueEntry == null ||
