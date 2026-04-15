@@ -10,7 +10,7 @@ namespace EasyToolkit.Inspector.Editor
         {
             EditorApplication.delayCall += () =>
             {
-                InspectorConfigAsset.Instance.UpdateEditors();
+                InspectorConfig.Instance.UpdateEditors();
             };
         }
     }

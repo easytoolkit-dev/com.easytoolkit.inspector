@@ -42,7 +42,7 @@ namespace EasyToolkit.Inspector.Editor
 
             if (containsNull)
             {
-                var instantiateIfNull = InspectorConfigAsset.Instance.TryInstantiateReferenceObjectIfNull || _settings?.InstantiateIfNull == true;
+                var instantiateIfNull = InspectorConfig.Instance.TryInstantiateReferenceObjectIfNull || _settings?.InstantiateIfNull == true;
 
                 if (instantiateIfNull)
                 {

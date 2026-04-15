@@ -203,7 +203,7 @@ namespace EasyToolkit.Inspector.Editor
             // This ensures that that happens before we render anything.
             if (!s_hasUpdatedEasyEditors)
             {
-                InspectorConfigAsset.Instance.EnsureEditorsHaveBeenUpdated();
+                InspectorConfig.Instance.EnsureEditorsHaveBeenUpdated();
                 s_hasUpdatedEasyEditors = true;
             }
 

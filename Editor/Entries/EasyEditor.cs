@@ -176,7 +176,7 @@ namespace EasyToolkit.Inspector.Editor
             {
                 _tree.DrawMonoScriptObjectField = _tree.SerializedObject != null &&
                                                   _tree.TargetType != null &&
-                                                  InspectorConfigAsset.Instance.DrawMonoScriptInEditor &&
+                                                  InspectorConfig.Instance.DrawMonoScriptInEditor &&
                                                   !IsInlineEditor;
             }
 

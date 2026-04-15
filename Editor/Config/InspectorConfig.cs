@@ -1,7 +1,5 @@
 using System;
-using EasyToolkit.Core;
 using EasyToolkit.Core.Editor;
-using EasyToolkit.Core.Editor.Internal;
 using UnityEditor;
 using UnityEngine;
 using System.Linq;
@@ -12,7 +10,7 @@ using EasyToolkit.Inspector.Attributes;
 namespace EasyToolkit.Inspector.Editor
 {
     [ScriptableObjectSingletonConfiguration("Plugins/EasyToolKit/Inspector/Editor/Configs", ScriptableObjectLoadMode.Asset)]
-    public class InspectorConfigAsset : ScriptableObjectSingleton<InspectorConfigAsset>, ISerializationCallbackReceiver
+    public class InspectorConfig : ScriptableObjectSingleton<InspectorConfig>, ISerializationCallbackReceiver
     {
         [SerializeField] private bool _drawMonoScriptInEditor = true;
         [SerializeField] private bool _instantiateReferenceObjectIfNull = true;
