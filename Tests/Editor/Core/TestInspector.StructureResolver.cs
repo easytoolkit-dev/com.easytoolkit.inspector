@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using EasyToolkit.Inspector.Editor;
 using EasyToolkit.Inspector.Editor.Implementations;
 using NUnit.Framework;

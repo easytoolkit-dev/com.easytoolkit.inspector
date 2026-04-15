@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using EasyToolkit.Core;
 
 namespace EasyToolkit.Inspector.Editor.Implementations

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using EasyToolkit.Core.Textual;
 using EasyToolkit.Core.Editor;
 using EasyToolkit.Core.Mathematics;

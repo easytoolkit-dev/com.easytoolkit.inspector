@@ -1,4 +1,4 @@
-﻿using EasyToolkit.Core.Pooling;
+using EasyToolkit.Core.Pooling;
 
 namespace EasyToolkit.Inspector.Editor
 {

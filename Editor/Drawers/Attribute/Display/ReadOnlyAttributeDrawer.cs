@@ -1,4 +1,4 @@
-﻿using EasyToolkit.Inspector.Attributes;
+using EasyToolkit.Inspector.Attributes;
 using UnityEngine;
 
 namespace EasyToolkit.Inspector.Editor

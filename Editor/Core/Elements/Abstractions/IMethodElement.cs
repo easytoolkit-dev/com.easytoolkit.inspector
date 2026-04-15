@@ -1,4 +1,4 @@
-﻿namespace EasyToolkit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Method element interface for function handling in the inspector tree.

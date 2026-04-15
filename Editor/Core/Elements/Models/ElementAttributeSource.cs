@@ -1,4 +1,4 @@
-﻿namespace EasyToolkit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Specifies the source of an attribute in the inspector property system

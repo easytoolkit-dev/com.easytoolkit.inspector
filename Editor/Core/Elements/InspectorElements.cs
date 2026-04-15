@@ -1,4 +1,4 @@
-﻿namespace EasyToolkit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Provides centralized access to the core factory services of the EasyToolkit inspector system.

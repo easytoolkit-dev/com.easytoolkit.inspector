@@ -1,4 +1,4 @@
-﻿namespace EasyToolkit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
     /// Root definition interface for the inspector tree.

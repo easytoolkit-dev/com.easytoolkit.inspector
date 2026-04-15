@@ -1,4 +1,4 @@
-﻿using EasyToolkit.Core.Mathematics;
+using EasyToolkit.Core.Mathematics;
 
 namespace EasyToolkit.Inspector.Editor
 {

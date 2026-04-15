@@ -1,4 +1,4 @@
-﻿namespace EasyToolkit.Inspector.Editor
+namespace EasyToolkit.Inspector.Editor
 {
     public abstract class ValueOperationResolverBase : ResolverBase, IValueOperationResolver
     {

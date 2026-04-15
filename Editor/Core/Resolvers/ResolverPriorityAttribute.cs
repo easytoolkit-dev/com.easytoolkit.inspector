@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using EasyToolkit.Core.Mathematics;
 
 namespace EasyToolkit.Inspector.Editor

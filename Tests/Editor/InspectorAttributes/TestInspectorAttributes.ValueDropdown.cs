@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using EasyToolkit.Core.Reflection;
 using EasyToolkit.Inspector.Attributes;

@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using EasyToolkit.Core.Editor;
 using EasyToolkit.Core.Reflection;
 using NUnit.Framework;
