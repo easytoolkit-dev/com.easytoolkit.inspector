@@ -218,7 +218,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// Disposes the root element and shared context.
         /// </summary>
-        public void Dispose()
+        void IDisposable.Dispose()
         {
             if (_disposed)
                 return;

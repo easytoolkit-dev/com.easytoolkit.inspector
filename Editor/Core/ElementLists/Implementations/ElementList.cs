@@ -174,19 +174,12 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             UpdateNameIndexAfterInsert(index, element);
             InvalidatePathCacheFrom(index);
 
-            var postArgs = ElementMovedEventArgs.Create(ElementListChangeType.Insert, element, index, element.Parent, _ownerElement, ElementMovedTiming.After);
-            try
-            {
-                OnAfterElementChanged(postArgs);
+            using var postArgs = ElementMovedEventArgs.Create(ElementListChangeType.Insert, element, index, element.Parent, _ownerElement, ElementMovedTiming.After);
+            OnAfterElementChanged(postArgs);
 
-                // Directly call OnElementMoved for the inserted element and its old parent
-                // This avoids O(n²) complexity where all elements process all move events
-                DirectNotifyElementMoved(element, postArgs);
-            }
-            finally
-            {
-                postArgs.Dispose();
-            }
+            // Directly call OnElementMoved for the inserted element and its old parent
+            // This avoids O(n²) complexity where all elements process all move events
+            DirectNotifyElementMoved(element, postArgs);
         }
 
         /// <summary>
@@ -210,19 +203,12 @@ namespace EasyToolkit.Inspector.Editor.Implementations
 
             InvalidatePathCacheFrom(index);
 
-            var postArgs = ElementMovedEventArgs.Create(ElementListChangeType.Remove, element, index, _ownerElement, null, ElementMovedTiming.After);
-            try
-            {
-                OnAfterElementChanged(postArgs);
+            using var postArgs = ElementMovedEventArgs.Create(ElementListChangeType.Remove, element, index, _ownerElement, null, ElementMovedTiming.After);
+            OnAfterElementChanged(postArgs);
 
-                // Directly call OnElementMoved for the removed element
-                // This avoids O(n²) complexity where all elements process all move events
-                DirectNotifyElementMoved(element, postArgs);
-            }
-            finally
-            {
-                postArgs.Dispose();
-            }
+            // Directly call OnElementMoved for the removed element
+            // This avoids O(n²) complexity where all elements process all move events
+            DirectNotifyElementMoved(element, postArgs);
         }
 
         /// <summary>
@@ -254,16 +240,9 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             for (var i = 0; i < elements.Count; i++)
             {
                 var element = elements[i];
-                var postArgs = ElementMovedEventArgs.Create(ElementListChangeType.Remove, element, i, _ownerElement, null, ElementMovedTiming.After);
-                try
-                {
-                    OnAfterElementChanged(postArgs);
-                    DirectNotifyElementMoved(element, postArgs);
-                }
-                finally
-                {
-                    postArgs.Dispose();
-                }
+                using var postArgs = ElementMovedEventArgs.Create(ElementListChangeType.Remove, element, i, _ownerElement, null, ElementMovedTiming.After);
+                OnAfterElementChanged(postArgs);
+                DirectNotifyElementMoved(element, postArgs);
             }
         }
 

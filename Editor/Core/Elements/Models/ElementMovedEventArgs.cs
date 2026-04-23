@@ -39,7 +39,7 @@ namespace EasyToolkit.Inspector.Editor
     }
 
     [MustDisposeResource]
-    public class ElementMovedEventArgs : EventArgs, IPoolObject, IDisposable
+    public class ElementMovedEventArgs : EventArgs, IDisposable
     {
         /// <summary>
         /// Gets the type of change that occurred.
@@ -96,16 +96,7 @@ namespace EasyToolkit.Inspector.Editor
         /// <summary>
         /// Releases the instance back to the object pool.
         /// </summary>
-        public void Dispose()
-        {
-            EditorPoolUtility.Release(this);
-        }
-
-        void IPoolObject.OnRent()
-        {
-        }
-
-        void IPoolObject.OnRelease()
+        void IDisposable.Dispose()
         {
             ChangeType = default;
             Element = null;
@@ -113,6 +104,7 @@ namespace EasyToolkit.Inspector.Editor
             OldParent = null;
             NewParent = null;
             Timing = default;
+            EditorPoolUtility.Release(this);
         }
     }
 }

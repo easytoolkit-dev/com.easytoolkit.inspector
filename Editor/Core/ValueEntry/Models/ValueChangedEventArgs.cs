@@ -27,7 +27,7 @@ namespace EasyToolkit.Inspector.Editor
     /// <see cref="IValueEntry{TValue}.AfterValueChanged"/> events.
     /// </summary>
     [MustDisposeResource]
-    public class ValueChangedEventArgs : EventArgs, IPoolObject, IDisposable
+    public class ValueChangedEventArgs : EventArgs, IDisposable
     {
         /// <summary>
         /// Gets the zero-based index of the target object.
@@ -72,19 +72,11 @@ namespace EasyToolkit.Inspector.Editor
         /// </summary>
         public void Dispose()
         {
-            EditorPoolUtility.Release(this);
-        }
-
-        void IPoolObject.OnRent()
-        {
-        }
-
-        void IPoolObject.OnRelease()
-        {
             TargetIndex = 0;
             OldValue = null;
             NewValue = null;
             Timing = default;
+            EditorPoolUtility.Release(this);
         }
     }
 }

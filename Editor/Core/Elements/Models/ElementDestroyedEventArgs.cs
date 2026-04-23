@@ -10,7 +10,7 @@ namespace EasyToolkit.Inspector.Editor
     /// Provides data for the element destroyed event.
     /// </summary>
     [MustDisposeResource]
-    public class ElementDestroyedEventArgs : EventArgs, IPoolObject, IDisposable
+    public class ElementDestroyedEventArgs : EventArgs, IDisposable
     {
         /// <summary>
         /// Gets the element that was destroyed.
@@ -32,18 +32,10 @@ namespace EasyToolkit.Inspector.Editor
         /// <summary>
         /// Releases the instance back to the object pool.
         /// </summary>
-        public void Dispose()
-        {
-            EditorPoolUtility.Release(this);
-        }
-
-        void IPoolObject.OnRent()
-        {
-        }
-
-        void IPoolObject.OnRelease()
+        void IDisposable.Dispose()
         {
             Element = null;
+            EditorPoolUtility.Release(this);
         }
     }
 }

@@ -57,7 +57,7 @@ namespace EasyToolkit.Inspector.Editor
     /// Provides data for collection change events.
     /// </summary>
     [MustDisposeResource]
-    public class CollectionChangedEventArgs : EventArgs, IPoolObject, IDisposable
+    public class CollectionChangedEventArgs : EventArgs, IDisposable
     {
         /// <summary>
         /// Gets the zero-based index of the target object.
@@ -109,20 +109,12 @@ namespace EasyToolkit.Inspector.Editor
         /// </summary>
         public void Dispose()
         {
-            EditorPoolUtility.Release(this);
-        }
-
-        void IPoolObject.OnRent()
-        {
-        }
-
-        void IPoolObject.OnRelease()
-        {
             TargetIndex = 0;
             ChangeType = default;
             Item = null;
             ItemIndex = null;
             Timing = default;
+            EditorPoolUtility.Release(this);
         }
     }
 }
