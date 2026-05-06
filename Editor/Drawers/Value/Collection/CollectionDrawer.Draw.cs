@@ -1,7 +1,6 @@
 using System;
-using EasyToolkit.Core.Textual;
 using EasyToolkit.Core.Editor;
-using EasyToolkit.Core.Mathematics;
+using EasyToolkit.Core.Foundation;
 using EasyToolkit.Core.Reflection;
 using EasyToolkit.Inspector.Attributes;
 using EasyToolkit.Inspector.Editor.Internal;

@@ -1,6 +1,6 @@
 using System;
 using EasyToolkit.Core;
-using EasyToolkit.Core.Textual;
+using EasyToolkit.Core.Foundation;
 using EasyToolkit.Core.Editor;
 using EasyToolkit.Inspector.Attributes;
 using UnityEditor;

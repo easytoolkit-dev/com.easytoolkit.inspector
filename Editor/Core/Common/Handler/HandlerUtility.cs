@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
-using EasyToolkit.Core.Mathematics;
+using EasyToolkit.Core.Foundation;
 using EasyToolkit.Core.Reflection;
 using UnityEngine;
 

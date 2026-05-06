@@ -1,6 +1,6 @@
 using System;
 using System.Reflection;
-using EasyToolkit.Core.Textual;
+using EasyToolkit.Core.Foundation;
 
 namespace EasyToolkit.Inspector.Editor.Implementations
 {

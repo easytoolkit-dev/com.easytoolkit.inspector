@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using EasyToolkit.Core.Collections;
+using EasyToolkit.Core.Foundation;
 using EasyToolkit.Core.Editor;
 using EasyToolkit.Core.Editor.Internal;
 using EasyToolkit.Core.Patterns;

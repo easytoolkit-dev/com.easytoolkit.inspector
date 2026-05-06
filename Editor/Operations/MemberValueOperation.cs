@@ -22,7 +22,7 @@ namespace EasyToolkit.Inspector.Editor
         /// <param name="memberInfo">Member information</param>
         public MemberValueOperation(MemberInfo memberInfo) : base(typeof(TOwner))
         {
-            var accessor = ReflectionPathFactory.BuildAccessor(memberInfo.Name);
+            var accessor = new AccessorBuilder(memberInfo.Name);
 
             _getter = accessor.BuildInstanceGetter<TOwner, TValue>();
             try

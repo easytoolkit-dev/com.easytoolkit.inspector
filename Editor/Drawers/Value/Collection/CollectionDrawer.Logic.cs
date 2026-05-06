@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using EasyToolkit.Core.Textual;
+using EasyToolkit.Core.Foundation;
 using EasyToolkit.Core.Editor;
 using EasyToolkit.Core.Reflection;
 using EasyToolkit.Serialization;

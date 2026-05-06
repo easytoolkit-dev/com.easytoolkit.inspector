@@ -1,7 +1,7 @@
 using System;
 using EasyToolkit.Core;
 using EasyToolkit.Core.Editor;
-using EasyToolkit.Core.Mathematics;
+using EasyToolkit.Core.Foundation;
 using UnityEditor;
 using UnityEngine;
 
