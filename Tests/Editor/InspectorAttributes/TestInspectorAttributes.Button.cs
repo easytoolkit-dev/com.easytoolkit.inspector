@@ -63,7 +63,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         public void GetDrawerChain_WithDefaultButton_ContainsButtonDrawer()
         {
             var buttonElement = GetDefaultButtonElement();
-            var drawerChainResolver = new DefaultDrawerChainResolverFactory().CreateResolver(buttonElement);
+            var drawerChainResolver = DrawerChainResolverFactory.CreateResolver(buttonElement);
             Assert.IsNotNull(drawerChainResolver);
             var drawerChain = drawerChainResolver.GetDrawerChain();
             Assert.IsTrue(drawerChain.Drawers.Any(drawer => drawer.GetType() == typeof(ButtonAttributeDrawer)));
@@ -77,7 +77,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         public void GetDrawerChain_WithCustomButton_ContainsButtonDrawer()
         {
             var buttonElement = GetCustomButtonElement();
-            var drawerChainResolver = new DefaultDrawerChainResolverFactory().CreateResolver(buttonElement);
+            var drawerChainResolver = DrawerChainResolverFactory.CreateResolver(buttonElement);
             Assert.IsNotNull(drawerChainResolver);
             var drawerChain = drawerChainResolver.GetDrawerChain();
             Assert.IsTrue(drawerChain.Drawers.Any(drawer => drawer.GetType() == typeof(ButtonAttributeDrawer)));
@@ -86,7 +86,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         private IMethodElement GetDefaultButtonElement()
         {
             var testInstance = new TestClass();
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             tree.BeginDraw();
             tree.EndDraw();
             var root = tree.Root;
@@ -99,7 +99,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         private IMethodElement GetCustomButtonElement()
         {
             var testInstance = new TestClass();
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             tree.BeginDraw();
             tree.EndDraw();
             var root = tree.Root;

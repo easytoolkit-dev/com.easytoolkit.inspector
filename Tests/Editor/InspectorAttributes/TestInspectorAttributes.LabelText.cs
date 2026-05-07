@@ -57,7 +57,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         public void GetDrawerChain_WithLabelTextInt_ContainsLabelTextDrawer()
         {
             var labelTextElement = GetLabelTextElement();
-            var drawerChainResolver = new DefaultDrawerChainResolverFactory().CreateResolver(labelTextElement);
+            var drawerChainResolver = DrawerChainResolverFactory.CreateResolver(labelTextElement);
             Assert.IsNotNull(drawerChainResolver);
             var drawerChain = drawerChainResolver.GetDrawerChain();
             Assert.IsTrue(drawerChain.Drawers.Any(drawer => drawer.GetType() == typeof(LabelTextAttributeDrawer)));
@@ -66,7 +66,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         private IFieldElement GetLabelTextElement()
         {
             var testInstance = new TestClass();
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             tree.BeginDraw();
             tree.EndDraw();
             var root = tree.Root;

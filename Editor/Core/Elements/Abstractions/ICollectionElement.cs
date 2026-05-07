@@ -1,3 +1,5 @@
+using EasyToolkit.Inspector.Editor.Implementations;
+
 namespace EasyToolkit.Inspector.Editor
 {
     /// <summary>
@@ -13,7 +15,7 @@ namespace EasyToolkit.Inspector.Editor
 
         new IReadOnlyElementList<ICollectionItemElement> LogicalChildren { get; }
 
-        new IElementList<IElement> Children { get; }
+        new ElementList<IElement> Children { get; }
 
         /// <summary>
         /// Gets the base value entry that is built directly from <see cref="IValueDefinition.ValueType"/>.

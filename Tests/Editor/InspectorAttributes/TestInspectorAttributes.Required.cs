@@ -63,7 +63,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         public void GetDrawerChain_WithRequiredString_ContainsRequiredDrawer()
         {
             var requiredStringElement = GetRequiredStringElement();
-            var drawerChainResolver = new DefaultDrawerChainResolverFactory().CreateResolver(requiredStringElement);
+            var drawerChainResolver = DrawerChainResolverFactory.CreateResolver(requiredStringElement);
             Assert.IsNotNull(drawerChainResolver);
             var drawerChain = drawerChainResolver.GetDrawerChain();
             Assert.IsTrue(drawerChain.Drawers.Any(drawer => drawer.GetType() == typeof(RequiredAttributeDrawer<string>)));
@@ -77,7 +77,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         public void GetDrawerChain_WithRequiredInt_ContainsRequiredDrawer()
         {
             var requiredIntElement = GetRequiredIntElement();
-            var drawerChainResolver = new DefaultDrawerChainResolverFactory().CreateResolver(requiredIntElement);
+            var drawerChainResolver = DrawerChainResolverFactory.CreateResolver(requiredIntElement);
             Assert.IsNotNull(drawerChainResolver);
             var drawerChain = drawerChainResolver.GetDrawerChain();
             Assert.IsTrue(drawerChain.Drawers.Any(drawer => drawer.GetType() == typeof(RequiredAttributeDrawer<int>)));
@@ -91,7 +91,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         public void GetDrawerChain_WithRequiredUnityObject_ContainsRequiredDrawer()
         {
             var requiredUnityObjectElement = GetRequiredUnityObjectElement();
-            var drawerChainResolver = new DefaultDrawerChainResolverFactory().CreateResolver(requiredUnityObjectElement);
+            var drawerChainResolver = DrawerChainResolverFactory.CreateResolver(requiredUnityObjectElement);
             Assert.IsNotNull(drawerChainResolver);
             var drawerChain = drawerChainResolver.GetDrawerChain();
             Assert.IsTrue(drawerChain.Drawers.Any(drawer => drawer.GetType() == typeof(RequiredAttributeDrawer<UnityEngine.Object>)));
@@ -100,7 +100,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         private IFieldElement GetRequiredStringElement()
         {
             var testInstance = new TestClass();
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             tree.BeginDraw();
             tree.EndDraw();
             var root = tree.Root;
@@ -113,7 +113,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         private IFieldElement GetRequiredIntElement()
         {
             var testInstance = new TestClass();
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             tree.BeginDraw();
             tree.EndDraw();
             var root = tree.Root;
@@ -126,7 +126,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         private IFieldElement GetRequiredUnityObjectElement()
         {
             var testInstance = new TestClass();
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             tree.BeginDraw();
             tree.EndDraw();
             var root = tree.Root;

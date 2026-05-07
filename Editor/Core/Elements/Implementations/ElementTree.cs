@@ -16,10 +16,10 @@ namespace EasyToolkit.Inspector.Editor.Implementations
     public class ElementTree : IElementTree, IDisposable
     {
         private readonly object[] _targets;
-        private readonly IElementSharedContext _sharedContext;
-        private readonly HashSet<IValueElement> _dirtyValueElements = new HashSet<IValueElement>();
-        private readonly Queue<Action> _pendingCallbacks = new Queue<Action>();
-        private readonly Queue<Action> _pendingCallbacksUntilRepaint = new Queue<Action>();
+        private readonly ElementSharedContext _sharedContext;
+        private readonly HashSet<IValueElement> _dirtyValueElements = new();
+        private readonly Queue<Action> _pendingCallbacks = new();
+        private readonly Queue<Action> _pendingCallbacksUntilRepaint = new();
         private readonly InspectorBackendMode _backendMode;
         private bool _disposed;
 
@@ -61,10 +61,10 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         public bool DrawMonoScriptObjectField { get; set; }
 
         /// <summary>
-        /// Gets the element factory instance owned by this tree.
+        /// Gets the element creator instance owned by this tree.
         /// Provides methods for creating various element types.
         /// </summary>
-        public IElementFactory ElementFactory { get; }
+        public ElementCreator ElementCreator { get; }
 
         /// <summary>
         /// Gets the root <see cref="VisualElement"/> for UI Toolkit rendering.
@@ -104,13 +104,9 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             _sharedContext = new ElementSharedContext(this);
 
             // Create element factory
-            ElementFactory = new ElementFactory(_sharedContext);
+            ElementCreator = new ElementCreator(_sharedContext);
 
-            Root = ElementFactory.CreateRootElement(
-                InspectorElements.Configurator.Root()
-                    .WithValueType(targets[0].GetType())
-                    .WithName("$ROOT$")
-                    .CreateDefinition());
+            Root = ElementCreator.CreateRootElement(new RootDefinition(targets[0].GetType(), "$ROOT$"));
 
             _sharedContext.RegisterEventHandler<ValueDirtyEventArgs>(OnEvent);
         }

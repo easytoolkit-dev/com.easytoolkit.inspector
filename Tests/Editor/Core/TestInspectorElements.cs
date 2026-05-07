@@ -22,7 +22,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
             var testInstance = new SingleFieldClass { TestInt = 42 };
 
             // Act
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
 
             // Assert
             Assert.IsNotNull(tree, "Tree should not be null");
@@ -40,7 +40,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
             var target2 = new SingleFieldClass { TestInt = 2 };
 
             // Act
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { target1, target2 }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { target1, target2 }, null);
 
             // Assert
             Assert.IsNotNull(tree, "Tree should not be null");
@@ -57,7 +57,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
             var testInstance = new SingleFieldClass();
 
             // Act
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
 
             // Assert
             Assert.AreEqual(typeof(SingleFieldClass), tree.TargetType, "Target type should match the object type");
@@ -75,7 +75,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new SingleFieldClass();
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
 
             // Act
             var root = tree.Root;
@@ -92,7 +92,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new SingleFieldClass();
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
 
             // Act
             var root = tree.Root;
@@ -109,7 +109,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new SingleFieldClass();
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
 
             // Act
             var root = tree.Root;
@@ -130,7 +130,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new SingleFieldClass { TestInt = 42 };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
 
             // Act
@@ -149,7 +149,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new SingleFieldClass { TestInt = 42 };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
 
             // Act
@@ -171,7 +171,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new SingleFieldClass { TestInt = 42 };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
 
             // Act
@@ -198,7 +198,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
                 StringField = "test",
                 BoolField = true
             };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
 
             // Act
@@ -217,7 +217,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new MultipleFieldsClass { IntField = 1 };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
 
             // Act
@@ -239,7 +239,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new MultipleFieldsClass { FloatField = 2.0f };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
 
             // Act
@@ -261,7 +261,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new MultipleFieldsClass { StringField = "test" };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
 
             // Act
@@ -283,7 +283,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new MultipleFieldsClass { BoolField = true };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
 
             // Act
@@ -308,7 +308,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
             {
                 PublicField = 1
             };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
 
             // Act
@@ -329,7 +329,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new MixedMembersClass { PublicField = 1 };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
 
             // Act
@@ -355,7 +355,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
                 Id = 100,
                 NestedObject = new SingleFieldClass { TestInt = 42 }
             };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
 
             // Act
@@ -374,7 +374,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new NestedClass { Id = 100 };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
 
             // Act
@@ -396,7 +396,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new NestedClass { NestedObject = new SingleFieldClass { TestInt = 42 } };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
 
             // Act
@@ -422,7 +422,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new SingleFieldClass { TestInt = 42 };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();
@@ -442,7 +442,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new SingleFieldClass { TestInt = 42 };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();
@@ -467,7 +467,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new SingleFieldClass { TestInt = 42 };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
 
             // Act
             var root = tree.Root;
@@ -484,7 +484,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new SingleFieldClass { TestInt = 42 };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();
@@ -508,7 +508,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new SingleFieldClass { TestInt = 42 };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
 
             // Act
@@ -523,7 +523,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new SingleFieldClass { TestInt = 42 };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();
@@ -541,7 +541,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new SingleFieldClass { TestInt = 42 };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
 
             // Act
@@ -568,7 +568,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new SingleFieldClass { TestInt = 42 };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();
@@ -587,10 +587,10 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new SingleFieldClass { TestInt = 42 };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
 
             // Act
-            var factory = tree.ElementFactory;
+            var factory = tree.ElementCreator;
 
             // Assert
             Assert.IsNotNull(factory, "Tree should have an element factory");
@@ -608,10 +608,10 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new SingleFieldClass { TestInt = 42 };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
 
             // Act
-            var factory = tree.ElementFactory;
+            var factory = tree.ElementCreator;
 
             // Assert
             Assert.IsNotNull(factory, "Element factory should not be null");

@@ -62,7 +62,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         public void GetDrawerChain_WithHideIfInt_ContainsHideIfDrawer()
         {
             var hideIfIntElement = GetHideIfIntElement();
-            var drawerChainResolver = new DefaultDrawerChainResolverFactory().CreateResolver(hideIfIntElement);
+            var drawerChainResolver = DrawerChainResolverFactory.CreateResolver(hideIfIntElement);
             Assert.IsNotNull(drawerChainResolver);
             var drawerChain = drawerChainResolver.GetDrawerChain();
             Assert.IsTrue(drawerChain.Drawers.Any(drawer => drawer.GetType() == typeof(HideIfAttributeDrawer)));
@@ -71,7 +71,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         private IFieldElement GetHideIfIntElement()
         {
             var testInstance = new TestClass();
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             tree.BeginDraw();
             tree.EndDraw();
             var root = tree.Root;

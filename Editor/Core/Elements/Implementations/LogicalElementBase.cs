@@ -15,7 +15,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
 
         protected LogicalElementBase(
             [NotNull] IElementDefinition definition,
-            [NotNull] IElementSharedContext sharedContext,
+            [NotNull] ElementSharedContext sharedContext,
             [CanBeNull] ILogicalElement logicalParent)
             : base(definition, sharedContext)
         {
@@ -147,7 +147,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             var childrenDefinitions = _structureResolver?.GetChildrenDefinitions();
 
             var children = new ElementList<ILogicalElement>(this,
-                childrenDefinitions?.Select(definition => (ILogicalElement)SharedContext.Tree.ElementFactory.CreateElement(definition, this)));
+                childrenDefinitions?.Select(definition => (ILogicalElement)SharedContext.Tree.ElementCreator.CreateElement(definition, this)));
 
             return children;
         }
@@ -173,9 +173,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
                     _structureResolver = null;
                 }
 
-                // Initialize structure resolver (before children)
-                var factory = SharedContext.GetResolverFactory<IStructureResolver>();
-                _structureResolver = factory.CreateResolver(this);
+                _structureResolver = StructureResolverFactory.CreateResolver(this);
             }
 
             if (_logicalChildren != null)

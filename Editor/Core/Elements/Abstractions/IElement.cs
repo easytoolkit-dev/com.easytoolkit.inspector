@@ -25,7 +25,7 @@ namespace EasyToolkit.Inspector.Editor
         /// The context provides dependency injection access to resolver factories and includes an
         /// update identifier used to prevent logic from executing multiple times within a single frame.
         /// </summary>
-        IElementSharedContext SharedContext { get; }
+        ElementSharedContext SharedContext { get; }
 
         /// <summary>
         /// Gets the current parent element in the element tree hierarchy.
@@ -43,7 +43,7 @@ namespace EasyToolkit.Inspector.Editor
         /// <summary>
         /// Gets the runtime state of this element.
         /// </summary>
-        IElementState State { get; }
+        ElementState State { get; }
 
         /// <summary>
         /// Gets the hierarchical path of this element.
@@ -68,7 +68,7 @@ namespace EasyToolkit.Inspector.Editor
         /// This property can be <c>null</c> for elements that cannot have children.
         /// </para>
         /// </remarks>
-        [CanBeNull] IElementList<IElement> Children { get; }
+        [CanBeNull] ElementList<IElement> Children { get; }
 
         [CanBeNull] VisualElement VisualElement { get; }
         [CanBeNull] VisualElement SpecificOwningVisualElement { get; set; }

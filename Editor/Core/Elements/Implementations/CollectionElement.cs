@@ -11,7 +11,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
 
         public CollectionElement(
             [NotNull] IValueDefinition definition,
-            [NotNull] IElementSharedContext sharedContext,
+            [NotNull] ElementSharedContext sharedContext,
             [CanBeNull] ILogicalElement logicalParent)
             : base(definition, sharedContext, logicalParent)
         {
@@ -99,7 +99,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         {
             structureResolver.IncrementItemCount();
             var definition = (ICollectionItemDefinition)structureResolver.GetChildrenDefinitions()[^1];
-            var newElement = SharedContext.Tree.ElementFactory.CreateCollectionItemElement(definition, this);
+            var newElement = SharedContext.Tree.ElementCreator.CreateCollectionItemElement(definition, this);
             _mutableLogicalChildren.Add(newElement);
         }
 

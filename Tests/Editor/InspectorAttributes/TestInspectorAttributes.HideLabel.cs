@@ -57,7 +57,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         public void GetDrawerChain_WithHideLabelInt_ContainsHideLabelDrawer()
         {
             var hideLabelElement = GetHideLabelElement();
-            var drawerChainResolver = new DefaultDrawerChainResolverFactory().CreateResolver(hideLabelElement);
+            var drawerChainResolver = DrawerChainResolverFactory.CreateResolver(hideLabelElement);
             Assert.IsNotNull(drawerChainResolver);
             var drawerChain = drawerChainResolver.GetDrawerChain();
             Assert.IsTrue(drawerChain.Drawers.Any(drawer => drawer.GetType() == typeof(HideLabelAttributeDrawer)));
@@ -66,7 +66,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         private IFieldElement GetHideLabelElement()
         {
             var testInstance = new TestClass();
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             tree.BeginDraw();
             tree.EndDraw();
             var root = tree.Root;

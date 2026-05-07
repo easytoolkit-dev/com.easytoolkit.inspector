@@ -1,4 +1,5 @@
 using System;
+using EasyToolkit.Inspector.Editor.Implementations;
 using JetBrains.Annotations;
 
 namespace EasyToolkit.Inspector.Editor
@@ -37,7 +38,7 @@ namespace EasyToolkit.Inspector.Editor
         /// or when <see cref="IFieldDefinition.AsUnityProperty"/> is <c>true</c>.
         /// </para>
         /// </remarks>
-        [CanBeNull] new IElementList<IElement> Children { get; }
+        [CanBeNull] new ElementList<IElement> Children { get; }
 
         /// <summary>
         /// Gets the base value entry that is built directly from <see cref="IValueDefinition.ValueType"/>.

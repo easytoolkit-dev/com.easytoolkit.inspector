@@ -57,7 +57,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         public void GetDrawerChain_WithDirtyTriggerInt_ContainsDirtyTriggerDrawer()
         {
             var dirtyTriggerElement = GetDirtyTriggerElement();
-            var drawerChainResolver = new DefaultDrawerChainResolverFactory().CreateResolver(dirtyTriggerElement);
+            var drawerChainResolver = DrawerChainResolverFactory.CreateResolver(dirtyTriggerElement);
             Assert.IsNotNull(drawerChainResolver);
             var drawerChain = drawerChainResolver.GetDrawerChain();
             Assert.IsTrue(drawerChain.Drawers.Any(drawer => drawer.GetType() == typeof(DirtyTriggerAttributeDrawer<Action<string>>)));
@@ -66,7 +66,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         private IFieldElement GetDirtyTriggerElement()
         {
             var testInstance = new TestClass();
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             tree.BeginDraw();
             tree.EndDraw();
             var root = tree.Root;

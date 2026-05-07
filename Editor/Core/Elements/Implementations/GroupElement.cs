@@ -19,7 +19,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         /// <param name="sharedContext">The shared context providing access to tree-level services.</param>
         public GroupElement(
             [NotNull] IGroupDefinition definition,
-            [NotNull] IElementSharedContext sharedContext)
+            [NotNull] ElementSharedContext sharedContext)
             : base(definition, sharedContext)
         {
         }

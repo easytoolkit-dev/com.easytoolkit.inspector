@@ -43,7 +43,7 @@ namespace EasyToolkit.Inspector.Editor
         /// <summary>
         /// Gets the element factory instance owned by this tree.
         /// </summary>
-        IElementFactory ElementFactory { get; }
+        ElementCreator ElementCreator { get; }
 
         /// <summary>
         /// Gets the root <see cref="VisualElement"/> for UI Toolkit rendering.

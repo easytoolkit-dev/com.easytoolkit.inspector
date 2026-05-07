@@ -22,7 +22,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new MultipleFieldsClass { IntField = 1 };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();
@@ -44,7 +44,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new MultipleFieldsClass { FloatField = 2.0f };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();
@@ -66,7 +66,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new MultipleFieldsClass { StringField = "test" };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();
@@ -88,7 +88,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new MultipleFieldsClass { BoolField = true };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();
@@ -114,7 +114,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new MultipleFieldsClass { IntField = 1 };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();
@@ -136,7 +136,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new MultipleFieldsClass { FloatField = 2.0f };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();
@@ -158,7 +158,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new MultipleFieldsClass { StringField = "test" };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();
@@ -180,7 +180,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         {
             // Arrange
             var testInstance = new MultipleFieldsClass { BoolField = true };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();
@@ -212,7 +212,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
                 StringField = "test",
                 BoolField = true
             };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();
@@ -246,7 +246,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
                 Id = 100,
                 NestedObject = new SingleFieldClass { TestInt = 42 }
             };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();
@@ -280,7 +280,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
                 StringField = "test",
                 BoolField = true
             };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();
@@ -350,7 +350,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
                 Id = 100,
                 NestedObject = new SingleFieldClass { TestInt = 42 }
             };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();
@@ -397,7 +397,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
             {
                 Integers = new List<int> { 1, 2, 3 }
             };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();
@@ -420,7 +420,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
             {
                 Integers = new List<int> { 10, 20, 30, 40, 50 }
             };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();
@@ -446,7 +446,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
             {
                 Integers = new List<int>()
             };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();
@@ -472,7 +472,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
             {
                 Integers = new List<int> { 1, 2 }
             };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             var root = tree.Root;
             tree.BeginDraw();
             tree.EndDraw();

@@ -18,7 +18,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
                     1, 2, 3
                 }
             };
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             tree.BeginDraw();
             tree.EndDraw();
             var root = tree.Root;
@@ -28,7 +28,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
             var collectionElement = root.LogicalChildren[0] as ICollectionElement;
             Assert.IsNotNull(collectionElement);
 
-            var resolver = new DefaultStructureResolverFactory().CreateResolver(collectionElement);
+            var resolver = StructureResolverFactory.CreateResolver(collectionElement);
             Assert.IsInstanceOf<CollectionStructureResolver<List<int>, int>>(resolver);
             var definitions = resolver.GetChildrenDefinitions();
             Assert.AreEqual(3, definitions.Length);

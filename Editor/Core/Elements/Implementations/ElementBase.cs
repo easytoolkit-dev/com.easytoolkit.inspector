@@ -14,7 +14,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
     /// </summary>
     public abstract class ElementBase : IElement, IDisposable
     {
-        [CanBeNull] private IElementList<IElement> _children;
+        [CanBeNull] private ElementList<IElement> _children;
         private int? _lastUpdateId;
         private GUIContent _label;
         private ElementPhases _phases;
@@ -36,7 +36,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         /// <summary>
         /// Gets the element shared context that provides access to tree-level services and resolver factories.
         /// </summary>
-        public IElementSharedContext SharedContext { get; }
+        public ElementSharedContext SharedContext { get; }
 
         /// <summary>
         /// Gets the current parent element in the element tree hierarchy.
@@ -46,7 +46,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         /// <summary>
         /// Gets the runtime state of this element.
         /// </summary>
-        public IElementState State { get; }
+        public ElementState State { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ElementBase"/> class.
@@ -55,7 +55,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         /// <param name="sharedContext">The shared context providing access to tree-level services.</param>
         protected ElementBase(
             [NotNull] IElementDefinition definition,
-            [NotNull] IElementSharedContext sharedContext)
+            [NotNull] ElementSharedContext sharedContext)
         {
             Definition = definition ?? throw new ArgumentNullException(nameof(definition));
             SharedContext = sharedContext ?? throw new ArgumentNullException(nameof(sharedContext));
@@ -90,7 +90,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         /// Gets child elements that were added or removed at runtime.
         /// This collection is mutable and reflects runtime modifications.
         /// </summary>
-        public IElementList<IElement> Children
+        public ElementList<IElement> Children
         {
             get
             {
@@ -319,7 +319,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             }
 
             _phases = _phases.Add(ElementPhases.PendingDestroy);
-            SharedContext.Tree.ElementFactory.DestroyElement(this);
+            SharedContext.Tree.ElementCreator.DestroyElement(this);
         }
 
         protected virtual void OnUpdate(bool forceUpdate)
@@ -384,7 +384,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         }
 
         [NotNull]
-        protected virtual IElementList<IElement> CreateChildren()
+        protected virtual ElementList<IElement> CreateChildren()
         {
             var children = new RequestedElementList<IElement>(this);
             return children;
@@ -483,8 +483,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
                 _attributeResolver = null;
             }
 
-            _attributeResolver = SharedContext.GetResolverFactory<IAttributeResolver>()
-                .CreateResolver(this);
+            _attributeResolver = AttributeResolverFactory.CreateResolver(this);
 
             // Release old post processor chain resolver before creating new one
             if (_postProcessorChainResolver != null)
@@ -493,8 +492,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
                 _postProcessorChainResolver = null;
             }
 
-            _postProcessorChainResolver = SharedContext.GetResolverFactory<IPostProcessorChainResolver>()
-                .CreateResolver(this);
+            _postProcessorChainResolver = PostProcessorChainResolverFactory.CreateResolver(this);
 
             switch (SharedContext.Tree.BackendMode)
             {
@@ -507,8 +505,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
                         _visualBuilderResolver = null;
                     }
 
-                    _visualBuilderResolver = SharedContext.GetResolverFactory<IVisualBuilderResolver>()
-                        .CreateResolver(this);
+                    _visualBuilderResolver = VisualBuilderResolverFactory.CreateResolver(this);
 
                     // Release old visual processor chain resolver before creating new one
                     if (_visualProcessorChainResolver != null)
@@ -517,9 +514,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
                         _visualProcessorChainResolver = null;
                     }
 
-                    _visualProcessorChainResolver = SharedContext.GetResolverFactory<IVisualProcessorChainResolver>()
-                        .CreateResolver(this);
-
+                    _visualProcessorChainResolver = VisualProcessorChainResolverFactory.CreateResolver(this);
                     break;
                 }
                 case InspectorBackendMode.IMGUI:
@@ -531,8 +526,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
                         _drawerChainResolver = null;
                     }
 
-                    _drawerChainResolver = SharedContext.GetResolverFactory<IDrawerChainResolver>()
-                        .CreateResolver(this);
+                    _drawerChainResolver = DrawerChainResolverFactory.CreateResolver(this);
                     break;
                 }
                 default:

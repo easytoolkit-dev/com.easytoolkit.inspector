@@ -16,7 +16,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         /// <param name="logicalParent">The logical parent method element that contains this parameter.</param>
         public MethodParameterElement(
             [NotNull] IMethodParameterDefinition definition,
-            [NotNull] IElementSharedContext sharedContext,
+            [NotNull] ElementSharedContext sharedContext,
             [CanBeNull] IMethodElement logicalParent)
             : base(definition, sharedContext, logicalParent)
         {

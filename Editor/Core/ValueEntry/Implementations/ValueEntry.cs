@@ -112,8 +112,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             {
                 if (_operation == null)
                 {
-                    var factory = _ownerElement.SharedContext.GetResolverFactory<IValueOperationResolver>();
-                    var resolver = factory.CreateResolver(_ownerElement);
+                    var resolver = ValueOperationResolverFactory.CreateResolver(_ownerElement);
                     if (resolver == null)
                     {
                         throw new InvalidOperationException($"Can not create value operation resolver for value entry of '{_ownerElement}'.");

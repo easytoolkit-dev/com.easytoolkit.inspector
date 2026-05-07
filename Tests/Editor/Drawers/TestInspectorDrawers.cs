@@ -50,7 +50,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         public void Test()
         {
             var testInstance = new GameObject().AddComponent<TestComponent>();
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             tree.BeginDraw();
             tree.EndDraw();
             var element = tree.Root.LogicalChildren[0];
@@ -76,7 +76,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         public void Test2()
         {
             var testInstance = new GameObject().AddComponent<TestComponent>();
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             tree.BeginDraw();
             tree.EndDraw();
             var element = tree.Root.LogicalChildren[1];

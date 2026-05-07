@@ -59,7 +59,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         public void GetDrawerChain_WithOnInspectorGUIMethod_ContainsOnInspectorGUIDrawer()
         {
             var onInspectorGUIElement = GetOnInspectorGUIElement();
-            var drawerChainResolver = new DefaultDrawerChainResolverFactory().CreateResolver(onInspectorGUIElement);
+            var drawerChainResolver = DrawerChainResolverFactory.CreateResolver(onInspectorGUIElement);
             Assert.IsNotNull(drawerChainResolver);
             var drawerChain = drawerChainResolver.GetDrawerChain();
             Assert.IsTrue(drawerChain.Drawers.Any(drawer => drawer.GetType() == typeof(OnInspectorGUIAttributeDrawer)));
@@ -68,7 +68,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         private IMethodElement GetOnInspectorGUIElement()
         {
             var testInstance = new TestClass();
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             tree.BeginDraw();
             tree.EndDraw();
             var root = tree.Root;

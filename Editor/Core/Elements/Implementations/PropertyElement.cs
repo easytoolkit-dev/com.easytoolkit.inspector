@@ -16,7 +16,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         /// <param name="logicalParent">The logical parent element in the code structure.</param>
         public PropertyElement(
             [NotNull] IPropertyDefinition definition,
-            [NotNull] IElementSharedContext sharedContext,
+            [NotNull] ElementSharedContext sharedContext,
             [CanBeNull] IValueElement logicalParent)
             : base(definition, sharedContext, logicalParent)
         {

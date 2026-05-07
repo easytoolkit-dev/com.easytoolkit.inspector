@@ -58,7 +58,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         public void GetDrawerChain_WithInlineEditorObject_ContainsInlineEditorDrawer()
         {
             var inlineEditorElement = GetInlineEditorElement();
-            var drawerChainResolver = new DefaultDrawerChainResolverFactory().CreateResolver(inlineEditorElement);
+            var drawerChainResolver = DrawerChainResolverFactory.CreateResolver(inlineEditorElement);
             Assert.IsNotNull(drawerChainResolver);
             var drawerChain = drawerChainResolver.GetDrawerChain();
             Assert.IsTrue(drawerChain.Drawers.Any(drawer => drawer.GetType() == typeof(InlineEditorAttributeDrawer<Rigidbody>)));
@@ -67,7 +67,7 @@ namespace EasyToolkit.Inspector.Editor.Tests
         private IFieldElement GetInlineEditorElement()
         {
             var testInstance = new TestClass();
-            var tree = InspectorElements.TreeFactory.CreateTree(new object[] { testInstance }, null);
+            var tree = ElementTreeFactory.CreateTree(new object[] { testInstance }, null);
             tree.BeginDraw();
             tree.EndDraw();
             var root = tree.Root;
