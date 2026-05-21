@@ -153,7 +153,6 @@ namespace EasyToolkit.Inspector.Editor
         /// </summary>
         private void DrawIMGUI()
         {
-            // Fall back to default inspector if property tree creation failed
             if (_tree == null)
             {
                 try
@@ -163,9 +162,10 @@ namespace EasyToolkit.Inspector.Editor
                 catch (ArgumentException e)
                 {
                     Debug.LogException(e);
+                    // Fall back to default inspector if property tree creation failed
+                    base.OnInspectorGUI();
+                    return;
                 }
-                base.OnInspectorGUI();
-                return;
             }
 
             // Configure MonoScript field visibility during layout phase
