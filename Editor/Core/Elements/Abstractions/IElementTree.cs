@@ -46,19 +46,6 @@ namespace EasyToolkit.Inspector.Editor
         ElementCreator ElementCreator { get; }
 
         /// <summary>
-        /// Gets the root <see cref="VisualElement"/> for UI Toolkit rendering.
-        /// Null when using <see cref="InspectorBackendMode.IMGUI"/> mode.
-        /// </summary>
-        [CanBeNull]
-        VisualElement RootVisualElement { get; }
-
-        /// <summary>
-        /// Gets the backend rendering mode for this inspector.
-        /// Determines whether the inspector uses IMGUI or UI Toolkit for rendering.
-        /// </summary>
-        InspectorBackendMode BackendMode { get; }
-
-        /// <summary>
         /// Gets a Unity <see cref="SerializedProperty"/> by its path.
         /// </summary>
         /// <param name="propertyPath">The Unity property path.</param>

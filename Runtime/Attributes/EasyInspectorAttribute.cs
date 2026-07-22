@@ -7,11 +7,8 @@ namespace EasyToolkit.Inspector.Attributes
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface, AllowMultiple = false, Inherited = true)]
     public class EasyInspectorAttribute : InspectorAttribute
     {
-        public EasyInspectorAttribute(InspectorBackendMode backendMode = InspectorBackendMode.IMGUI)
+        public EasyInspectorAttribute()
         {
-            BackendMode = backendMode;
         }
-
-        public InspectorBackendMode BackendMode { get; }
     }
 }

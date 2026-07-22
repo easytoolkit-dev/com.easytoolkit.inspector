@@ -24,8 +24,6 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         [CanBeNull] private IAttributeResolver _attributeResolver;
         [CanBeNull] private IDrawerChainResolver _drawerChainResolver;
         [CanBeNull] private IPostProcessorChainResolver _postProcessorChainResolver;
-        [CanBeNull] private IVisualBuilderResolver _visualBuilderResolver;
-        [CanBeNull] private IVisualProcessorChainResolver _visualProcessorChainResolver;
         [CanBeNull] private IMessageDispatcher _messageDispatcher;
 
         /// <summary>
@@ -234,54 +232,16 @@ namespace EasyToolkit.Inspector.Editor.Implementations
 
             ((IElement)this).Update();
 
-            switch (SharedContext.Tree.BackendMode)
+            var chain = GetDrawerChain();
+            chain.Reset();
+
+            if (chain.MoveNext() && chain.Current != null)
             {
-                case InspectorBackendMode.IMGUI:
-                {
-                    var chain = GetDrawerChain();
-                    chain.Reset();
-
-                    if (chain.MoveNext() && chain.Current != null)
-                    {
-                        _phases = _phases.Add(ElementPhases.Drawing);
-                        chain.Current.Draw(label);
-                        _phases = _phases.Remove(ElementPhases.Drawing);
-                    }
-
-                    break;
-                }
-                case InspectorBackendMode.UIToolkit:
-                {
-                    if (_phases.IsPendingDraw() || forceDraw)
-                    {
-                        _phases = _phases.Add(ElementPhases.Drawing);
-
-                        var owningVisualElement = GetOwningVisualElement();
-                        Assert.IsNotNull(owningVisualElement);
-
-                        int originalIndex = RemoveVisualElementFromParent(owningVisualElement);
-
-                        _visualElement = CreateVisualElement();
-                        if (_visualElement != null)
-                        {
-                            if (originalIndex != -1)
-                            {
-                                owningVisualElement.Insert(originalIndex, _visualElement);
-                            }
-                            else
-                            {
-                                owningVisualElement.Add(_visualElement);
-                            }
-                        }
-
-                        _phases = _phases.Remove(ElementPhases.Drawing);
-                    }
-
-                    break;
-                }
-                default:
-                    throw new ArgumentOutOfRangeException();
+                _phases = _phases.Add(ElementPhases.Drawing);
+                chain.Current.Draw(label);
+                _phases = _phases.Remove(ElementPhases.Drawing);
             }
+
             _phases = _phases.Remove(ElementPhases.PendingDraw);
         }
 
@@ -368,18 +328,6 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             {
                 ResolverUtility.ReleaseResolver(_postProcessorChainResolver);
                 _postProcessorChainResolver = null;
-            }
-
-            if (_visualBuilderResolver != null)
-            {
-                ResolverUtility.ReleaseResolver(_visualBuilderResolver);
-                _visualBuilderResolver = null;
-            }
-
-            if (_visualProcessorChainResolver != null)
-            {
-                ResolverUtility.ReleaseResolver(_visualProcessorChainResolver);
-                _visualProcessorChainResolver = null;
             }
         }
 
@@ -494,44 +442,14 @@ namespace EasyToolkit.Inspector.Editor.Implementations
 
             _postProcessorChainResolver = PostProcessorChainResolverFactory.CreateResolver(this);
 
-            switch (SharedContext.Tree.BackendMode)
+            // Release old drawer chain resolver before creating new one
+            if (_drawerChainResolver != null)
             {
-                case InspectorBackendMode.UIToolkit:
-                {
-                    // Release old visual builder resolver before creating new one
-                    if (_visualBuilderResolver != null)
-                    {
-                        ResolverUtility.ReleaseResolver(_visualBuilderResolver);
-                        _visualBuilderResolver = null;
-                    }
-
-                    _visualBuilderResolver = VisualBuilderResolverFactory.CreateResolver(this);
-
-                    // Release old visual processor chain resolver before creating new one
-                    if (_visualProcessorChainResolver != null)
-                    {
-                        ResolverUtility.ReleaseResolver(_visualProcessorChainResolver);
-                        _visualProcessorChainResolver = null;
-                    }
-
-                    _visualProcessorChainResolver = VisualProcessorChainResolverFactory.CreateResolver(this);
-                    break;
-                }
-                case InspectorBackendMode.IMGUI:
-                {
-                    // Release old drawer chain resolver before creating new one
-                    if (_drawerChainResolver != null)
-                    {
-                        ResolverUtility.ReleaseResolver(_drawerChainResolver);
-                        _drawerChainResolver = null;
-                    }
-
-                    _drawerChainResolver = DrawerChainResolverFactory.CreateResolver(this);
-                    break;
-                }
-                default:
-                    throw new ArgumentOutOfRangeException();
+                ResolverUtility.ReleaseResolver(_drawerChainResolver);
+                _drawerChainResolver = null;
             }
+
+            _drawerChainResolver = DrawerChainResolverFactory.CreateResolver(this);
 
             _phases = _phases.Remove(ElementPhases.Refreshing);
             _phases = _phases.Add(ElementPhases.JustRefreshed);
@@ -581,108 +499,9 @@ namespace EasyToolkit.Inspector.Editor.Implementations
             OnUpdate(forceUpdate);
         }
 
-        protected virtual VisualElement CreateVisualElement()
-        {
-            var visualBuilder = _visualBuilderResolver!.GetVisualBuilder();
-            if (visualBuilder == null)
-            {
-                var elementType = GetType();
-
-                if (this is IValueElement valueElement)
-                {
-                    var valueType = valueElement.ValueEntry.ValueType;
-                    Debug.LogError(
-                        $"VisualBuilderNotFound: No VisualBuilder defined for element type '{elementType}' (ValueType: {valueType}). " +
-                        $"The visual builder resolver could not find a visual builder to create the UI representation. " +
-                        $"To fix this, define a VisualValueBuilder<{valueType}> for the value type.");
-                }
-                else if (this is IMethodElement methodElement)
-                {
-                    Debug.LogError(
-                        $"VisualBuilderNotFound: No VisualBuilder defined for element type '{elementType}'." +
-                        $"The visual builder resolver could not find a visual builder to create the UI representation. " +
-                        $"To fix this, define a VisualMethodBuilder<TMethodAttribute> for the method '{methodElement.Definition.MethodInfo}'.");
-                }
-                else if (this is IGroupElement groupElement)
-                {
-                    Debug.LogError(
-                        $"VisualBuilderNotFound: No VisualBuilder defined for element type '{elementType}'." +
-                        $"The visual builder resolver could not find a visual builder to create the UI representation. " +
-                        $"To fix this, define a VisualGroupBuilder<TGroupAttribute> for the group '{groupElement.Definition.GroupAttributeType}'.");
-                }
-                else
-                {
-                    Debug.LogError(
-                        $"VisualBuilderNotFound: No VisualBuilder defined for element type '{elementType}'. " +
-                        $"The visual builder resolver could not find a visual builder to create the UI representation. " +
-                        $"To fix this, define a VisualBuilder for the element type.");
-                }
-
-                return null;
-            }
-
-            visualBuilder.Element = this;
-            var visualElement = visualBuilder.CreateVisualElement();
-            if (visualElement == null)
-            {
-                return null;
-            }
-
-            var chain = _visualProcessorChainResolver!.GetVisualProcessorChain();
-            chain.Reset();
-
-            if (chain.MoveNext() && chain.Current != null)
-            {
-                chain.Current.Process(visualElement);
-            }
-
-            return visualElement;
-        }
-
         protected virtual bool IsNecessaryToRefreshMultiple()
         {
             return true;
-        }
-
-        protected virtual VisualElement GetOwningVisualElement()
-        {
-            if (SharedContext.Tree.BackendMode != InspectorBackendMode.UIToolkit)
-            {
-                return null;
-            }
-
-            if (SpecificOwningVisualElement != null)
-            {
-                return SpecificOwningVisualElement;
-            }
-
-            if (this is IRootElement)
-            {
-                return SharedContext.Tree.RootVisualElement;
-            }
-
-            IElement current = this;
-            do
-            {
-                current = current.Parent;
-                if (current == null)
-                {
-                    return null;
-                }
-
-                if (current.VisualElement != null)
-                {
-                    return current.VisualElement;
-                }
-
-                if (current is IRootElement)
-                {
-                    return SharedContext.Tree.RootVisualElement;
-                }
-
-            } while (false);
-
-            return null;
         }
 
         /// <summary>

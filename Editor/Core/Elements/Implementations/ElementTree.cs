@@ -20,7 +20,6 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         private readonly HashSet<IValueElement> _dirtyValueElements = new();
         private readonly Queue<Action> _pendingCallbacks = new();
         private readonly Queue<Action> _pendingCallbacksUntilRepaint = new();
-        private readonly InspectorBackendMode _backendMode;
         private bool _disposed;
 
         /// <summary>
@@ -67,38 +66,20 @@ namespace EasyToolkit.Inspector.Editor.Implementations
         public ElementCreator ElementCreator { get; }
 
         /// <summary>
-        /// Gets the root <see cref="VisualElement"/> for UI Toolkit rendering.
-        /// Null when using <see cref="InspectorBackendMode.IMGUI"/> mode.
-        /// </summary>
-        public VisualElement RootVisualElement { get; }
-
-        /// <summary>
-        /// Gets the backend rendering mode for this inspector.
-        /// Determines whether the inspector uses IMGUI or UI Toolkit for rendering.
-        /// </summary>
-        public InspectorBackendMode BackendMode => _backendMode;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="ElementTree"/> class.
         /// </summary>
         /// <param name="targets">The target objects to create the element tree for. Must not be null or empty.</param>
         /// <param name="serializedObject">The optional <see cref="SerializedObject"/> to use for Unity object targets.</param>
-        /// <param name="rootVisualElement">The optional root <see cref="VisualElement"/> for UI Toolkit rendering.</param>
-        /// <param name="backendMode">The backend rendering mode. Defaults to <see cref="InspectorBackendMode.IMGUI"/>.</param>
         /// <exception cref="ArgumentException">Thrown when targets array is null or empty.</exception>
         public ElementTree(
             [NotNull] object[] targets,
-            [CanBeNull] SerializedObject serializedObject,
-            InspectorBackendMode backendMode = InspectorBackendMode.IMGUI,
-            [CanBeNull] VisualElement rootVisualElement = null)
+            [CanBeNull] SerializedObject serializedObject)
         {
             if (targets == null || targets.Length == 0)
                 throw new ArgumentException("Targets cannot be null or empty.", nameof(targets));
 
             _targets = targets;
             SerializedObject = serializedObject;
-            RootVisualElement = rootVisualElement;
-            _backendMode = backendMode;
 
             // Create shared context with default service container
             _sharedContext = new ElementSharedContext(this);
@@ -255,11 +236,7 @@ namespace EasyToolkit.Inspector.Editor.Implementations
                         continue;
                     }
                     element.ValueEntry.ApplyChanges();
-
-                    if (BackendMode == InspectorBackendMode.IMGUI)
-                    {
-                        element.RequestRefresh();
-                    }
+                    element.RequestRefresh();
                 }
 
                 restDirtyElementsCount = _dirtyValueElements.Count;

@@ -15,20 +15,16 @@ namespace EasyToolkit.Inspector.Editor
         /// Creates an element tree for a single serialized object.
         /// </summary>
         /// <param name="serializedObject">The serialized object to create a tree for.</param>
-        /// <param name="backendMode">The backend rendering mode used by the tree.</param>
-        /// <param name="rootVisualElement">The optional root visual element for UI Toolkit rendering.</param>
         /// <returns>A new <see cref="IElementTree"/> instance representing the complete inspector element hierarchy.</returns>
         [NotNull]
         public static IElementTree CreateTree(
-            [NotNull] SerializedObject serializedObject,
-            InspectorBackendMode backendMode = InspectorBackendMode.IMGUI,
-            [CanBeNull] VisualElement rootVisualElement = null)
+            [NotNull] SerializedObject serializedObject)
         {
             if (serializedObject == null)
                 throw new ArgumentNullException(nameof(serializedObject));
 
             var targets = serializedObject.targetObjects.Cast<object>().ToArray();
-            return CreateTree(targets, serializedObject, backendMode, rootVisualElement);
+            return CreateTree(targets, serializedObject);
         }
 
         /// <summary>
@@ -36,8 +32,6 @@ namespace EasyToolkit.Inspector.Editor
         /// </summary>
         /// <param name="targets">The target objects to create a tree for.</param>
         /// <param name="serializedObject">The optional serialized object containing shared serialized data.</param>
-        /// <param name="backendMode">The backend rendering mode used by the tree.</param>
-        /// <param name="rootVisualElement">The optional root visual element for UI Toolkit rendering.</param>
         /// <returns>A new <see cref="IElementTree"/> instance representing the multi-object inspector element hierarchy.</returns>
         /// <remarks>
         /// If <paramref name="serializedObject"/> is not null, all objects in <paramref name="targets"/>
@@ -46,9 +40,7 @@ namespace EasyToolkit.Inspector.Editor
         [NotNull]
         public static IElementTree CreateTree(
             [NotNull] object[] targets,
-            [CanBeNull] SerializedObject serializedObject,
-            InspectorBackendMode backendMode = InspectorBackendMode.IMGUI,
-            [CanBeNull] VisualElement rootVisualElement = null)
+            [CanBeNull] SerializedObject serializedObject)
         {
             if (targets == null)
                 throw new ArgumentNullException(nameof(targets));
@@ -102,7 +94,7 @@ namespace EasyToolkit.Inspector.Editor
                 }
             }
 
-            return new Implementations.ElementTree(targets, serializedObject, backendMode, rootVisualElement);
+            return new Implementations.ElementTree(targets, serializedObject);
         }
     }
 }

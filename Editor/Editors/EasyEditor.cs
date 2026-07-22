@@ -46,31 +46,6 @@ namespace EasyToolkit.Inspector.Editor
             DrawIMGUI();
         }
 
-        public override VisualElement CreateInspectorGUI()
-        {
-            if (_inspectorAttribute.BackendMode != InspectorBackendMode.UIToolkit)
-            {
-                return null;
-            }
-
-            var root = new VisualElement();
-
-            var style = EditorResourcesUtility.Load<StyleSheet>("inspector", "DefaultStyleSheet.uss");
-            root.styleSheets.Add(style);
-
-            try
-            {
-                _tree = ElementTreeFactory.CreateTree(serializedObject, InspectorBackendMode.UIToolkit, root);
-            }
-            catch (ArgumentException e)
-            {
-                Debug.LogException(e);
-                return null;
-            }
-
-            return root;
-        }
-
         /// <summary>
         /// Called when the editor is enabled.
         /// Ensures the static initialization is performed.
@@ -79,11 +54,6 @@ namespace EasyToolkit.Inspector.Editor
         {
             EnsureInitialized();
             _inspectorAttribute = target.GetType().GetCustomAttribute<EasyInspectorAttribute>();
-
-            if (_inspectorAttribute.BackendMode == InspectorBackendMode.UIToolkit)
-            {
-                EditorApplication.update += DrawUIToolkit;
-            }
         }
 
         /// <summary>
@@ -95,11 +65,6 @@ namespace EasyToolkit.Inspector.Editor
             {
                 (_tree as IDisposable)?.Dispose();
                 _tree = null;
-            }
-
-            if (_inspectorAttribute.BackendMode == InspectorBackendMode.UIToolkit)
-            {
-                EditorApplication.update -= DrawUIToolkit;
             }
         }
 
